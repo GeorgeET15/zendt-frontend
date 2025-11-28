@@ -44,20 +44,22 @@ export default function AddClientPage() {
         onSubmit={handleSubmit}
         className="space-y-6 rounded-[36px] border border-white/10 bg-[#0f0f13]/90 p-6 shadow-[0_25px_45px_rgba(4,4,7,0.55)]"
       >
-        <div className="flex rounded-[32px] border border-white/15 overflow-hidden w-full max-w-sm">
-          {(["individual", "company"] as const).map((option) => (
-            <button
-              type="button"
-              key={option}
-              onClick={() => setType(option)}
-              className={[
-                "flex-1 py-2 text-sm transition",
-                type === option ? "bg-white/10 text-white" : "text-white/60",
-              ].join(" ")}
-            >
-              {option === "individual" ? "Individual" : "Company"}
-            </button>
-          ))}
+        <div className="flex justify-center items-center">
+          <div className="flex rounded-4xl border border-white/15 overflow-hidden w-full max-w-sm">
+            {(["individual", "company"] as const).map((option) => (
+              <button
+                type="button"
+                key={option}
+                onClick={() => setType(option)}
+                className={[
+                  "flex-1 py-2 text-sm transition",
+                  type === option ? "bg-white/10 text-white" : "text-white/60",
+                ].join(" ")}
+              >
+                {option === "individual" ? "Individual" : "Company"}
+              </button>
+            ))}
+          </div>
         </div>
 
         <Field label="Payer name">
@@ -82,7 +84,9 @@ export default function AddClientPage() {
         <Field label="Country">
           <select
             value={form.country}
-            onChange={(event) => setForm({ ...form, country: event.target.value })}
+            onChange={(event) =>
+              setForm({ ...form, country: event.target.value })
+            }
             className="w-full rounded-3xl border border-white/15 bg-black/30 px-4 py-3 text-white pr-8 focus:outline-none"
           >
             <option value="" hidden>
@@ -99,7 +103,9 @@ export default function AddClientPage() {
         <Field label="Purpose code">
           <select
             value={form.purposeCode}
-            onChange={(event) => setForm({ ...form, purposeCode: event.target.value })}
+            onChange={(event) =>
+              setForm({ ...form, purposeCode: event.target.value })
+            }
             className="w-full rounded-3xl border border-white/15 bg-black/30 px-4 py-3 text-white pr-8 focus:outline-none"
           >
             <option value="" hidden>
@@ -146,7 +152,11 @@ export default function AddClientPage() {
         )}
 
         <label className="flex items-center gap-3 text-sm text-white/80">
-          <ToggleCheckbox checked={allowPartial} onChange={setAllowPartial} size="sm" />
+          <ToggleCheckbox
+            checked={allowPartial}
+            onChange={setAllowPartial}
+            size="sm"
+          />
           <span>Allow alternate reminders</span>
         </label>
 
@@ -157,7 +167,7 @@ export default function AddClientPage() {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="w-full rounded-[28px] border border-white/20 bg-white/10 py-2 text-sm text-white hover:bg-white/20 md:w-40"
+            className="rounded-[28px] border border-white/20 bg-white/10 py-2 text-sm text-white hover:bg-white/20 w-40"
           >
             Save
           </button>
@@ -167,7 +177,13 @@ export default function AddClientPage() {
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <label className="flex flex-col gap-2 text-sm text-white/70">
       {label}

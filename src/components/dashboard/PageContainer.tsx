@@ -9,7 +9,7 @@ export default function PageContainer({ children, className }: PageContainerProp
   return (
     <div
       className={[
-        "w-full max-w-3xl mx-auto py-12 space-y-6",
+        "w-full max-w-3xl mx-auto pb-12 space-y-6",
         className,
       ]
         .filter(Boolean)

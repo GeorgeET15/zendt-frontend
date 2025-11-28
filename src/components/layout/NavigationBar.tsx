@@ -36,12 +36,12 @@ export default function NavigationBar({ className, centerContent }: NavigationBa
           <button
             type="button"
             onClick={() => setOpen((prev) => !prev)}
-            className="h-12 w-12 rounded-2xl border border-white/10 flex flex-col items-center justify-center gap-1 text-white/90 hover:border-white/40"
+            className="group h-12 w-12 flex flex-col items-center justify-center gap-1 text-gray-400 hover:text-white/90 cursor-pointer"
             aria-expanded={open}
           >
-            <span className="h-0.5 w-6 bg-white" />
-            <span className="h-0.5 w-4 bg-white" />
-            <span className="h-0.5 w-6 bg-white" />
+            <span className="h-0.5 w-6 bg-current transition-colors group-hover:bg-white" />
+            <span className="h-0.5 w-4 bg-current transition-colors group-hover:bg-white" />
+            <span className="h-0.5 w-6 bg-current transition-colors group-hover:bg-white" />
           </button>
 
           {open && (

@@ -60,7 +60,7 @@ export default function EditableDetailsCard({
               readOnly={!isEditing}
               className="w-full bg-transparent text-lg text-white/90 focus:outline-none"
             />
-            <div className="h-px bg-gradient-to-r from-white/30 via-white/60 to-white/30" />
+            {isEditing && (<div className="h-px bg-linear-to-r from-white/30 via-white/60 to-white/30" />)}
           </fieldset>
         ))}
       </div>

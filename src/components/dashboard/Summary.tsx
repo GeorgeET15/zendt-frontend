@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import DoubleBgBox from "../doubleBgBox";
@@ -19,59 +18,96 @@ export default function DashboardSummary() {
     { code: "INR", amount: "23,098 rs", image: "/india.png" },
     { code: "USD", amount: "203 usd", image: "/usa.png" },
     { code: "AED", amount: "2,234 aed", image: "/uae.png" },
-    { code: "EUR", amount: "560 eur", image: "/euro.png"  },
+    { code: "EUR", amount: "560 eur", image: "/euro.png" },
   ];
 
   const [walletStart, setWalletStart] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(1);
+  const [walletStep, setWalletStep] = useState(0);
   const [showSettlementDetails, setShowSettlementDetails] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
   const walletTrackRef = useRef<HTMLDivElement>(null);
-  const [walletStep, setWalletStep] = useState(0);
   const navigate = useNavigate();
 
+  // mobile detection for settlement behavior (unchanged)
   useEffect(() => {
     const update = () => setIsMobile(window.matchMedia("(max-width: 767px)").matches);
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
   }, []);
-  const visibleCount = Math.min(wallets.length, isMobile ? 1 : 3);
-  const maxStart = Math.max(0, wallets.length - visibleCount);
 
+  // decide visibleCount based on width and measure walletStep
   useEffect(() => {
-    setWalletStart((prev) => Math.min(prev, maxStart));
-  }, [maxStart]);
+    const MIN_WALLET_WIDTH = 180; // px – tweak for desired wallet size
 
-  useEffect(() => {
-    const measure = () => {
+    const updateLayout = () => {
       if (!walletTrackRef.current) return;
+
+      const container = walletTrackRef.current.parentElement;
+      if (!container) return;
+
+      const containerWidth = container.offsetWidth;
+      if (!containerWidth) return;
+
+      // 1–3 wallets depending on space, but not more than we have
+      const maxVisible = Math.min(3, wallets.length);
+      const nextVisible = Math.max(
+        1,
+        Math.min(maxVisible, Math.floor(containerWidth / MIN_WALLET_WIDTH))
+      );
+
+      setVisibleCount(nextVisible);
+
       const cards = walletTrackRef.current.querySelectorAll<HTMLDivElement>("[data-wallet-card]");
+      if (!cards.length) return;
+
+      // distance between first two cards (includes gap-4)
       if (cards.length >= 2) {
         const first = cards[0].getBoundingClientRect();
         const second = cards[1].getBoundingClientRect();
         setWalletStep(second.left - first.left);
-      } else if (cards.length === 1) {
+      } else {
         setWalletStep(cards[0].getBoundingClientRect().width);
       }
     };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+
+    updateLayout();
+
+    const resizeObserver = new ResizeObserver(updateLayout);
+    const container = walletTrackRef.current?.parentElement;
+    if (container) {
+      resizeObserver.observe(container);
+    }
+
+    window.addEventListener("resize", updateLayout);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updateLayout);
+    };
+  }, [wallets.length]);
+
+  // clamp walletStart when visibleCount or wallets length changes
+  useEffect(() => {
+    setWalletStart((prev) => Math.min(prev, Math.max(0, wallets.length - visibleCount)));
   }, [visibleCount, wallets.length]);
 
+  const maxStart = Math.max(0, wallets.length - visibleCount);
   const canSlideLeft = walletStart > 0;
-  const canSlideRight = walletStart + visibleCount < wallets.length;
+  const canSlideRight = walletStart < maxStart;
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4 py-12 space-y-10">
-      <header className="space-y-2 text-left">
-        <p className="text-4xl font-semibold">Hello Roberto !</p>
-        <p className="text-white/60">How you doing?</p>
+      <header className="text-left">
+        <p className="text-3xl font-light text-white">Hello Roberto !</p>
+        <p className="text-white/50 font-extralight text-base ">How you doing?</p>
       </header>
 
       <section className="space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-semibold tracking-[0.25em] text-white">WALLETS</h2>
+          <h2 className="text-2xl font-light text-white">WALLETS</h2>
         </div>
         <div className="flex items-center gap-3">
           {canSlideLeft && (
@@ -98,7 +134,7 @@ export default function DashboardSummary() {
                 <div
                   key={wallet.code}
                   data-wallet-card
-                  style={{ minWidth: `calc(${100 / visibleCount}% - 0.5rem)` }}
+                  style={{ minWidth: `calc(${100 / visibleCount}% - 0.5rem)` }} // 0.5rem = half of gap-4
                 >
                   <DoubleBgBox
                     variant="small"
@@ -121,18 +157,18 @@ export default function DashboardSummary() {
                 </svg>
               }
               onClick={() =>
-                setWalletStart((prev) => Math.min(prev + visibleCount, Math.max(0, wallets.length - visibleCount)))
+                setWalletStart((prev) => Math.min(prev + visibleCount, maxStart))
               }
             />
           )}
         </div>
       </section>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <section className="grid grid-cols-2 gap-4">
         <DoubleBgBox variant="wide" className="justify-between">
           <div className="text-left text-white space-y-1">
-            <p className="text-xs uppercase tracking-[0.35em] text-white/60">Current balance</p>
-            <p className="text-2xl font-semibold">Rs 1,00,000</p>
+            <p className="sm:text-xs text-[9px] uppercase tracking-[0.35em] text-white/60">Current balance</p>
+            <p className="sm:text-2xl text-base font-semibold">Rs 1,00,000</p>
           </div>
         </DoubleBgBox>
 
@@ -150,9 +186,9 @@ export default function DashboardSummary() {
         >
           <DoubleBgBox variant="wide" className="justify-between">
             <div className="text-left text-white space-y-1">
-              <p className="text-xs uppercase tracking-[0.35em] text-white/60">Last settlement</p>
-              <p className="text-2xl font-semibold">$24,000</p>
-              <p className="text-xs text-white/60">Deposited on July 10th</p>
+              <p className="sm:text-xs text-[9px] uppercase tracking-[0.35em] text-white/60">Last settlement</p>
+              <p className="sm:text-2xl text-base font-semibold">$24,000</p>
+              <p className="sm:text-xs text-[9px] text-white/60">Deposited on July 10th</p>
             </div>
           </DoubleBgBox>
         </button>

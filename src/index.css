@@ -1,1 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
+
+:root {
+  font-family: "Cairo", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+body {
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}

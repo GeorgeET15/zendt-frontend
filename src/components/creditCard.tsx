@@ -17,10 +17,13 @@ const CreditCard: React.FC<CreditCardProps> = ({
   className = "",
 }) => {
   return (
-    <div className={`relative text-[#dddddd] font-[Cario] ${className}`}>
-      <div
-        className="relative h-[200px] w-[320px] overflow-hidden rounded-[20px] shadow-[0_0_25px_2px_rgba(0,0,0,0.4)]
-          bg-[#161616]
+    <div className={`relative text-[#dddddd] font-[Cairo] ${className}`}>
+<div
+  className="relative mx-auto shrink-0
+    h-[170px] w-[280px] sm:h-[200px] sm:w-[320px]
+    overflow-hidden rounded-[20px]
+    shadow-[0_0_25px_2px_rgba(0,0,0,0.4)]
+    bg-[#161616]
     before:content-['']
     before:absolute
     before:inset-0
@@ -30,7 +33,8 @@ const CreditCard: React.FC<CreditCardProps> = ({
     before:bg-position-[-100px_-110px]
     before:opacity-60
     before:blur-2xl"
-      >
+>
+
         {brandLogo && (
           <img src={brandLogo} alt="Card brand" className="absolute left-6 top-6 h-6 w-auto" />
         )}

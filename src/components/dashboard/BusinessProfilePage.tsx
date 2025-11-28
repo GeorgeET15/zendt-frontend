@@ -15,7 +15,7 @@ export default function BusinessProfilePage() {
         <BackButton />
         <Link
           to="/dashboard/business-profile/edit"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/80 hover:text-white"
+          className="inline-flex h-10 w-10 text-xl items-center justify-center text-white/80 hover:text-white"
         >
           ✎
         </Link>

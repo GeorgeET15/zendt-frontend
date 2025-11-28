@@ -46,7 +46,7 @@ export default function VirtualAccountPage() {
           </Link>
         </div>
 
-        <section className="rounded-[40px] bg-[#050506]/95 border border-white/5 shadow-[0_35px_65px_rgba(4,4,7,0.55)] p-6 space-y-8">
+        <section className="rounded-[40px] bg-[#050506]/95 border border-white/5 shadow-[0_35px_65px_rgba(4,4,7,0.55)] sm:p-6 p-2 space-y-8">
           <header className="space-y-2">
             <h1 className="text-3xl font-semibold">My Virtual Account</h1>
             <p className="text-sm text-white/70">Select currency</p>

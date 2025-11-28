@@ -29,14 +29,32 @@ export default function ProfileHub() {
           <div className="flex-1 space-y-3">
             <div>
               <h2 className="text-2xl font-semibold">Roberto Augustus</h2>
-              <p className="text-sm text-white/70">E-mail : robertoaugustus@gmail.com</p>
+              <p className="text-sm text-white/70">
+                E-mail : robertoaugustus@gmail.com
+              </p>
               <p className="text-sm text-white/50">Customer id : 69014537892</p>
             </div>
             <Link
               to="/dashboard/profile-settings"
-              className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-white"
+              className="inline-flex items-center gap-2 text-sm text-white/80 hover:scale-101"
             >
-              Profile settings <span>&#8250;</span>
+              Profile settings{" "}
+              <span>
+                {" "}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="6"
+                  height="12"
+                  viewBox="0 0 9 21"
+                  fill="none"
+                >
+                  <path
+                    d="M0.5 20.5L6.96447 14.0355C8.91709 12.0829 8.91709 8.91709 6.96447 6.96447L0.499999 0.5"
+                    stroke="white"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
             </Link>
           </div>
         </div>
@@ -46,15 +64,29 @@ export default function ProfileHub() {
             <Link
               key={item.label}
               to={item.to}
-              className="flex items-center justify-between rounded-2xl px-4 py-3 text-base text-white/80 hover:bg-white/5"
+              className="flex items-center justify-between rounded-2xl px-4 py-3 text-base text-white/80 hover:scale-101 "
             >
               <span>{item.label}</span>
-              <span className="text-white/60">&#8250;</span>
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="9"
+                  height="21"
+                  viewBox="0 0 9 21"
+                  fill="none"
+                >
+                  <path
+                    d="M0.5 20.5L6.96447 14.0355C8.91709 12.0829 8.91709 8.91709 6.96447 6.96447L0.499999 0.5"
+                    stroke="white"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
             </Link>
           ))}
           <Link
             to="/login"
-            className="flex items-center justify-between rounded-2xl px-4 py-3 text-base text-red-300/80 hover:bg-white/5"
+            className="flex items-center justify-between rounded-2xl px-4 py-3 text-base text-red-300/80 hover:scale-101"
           >
             <span>Log out</span>
           </Link>
