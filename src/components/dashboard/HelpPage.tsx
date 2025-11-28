@@ -32,7 +32,11 @@ export default function HelpPage() {
             <details key={faq.question} className="group rounded-3xl border border-white/10 bg-white/5 p-4">
               <summary className="cursor-pointer list-none text-base font-medium">
                 {faq.question}
-                <span className="float-right text-white/60 transition group-open:rotate-90">&#8250;</span>
+                <span className="float-right text-white/60 transition group-open:rotate-90">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="9" height="21" viewBox="0 0 9 21" fill="none">
+                    <path d="M0.5 20.5L6.96447 14.0355C8.91709 12.0829 8.91709 8.91709 6.96447 6.96447L0.499999 0.5" stroke="white" strokeLinecap="round"></path>
+                  </svg>
+                </span>
               </summary>
               <p className="mt-3 text-sm text-white/70">{faq.answer}</p>
             </details>

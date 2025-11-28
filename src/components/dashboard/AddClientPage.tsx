@@ -1,5 +1,6 @@
 import { useState } from "react";
 import BackButton from "./BackButton";
+import FormSelect from "./FormSelect";
 import PageContainer from "./PageContainer";
 import ToggleCheckbox from "./ToggleCheckbox";
 
@@ -35,11 +36,11 @@ export default function AddClientPage() {
     <PageContainer className="text-white space-y-6">
       <div className="flex items-center justify-between">
         <BackButton />
-        <div className="rounded-2xl border border-white/15 px-4 py-1 text-xs uppercase tracking-[0.3em] text-white/60">
-          Add client
-        </div>
       </div>
-
+        <header className="space-y-1">
+          <h1 className="text-3xl font-semibold">Add Client</h1>
+          <p className="text-sm text-white/60">Add a client for easier access of payee in invoice / payment links creation.</p>
+        </header>
       <form
         onSubmit={handleSubmit}
         className="space-y-6 rounded-[36px] border border-white/10 bg-[#0f0f13]/90 p-6 shadow-[0_25px_45px_rgba(4,4,7,0.55)]"
@@ -82,12 +83,12 @@ export default function AddClientPage() {
         </Field>
 
         <Field label="Country">
-          <select
+          <FormSelect
             value={form.country}
             onChange={(event) =>
               setForm({ ...form, country: event.target.value })
             }
-            className="w-full rounded-3xl border border-white/15 bg-black/30 px-4 py-3 text-white pr-8 focus:outline-none"
+            className="w-full"
           >
             <option value="" hidden>
               Select country
@@ -97,16 +98,16 @@ export default function AddClientPage() {
                 {c}
               </option>
             ))}
-          </select>
+          </FormSelect>
         </Field>
 
         <Field label="Purpose code">
-          <select
+          <FormSelect
             value={form.purposeCode}
             onChange={(event) =>
               setForm({ ...form, purposeCode: event.target.value })
             }
-            className="w-full rounded-3xl border border-white/15 bg-black/30 px-4 py-3 text-white pr-8 focus:outline-none"
+            className="w-full"
           >
             <option value="" hidden>
               Select
@@ -116,7 +117,7 @@ export default function AddClientPage() {
                 {code}
               </option>
             ))}
-          </select>
+          </FormSelect>
         </Field>
 
         <Field label="Purpose address">

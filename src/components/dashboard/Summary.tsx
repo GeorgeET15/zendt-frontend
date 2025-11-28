@@ -1,17 +1,21 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAvatar } from "../../context/AvatarContext";
 import DoubleBgBox from "../doubleBgBox";
 import ExpandToggleButton from "./ExpandToggleButton";
 import PaymentAccordion from "./PaymentAccordion";
 
-const transactions = [
-  { id: 1, name: "Aginaldo", amount: 353.01, avatar: "/avatar-placeholder.svg" },
-  { id: 2, name: "Aginaldo", amount: 353.01, avatar: "/avatar-placeholder.svg" },
-  { id: 3, name: "Aginaldo", amount: 353.01, avatar: "/avatar-placeholder.svg" },
-  { id: 4, name: "Aginaldo", amount: 353.01, avatar: "/avatar-placeholder.svg" },
-];
-
 export default function DashboardSummary() {
+  const avatarSrc = useAvatar();
+  const transactions = useMemo(
+    () => [
+      { id: 1, name: "Aginaldo", amount: 353.01, avatar: avatarSrc },
+      { id: 2, name: "Aginaldo", amount: 353.01, avatar: avatarSrc },
+      { id: 3, name: "Aginaldo", amount: 353.01, avatar: avatarSrc },
+      { id: 4, name: "Aginaldo", amount: 353.01, avatar: avatarSrc },
+    ],
+    [avatarSrc]
+  );
   const total = transactions.reduce((sum, tx) => sum + tx.amount, 0);
 
   const wallets = [

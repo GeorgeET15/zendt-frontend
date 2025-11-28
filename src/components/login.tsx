@@ -59,7 +59,7 @@ export default function Login() {
 
   return (
     <AuthBackground showNavigation={false}>
-      <div className="flex-col sm:justify-end">
+      <div className="flex min-h-screen w-full items-center justify-center px-4 py-10">
         <div className="w-full max-w-xs mx-auto">
           <h2 className="text-center text-2xl font-light mb-12">
             {phase === "credentials" ? "Login" : "Two-factor authentication"}
@@ -97,7 +97,7 @@ export default function Login() {
 
               {error && <p className="text-xs text-red-400">{error}</p>}
 
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <button
                   type="submit"
                   disabled={loading}
@@ -109,7 +109,7 @@ export default function Login() {
                   </span>
                 </button>
 
-                <div className="text-right text-xs text-gray-400">
+                <div className="text-center sm:text-right text-xs text-gray-400">
                   Don't have account?{" "}
                   <Link to="/signup" className="text-white underline">
                     Sign up

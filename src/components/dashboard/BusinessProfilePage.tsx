@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useAvatar } from "../../context/AvatarContext";
 import BackButton from "./BackButton";
 import PageContainer from "./PageContainer";
 
@@ -9,6 +10,8 @@ const socials = [
 ];
 
 export default function BusinessProfilePage() {
+  const avatarSrc = useAvatar();
+
   return (
     <PageContainer className="text-white space-y-6">
       <div className="flex items-center justify-between">
@@ -24,7 +27,7 @@ export default function BusinessProfilePage() {
       <div className="space-y-6">
         <div className="flex flex-col items-center gap-4 rounded-[40px] bg-[#0f0f11]/90 border border-white/5 p-6 shadow-[0_35px_65px_rgba(4,4,7,0.55)]">
           <div className="h-28 w-28 rounded-[32px] overflow-hidden bg-black/70">
-            <img src="/avatar-placeholder.svg" alt="Crafts of taste" className="h-full w-full object-cover" />
+            <img src={avatarSrc} alt="Crafts of taste" className="h-full w-full object-cover" />
           </div>
           <div className="text-center">
             <h2 className="text-2xl font-semibold">craftsoftaste</h2>

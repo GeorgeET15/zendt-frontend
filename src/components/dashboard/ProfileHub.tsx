@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useAvatar } from "../../context/AvatarContext";
 import BackButton from "./BackButton";
 import PageContainer from "./PageContainer";
 
@@ -14,6 +15,8 @@ const menuItems = [
 ];
 
 export default function ProfileHub() {
+  const avatarSrc = useAvatar();
+
   return (
     <PageContainer>
       <BackButton />
@@ -21,7 +24,7 @@ export default function ProfileHub() {
         <div className="flex flex-col md:flex-row gap-6 p-6">
           <div className="h-28 w-28 rounded-[36px] overflow-hidden bg-black/70">
             <img
-              src="/avatar-placeholder.svg"
+              src={avatarSrc}
               alt="Roberto Augustus"
               className="h-full w-full object-cover"
             />

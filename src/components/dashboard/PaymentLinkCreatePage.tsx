@@ -1,5 +1,6 @@
 import { useState } from "react";
 import BackButton from "./BackButton";
+import FormSelect from "./FormSelect";
 import PageContainer from "./PageContainer";
 import ToggleCheckbox from "./ToggleCheckbox";
 
@@ -80,24 +81,17 @@ export default function PaymentLinkCreatePage() {
           <section className="space-y-4">
             <h2 className="text-sm uppercase tracking-[0.35em] text-white/60">Amount</h2>
             <div className="flex items-center gap-3">
-              <div className="relative">
-                <select
-                  value={amountCurrency}
-                  onChange={(event) => setAmountCurrency(event.target.value)}
-                  className="appearance-none rounded-3xl border border-white/20 bg-black/40 px-4 py-3 pr-12 text-white focus:outline-none"
-                >
-                  {["$", "€", "₹"].map((cur) => (
-                    <option key={cur} value={cur} className="text-black">
-                      {cur}
-                    </option>
-                  ))}
-                </select>
-                <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="5" viewBox="0 0 21 9" fill="none">
-                    <path d="M19.7014 0.311523L13.1226 6.89035C11.4016 8.6113 8.61142 8.61131 6.89047 6.89036L0.31164 0.311523" stroke="white" strokeWidth="0.881353" />
-                  </svg>
-                </span>
-              </div>
+              <FormSelect
+                value={amountCurrency}
+                onChange={(event) => setAmountCurrency(event.target.value)}
+                className="border-white/20 bg-black/40"
+              >
+                {["$", "€", "₹"].map((cur) => (
+                  <option key={cur} value={cur} className="text-black">
+                    {cur}
+                  </option>
+                ))}
+              </FormSelect>
               <input
                 value={amount}
                 onChange={(event) => setAmount(event.target.value)}

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { useAvatar } from "../../context/AvatarContext";
 
 const drawerItems = [
   { label: "Share Virtual Account", to: "/dashboard/virtual-account" },
@@ -17,6 +18,7 @@ interface NavigationBarProps {
 export default function NavigationBar({ className, centerContent }: NavigationBarProps) {
   const [open, setOpen] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
+  const avatarSrc = useAvatar();
 
   useEffect(() => {
     if (!open) return;
@@ -31,7 +33,7 @@ export default function NavigationBar({ className, centerContent }: NavigationBa
 
   return (
     <header className={className}>
-      <div className="mx-auto flex max-w-4xl items-center justify-between rounded-[28px] bg-black/70 px-4 py-3 backdrop-blur border border-white/5 gap-4">
+      <div className="mx-auto flex max-w-4xl items-center justify-between rounded-[28px] px-4 py-3 backdrop-blur border border-white/5 gap-4">
         <div className="relative">
           <button
             type="button"
@@ -74,7 +76,7 @@ export default function NavigationBar({ className, centerContent }: NavigationBa
           className="h-12 w-12 rounded-[18px] overflow-hidden border border-white/10 shadow-lg"
         >
           <img
-            src="/avatar-placeholder.svg"
+            src={avatarSrc}
             alt="Profile"
             className="h-full w-full object-cover"
           />

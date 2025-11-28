@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import BackButton from "./BackButton";
 import CopyButton from "./CopyButton";
 import PageContainer from "./PageContainer";
@@ -38,12 +37,6 @@ export default function VirtualAccountPage() {
     <PageContainer className="space-y-8 text-white">
       <div className="flex items-center justify-between gap-4">
         <BackButton />
-          <Link
-            to="/dashboard/virtual-account/new"
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2 text-sm text-white/80 hover:text-white hover:border-white/40"
-          >
-            Add account <span className="text-lg">+</span>
-          </Link>
         </div>
 
         <section className="rounded-[40px] bg-[#050506]/95 border border-white/5 shadow-[0_35px_65px_rgba(4,4,7,0.55)] sm:p-6 p-2 space-y-8">
@@ -60,7 +53,11 @@ export default function VirtualAccountPage() {
                 )}
                 <span>{selectedCurrency.name}</span>
               </div>
-              <span className="text-2xl text-white/70">&rsaquo;</span>
+              <span className="text-white/70">
+                <svg xmlns="http://www.w3.org/2000/svg" width="9" height="21" viewBox="0 0 9 21" fill="none">
+                  <path d="M0.5 20.5L6.96447 14.0355C8.91709 12.0829 8.91709 8.91709 6.96447 6.96447L0.499999 0.5" stroke="white" strokeLinecap="round"></path>
+                </svg>
+              </span>
             </div>
 
             <div className="rounded-4xl bg-[#0d0f15]/95 border border-white/5 p-5 space-y-5">
@@ -85,7 +82,7 @@ export default function VirtualAccountPage() {
                     type="button"
                     onClick={() => setLocation(option.value)}
                     className={[
-                      "flex w-full items-center justify-between rounded-3xl text-left transition border pl-4",
+                      "flex w-full items-center justify-between rounded-3xl text-left transition border p-4",
                       location === option.value ? "bg-white/10 border-white/20" : "bg-black/30 border-transparent",
                     ].join(" ")}
                   >

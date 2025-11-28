@@ -1,24 +1,8 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useAvatar } from "../../context/AvatarContext";
 import CreditCard from "../creditCard";
 import PageContainer from "./PageContainer";
 import ExpandToggleButton from "./ExpandToggleButton";
-
-const transactionsByCard = [
-  [
-    { id: 1, name: "Aginaldo", amount: 353.01, avatar: "/avatar-placeholder.svg" },
-    { id: 2, name: "Asha", amount: 421.5, avatar: "/avatar-placeholder.svg" },
-    { id: 3, name: "Komal", amount: 210.0, avatar: "/avatar-placeholder.svg" },
-  ],
-  [
-    { id: 4, name: "Loren", amount: 125.0, avatar: "/avatar-placeholder.svg" },
-    { id: 5, name: "Miguel", amount: 289.99, avatar: "/avatar-placeholder.svg" },
-  ],
-  [
-    { id: 6, name: "Dana", amount: 900.45, avatar: "/avatar-placeholder.svg" },
-    { id: 7, name: "Alex", amount: 120.0, avatar: "/avatar-placeholder.svg" },
-    { id: 8, name: "Nina", amount: 75.5, avatar: "/avatar-placeholder.svg" },
-  ],
-];
 
 const cards = [
   {
@@ -41,6 +25,26 @@ const cards = [
 ];
 
 export default function CardManagementPage() {
+  const avatarSrc = useAvatar();
+  const transactionsByCard = useMemo(
+    () => [
+      [
+        { id: 1, name: "Aginaldo", amount: 353.01, avatar: avatarSrc },
+        { id: 2, name: "Asha", amount: 421.5, avatar: avatarSrc },
+        { id: 3, name: "Komal", amount: 210.0, avatar: avatarSrc },
+      ],
+      [
+        { id: 4, name: "Loren", amount: 125.0, avatar: avatarSrc },
+        { id: 5, name: "Miguel", amount: 289.99, avatar: avatarSrc },
+      ],
+      [
+        { id: 6, name: "Dana", amount: 900.45, avatar: avatarSrc },
+        { id: 7, name: "Alex", amount: 120.0, avatar: avatarSrc },
+        { id: 8, name: "Nina", amount: 75.5, avatar: avatarSrc },
+      ],
+    ],
+    [avatarSrc]
+  );
   const [cardIndex, setCardIndex] = useState(0);
   const canPrev = cardIndex > 0;
   const canNext = cardIndex < cards.length - 1;

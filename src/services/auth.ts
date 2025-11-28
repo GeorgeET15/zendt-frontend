@@ -1,14 +1,18 @@
-const API_BASE_URL = import.meta.env.VITE_AUTH_API ?? "http://localhost:5001";
+// Client-side mock auth: no network calls, always succeeds.
+// Keeps the same function signatures so UI code stays unchanged.
 
-async function handleResponse(response: Response) {
-  if (!response.ok) {
-    const message = await response
-      .json()
-      .catch(() => ({ message: "Request failed." }));
-    throw new Error(message.message ?? "Request failed.");
-  }
+type UserRecord = {
+  password: string;
+};
 
-  return response.json();
+const users = new Map<string, UserRecord>();
+
+function mockToken() {
+  return Math.random().toString(36).slice(2, 10);
+}
+
+function mockResponse<T>(value: T, delay = 150): Promise<T> {
+  return new Promise((resolve) => setTimeout(() => resolve(value), delay));
 }
 
 export async function requestSignup(payload: {
@@ -17,31 +21,29 @@ export async function requestSignup(payload: {
   email: string;
   password: string;
 }) {
-  const response = await fetch(`${API_BASE_URL}/api/signup`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+  const email = payload.email || `user-${mockToken()}@example.com`;
+  users.set(email, { password: payload.password });
+  return mockResponse({
+    success: true,
+    email,
+    twoFactorToken: mockToken(),
+    demoCode: "000000",
   });
-
-  return handleResponse(response);
 }
 
 export async function requestLogin(payload: { email: string; password: string }) {
-  const response = await fetch(`${API_BASE_URL}/api/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+  const email = payload.email || `user-${mockToken()}@example.com`;
+  if (!users.has(email)) {
+    users.set(email, { password: payload.password });
+  }
+  return mockResponse({
+    success: true,
+    email,
+    twoFactorToken: mockToken(),
+    demoCode: "000000",
   });
-
-  return handleResponse(response);
 }
 
-export async function verifyTwoFactor(payload: { twoFactorToken: string; code: string }) {
-  const response = await fetch(`${API_BASE_URL}/api/verify-2fa`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-
-  return handleResponse(response);
+export async function verifyTwoFactor(_payload: { twoFactorToken: string; code: string }) {
+  return mockResponse({ success: true, message: "Verification skipped." });
 }

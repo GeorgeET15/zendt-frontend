@@ -1,12 +1,20 @@
-const transactions = Array.from({ length: 12 }, (_, index) => ({
-  id: index + 1,
-  name: `Aginaldo ${index + 1}`,
-  amount: 353.01,
-  avatar: "/avatar-placeholder.svg",
-  date: "24 Apr 2024",
-}));
+import { useMemo } from "react";
+import { useAvatar } from "../../context/AvatarContext";
 
 export default function DashboardTransactions() {
+  const avatarSrc = useAvatar();
+  const transactions = useMemo(
+    () =>
+      Array.from({ length: 12 }, (_, index) => ({
+        id: index + 1,
+        name: `Aginaldo ${index + 1}`,
+        amount: 353.01,
+        avatar: avatarSrc,
+        date: "24 Apr 2024",
+      })),
+    [avatarSrc]
+  );
+
   return (
     <section className="space-y-6">
       <div className="rounded-[32px] bg-gradient-to-br from-[#0a0b11] via-[#10131c] to-[#050608] p-10 text-white shadow-[0_30px_45px_rgba(4,4,7,0.6)] border border-white/5">
