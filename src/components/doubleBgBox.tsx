@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 
 interface DoubleBgBoxProps {
-  variant?: "small" | "medium" | "wide";
   className?: string;
   backgroundImage?: string;
   flagImage?: string;
@@ -9,12 +8,13 @@ interface DoubleBgBoxProps {
   topRight?: ReactNode;
   bottomLeft?: ReactNode;
   bottomRight?: ReactNode;
+  variant?: "wallet" | "others";
   children?: ReactNode;
 }
 
 export default function DoubleBgBox({
-  variant = "medium",
   className,
+  variant = "others",
   backgroundImage,
   flagImage,
   topLeft,
@@ -24,27 +24,32 @@ export default function DoubleBgBox({
   children,
 }: DoubleBgBoxProps) {
   const baseClasses =
-    "relative overflow-hidden rounded-[32px] bg-[#262626] text-gray-100 shadow-[0_25px_45px_rgba(0,0,0,0.45)] border border-white/5";
-
-  let sizeClass = "w-full";
-  if (variant === "small") {
-    sizeClass += " min-h-[170px]";
-  } else if (variant === "wide") {
-    sizeClass += " min-h-[170px] md:min-h-[190px]";
-  } else {
-    sizeClass += " min-h-[180px]";
-  }
-
-  const containerClass = [baseClasses, sizeClass, className]
-    .filter(Boolean)
-    .join(" ");
+    "relative overflow-hidden rounded-[20px] bg-[#262626] text-gray-100 shadow-[0_25px_45px_rgba(0,0,0,0.45)]";
+  const sizeClass =
+    variant === "wallet" ? "w-[102px] aspect-[102/135]" : "w-full aspect-[185/135]";
+  const containerClass = [baseClasses, sizeClass, className].filter(Boolean).join(" ");
 
   return (
     <div className={containerClass}>
+      {variant === "wallet" ? (
+        <svg
+          className="absolute inset-0 w-[101%] h-full z-10"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 102 135"
+          fill="none"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M0 121.681V13.3183C0 5.96282 5.96283 0 13.3183 0H56.0744C60.8326 0 65.2293 2.53846 67.6084 6.65917L74.2492 18.1614C76.6283 22.2821 81.025 24.8205 85.7832 24.8205H87.7799C95.1355 24.8205 101.098 30.7834 101.098 38.1389V121.681C101.098 129.037 95.1355 134.999 87.7799 134.999H13.3183C5.96282 134.999 0 129.037 0 121.681Z"
+            fill="#161616"
+          />
+        </svg>
+      ) : (
       <svg
-        className="absolute inset-0 w-full h-full z-10"
+        className="absolute inset-0 w-full h-[102%] z-10"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 185 134"
+        viewBox="0 0 185 136"
         fill="none"
         preserveAspectRatio="none"
         aria-hidden="true"
@@ -54,21 +59,36 @@ export default function DoubleBgBox({
           fill="#161616"
         />
       </svg>
+      )}
       {flagImage && (
         <img
           src={flagImage}
           alt=""
-          className="absolute z-0 right-0 top-0 h-14 w-18 object-cover rounded-bl-3xl"
+          className="absolute z-0 right-0 top-0 h-9 w-11 object-cover rounded-bl-3xl"
         />
       )}
 
-      <div className="relative z-10 flex h-full w-full flex-col justify-between p-4">
+      {backgroundImage && (
+        <img
+          src={backgroundImage}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover opacity-10"
+          aria-hidden="true"
+        />
+      )}
+
+      <div
+        className={[
+          "relative z-10 flex h-full w-full flex-col p-4",
+          variant === "wallet" ? "justify-between" : "justify-center",
+        ].join(" ")}
+      >
         {children ? (
           children
         ) : (
           <>
             {(topLeft || topRight) && (
-              <div className="flex items-start justify-between text-[10px] uppercase tracking-[0.35em] text-gray-400">
+              <div className="flex items-start justify-between text-[8px] uppercase tracking-[0.35em] text-white">
                 <span>{topLeft}</span>
                 <span className="ml-4">{topRight}</span>
               </div>
@@ -87,7 +107,7 @@ export default function DoubleBgBox({
             {(bottomLeft || bottomRight) && (
               <div className="flex flex-col gap-1 text-left text-white">
                 {bottomLeft && (
-                  <div className="text-lg font-semibold leading-tight">
+                  <div className="text-base font-semibold leading-tight">
                     {bottomLeft}
                   </div>
                 )}

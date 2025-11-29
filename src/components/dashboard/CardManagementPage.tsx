@@ -1,26 +1,28 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useAvatar } from "../../context/AvatarContext";
 import CreditCard from "../creditCard";
 import PageContainer from "./PageContainer";
 import ExpandToggleButton from "./ExpandToggleButton";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 const cards = [
   {
     cardNumber: "1234 56** ****",
     cardHolder: "Roberto Augustus",
-    brandLogo:
-      "https://www.mastercard.com/content/dam/brandcenter/assets/images/logos/mclogo-for-footer.svg",
+    brandLogo: "/assets/mastercard.png",
   },
   {
     cardNumber: "9876 54** ****",
     cardHolder: "Crafts of taste",
-    brandLogo: "https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg",
+    brandLogo: "/assets/visa.svg",
   },
   {
     cardNumber: "4455 11** ****",
     cardHolder: "Paper Studio",
-    brandLogo:
-      "https://upload.wikimedia.org/wikipedia/commons/b/b7/American_Express_logo_%282018%29.svg",
+    brandLogo: "/assets/amex.svg",
   },
 ];
 
@@ -45,101 +47,65 @@ export default function CardManagementPage() {
     ],
     [avatarSrc]
   );
-  const [cardIndex, setCardIndex] = useState(0);
-  const canPrev = cardIndex > 0;
-  const canNext = cardIndex < cards.length - 1;
-  const currentCard = cards[cardIndex];
-  const currentTransactions = transactionsByCard[cardIndex] ?? [];
+  const currentCard = cards[0];
+  const currentTransactions = transactionsByCard[0] ?? [];
 
   return (
     <PageContainer className="text-white space-y-8">
       <header className="space-y-1">
-        <p className="text-sm text-white/60 uppercase tracking-[0.35em]">
-          Card management
-        </p>
-        <h1 className="text-3xl font-semibold">Hello Roberto!</h1>
-        <p className="text-white/60">
-          Manage your cards and review the latest transactions.
-        </p>
+        <span className="text-2xl font-light">CARD MANAGEMENT</span>
       </header>
 
       {/* CARD CAROUSEL */}
-      <div className="flex items-center justify-center">
-        {/* Left column: fixed size, arrow or empty */}
-        <div className="flex items-center justify-center h-12 w-10 z-10">
-          {canPrev && (
-            <ExpandToggleButton
-              variant="button"
-              className="h-12 w-10"
-              icon={
-                <svg
-                  width="10"
-                  height="18"
-                  viewBox="0 0 10 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M8.75 16.5L1.5 9L8.75 1.5"
-                    stroke="white"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              }
-              onClick={() => setCardIndex((prev) => Math.max(0, prev - 1))}
-            />
-          )}
-        </div>
-
-        {/* Center column: flex-1, card always centered */}
-        <div className="flex-1 flex justify-center">
-          <div className="w-full max-w-[300px] sm:max-w-[320px] overflow-hidden">
-            <div
-              className="flex transition-transform duration-300 ease-in-out"
-              style={{ transform: `translateX(-${cardIndex * 100}%)` }}
-            >
-              {cards.map((card) => (
-                <div
-                  key={card.cardNumber}
-                  className="min-w-full flex justify-center"
-                  data-card-slide
-                >
-                  <CreditCard
-                    className="max-w-[320px] w-full"
-                    cardNumber={card.cardNumber}
-                    cardHolder={card.cardHolder}
-                    brandLogo={card.brandLogo}
-                  />
+      <div className="flex items-stretch gap-3 w-full">
+        <div className="flex-1">
+          <Swiper
+            modules={[Navigation]}
+            slidesPerView={1}
+            spaceBetween={16}
+            className="card-swiper"
+          >
+            {cards.map((card) => (
+              <SwiperSlide key={card.cardNumber} className="!w-full">
+                <div className="relative w-full max-w-[520px] mx-auto aspect-[16/10]">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <CreditCard
+                      className="w-full h-full"
+                      cardNumber={card.cardNumber}
+                      cardHolder={card.cardHolder}
+                      brandLogo={card.brandLogo}
+                    />
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
 
-        {/* Right column: fixed size, arrow or empty */}
-        <div className="flex items-center justify-center h-12 w-10 z-10">
-          {canNext && (
-            <ExpandToggleButton
-              variant="button"
-              className="h-12 w-10"
-              icon={
-                <svg
-                  width="10"
-                  height="18"
-                  viewBox="0 0 10 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1.25 1.5L8.5 9L1.25 16.5"
-                    stroke="white"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              }
-              onClick={() => setCardIndex((prev) => Math.min(cards.length - 1, prev + 1))}
-            />
-          )}
+        <div className="flex items-stretch justify-center w-12">
+          <ExpandToggleButton
+            variant="button"
+            className="h-full w-10"
+            icon={
+              <svg
+                width="10"
+                height="18"
+                viewBox="0 0 10 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.25 1.5L8.5 9L1.25 16.5"
+                  stroke="white"
+                  strokeLinecap="round"
+                />
+              </svg>
+            }
+            onClick={() => {
+              const swiperEl = document.querySelector(".card-swiper") as any;
+              swiperEl?.swiper?.slideNext();
+            }}
+          />
         </div>
       </div>
 

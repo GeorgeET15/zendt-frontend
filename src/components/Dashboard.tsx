@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import type { LucideIcon } from "lucide-react";
 import { Compass, CreditCard, LayoutDashboard, UserRound, Wallet } from "lucide-react";
-import AuthBackground from "./AuthBackground";
+import NavigationBar from "./layout/NavigationBar";
 
 type TabDefinition = {
   to: string;
@@ -79,14 +79,27 @@ export default function Dashboard() {
     };
   }, []);
 
+  const location = useLocation();
+  const showNavigationBar =
+    location.pathname.startsWith("/dashboard/home") ||
+    location.pathname.startsWith("/dashboard/card-management") ||
+    location.pathname.startsWith("/dashboard/settlement") ||
+    location.pathname === "/dashboard";
+
   return (
-    <AuthBackground navigationContent={<DashboardDesktopNav />}>
+    <div className="min-h-screen w-full bg-[#141414] text-white">
+      {showNavigationBar && (
+        <div className="mx-auto w-full max-w-4xl px-4 pt-8">
+          <NavigationBar className="w-full" centerContent={<DashboardDesktopNav />} />
+        </div>
+      )}
+
       <div className="relative flex min-h-screen flex-col w-full items-center">
         <DashboardMobileNav />
-        <div className=" mt-6 w-full flex-1 px-4">
+        <div className="w-full flex-1">
           <Outlet />
         </div>
       </div>
-    </AuthBackground>
+    </div>
   );
 }

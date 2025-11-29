@@ -37,7 +37,7 @@ export default function ExpandToggleButton({
       type="button"
       onClick={onClick}
       className={[
-        "h-42  w-12 rounded-[21px] bg-[rgba(42,42,42,0.6)] backdrop-blur-[19px] flex justify-center items-center cursor-pointer shrink-0",
+        "h-[135px]  w-[38px] rounded-[21px] bg-[rgba(42,42,42,0.6)] backdrop-blur-[19px] flex justify-center items-center cursor-pointer shrink-0",
         className,
       ].join(" ")}
       {...ariaProps}
