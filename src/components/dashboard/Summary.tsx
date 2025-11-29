@@ -83,11 +83,11 @@ export default function DashboardSummary() {
           <div className="flex items-center">
             <ExpandToggleButton
               variant="button"
-              className="h-14 w-10"
+              className="w-[38px] h-[135px] bg-[#181818]! rounded-[20px]!"
               icon={
-                <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1.25 1.5L8.5 9L1.25 16.5" stroke="white" strokeLinecap="round" />
-                </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="21" viewBox="0 0 10 21" fill="none">
+<path d="M0.5 0.5L7.67158 7.67158C9.23367 9.23367 9.23367 11.7663 7.67157 13.3284L0.5 20.5" stroke="#5B5B5B" stroke-linecap="round"/>
+</svg>
               }
               onClick={() => {
                 const swiperEl = document.querySelector(".wallet-swiper") as any;

@@ -32,7 +32,7 @@ export default function PaymentLinksPage() {
   };
 
   const Section = ({ children }: { children: ReactNode }) => (
-    <section className="rounded-[36px] border border-white/10 bg-[#0c0c0f]/90 p-5 shadow-[0_25px_45px_rgba(4,4,7,0.55)] space-y-4">
+    <section className="rounded-[36px] h-full bg-black relative z-10 p-5 pt-15 shadow-[0_25px_45px_rgba(4,4,7,0.55)] space-y-4">
       {children}
     </section>
   );
@@ -40,21 +40,25 @@ export default function PaymentLinksPage() {
   const Input = ({ placeholder }: { placeholder: string }) => (
     <input
       placeholder={placeholder}
-      className="w-full rounded-3xl border border-white/15 bg-black/30 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none"
+      className="w-full rounded-[11px] bg-[#1E1E1E] px-4 py-3 text-[10px] text-white placeholder:text-white/40 focus:outline-none"
     />
   );
 
   return (
     <PageContainer className="text-white space-y-6">
-      <div className="flex items-center justify-between">
-        <BackButton />
-        <Link
-          to="/dashboard/payment-links/new"
-          className="rounded-full border border-white/20 px-4 py-2 text-sm text-white hover:bg-white/10"
-        >
-          + Create link
-        </Link>
-      </div>
+             <div className="flex items-center justify-between px-4 pt-6 z-0">
+               <div                      className="absolute opacity-60 blur-2xl -z-10"
+                       style={{
+                         right: "82px",
+                         top: "-20px",
+                         width: "321px",
+                         height: "262px", zIndex: "0",
+                         
+                         background:
+                           "radial-gradient(50% 50% at 50% 50%, rgba(255,173,122,0.40) 0%, rgba(93,104,157,0.40) 58.08%, rgba(20,35,55,0.40) 200%)",
+                       }}></div>
+              <div className="flex justify-between w-full z-1"><BackButton /></div>
+             </div>
 
       <Section>
         <FieldToggle
@@ -170,7 +174,7 @@ export default function PaymentLinksPage() {
         </div>
         <button
           type="button"
-          className="mt-2 rounded-[28px] bg-white/10 px-4 py-2 text-sm text-white hover:bg-white/20"
+          className="mt-2 w-38 float-end rounded-[11px] bg-[#1E1E1E] px-4 py-2 text-[10px] text-white hover:bg-white/20"
         >
           Apply
         </button>
@@ -193,11 +197,11 @@ function FieldToggle({
   return (
     <button
       type="button"
-      className="flex w-full items-center justify-between rounded-3xl border border-white/10 bg-black/30 px-4 py-3 text-left"
+      className="flex w-full items-center justify-between bg-[#1E1E1E] rounded-[11px] px-4 py-3 text-left"
       onClick={onClick}
     >
-      <div className="text-sm text-white/70">{label}</div>
-      <div className="flex items-center gap-3 text-white/80 text-sm">
+      <div className="text-[10px] text-white/70">{label}</div>
+      <div className="flex items-center gap-3 text-white/80 text-[10px] bg-[#1E1E1E]">
         {value && <span>{value}</span>}
         <span>
           {trailingIcon ?? (

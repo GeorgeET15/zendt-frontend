@@ -32,7 +32,7 @@ export default function NavigationBar({ className, centerContent }: NavigationBa
   }, [open]);
 
   return (
-    <header className={className}>
+    <header className={["relative z-[999]", className].filter(Boolean).join(" ")}>
       <div className="mx-auto flex max-w-4xl items-center justify-between rounded-[28px] px-4 py-3 backdrop-blur border border-white/5 gap-4">
         <div className="relative">
           <button
@@ -49,14 +49,24 @@ export default function NavigationBar({ className, centerContent }: NavigationBa
           {open && (
             <div
               ref={drawerRef}
-              className="absolute left-0 mt-3 w-64 rounded-3xl border border-white/10 bg-black/90 p-4 shadow-2xl"
+              className="absolute left-0 mt-3 w-64 rounded-3xl  p-4 shadow-2xl bg-black overflow-hidden"
             >
-              <nav className="flex flex-col gap-2 text-sm text-white/80">
+                      <div                      className="absolute opacity-60 blur-2xl -z-10"
+                style={{
+                  right: "0px",
+                  top: "0px",
+                  width: "321px",
+                  height: "262px", zIndex: "0",
+                  
+                  background:
+                    "radial-gradient(50% 50% at 50% 50%, rgba(255,173,122,0.40) 0%, rgba(93,104,157,0.40) 58.08%, rgba(20,35,55,0.40) 200%)",
+                }}></div>
+              <nav className="relative z-10 flex flex-col gap-2 text-sm text-white/80">
                 {drawerItems.map((item) => (
                   <Link
                     key={item.label}
                     to={item.to}
-                    className="rounded-2xl px-3 py-2 hover:bg-white/10"
+                    className="rounded-2xl px-3 py-2 hover:scale-105"
                     onClick={() => setOpen(false)}
                   >
                     {item.label}

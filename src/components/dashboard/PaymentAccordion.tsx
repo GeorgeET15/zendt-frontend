@@ -34,12 +34,12 @@ export default function PaymentAccordion() {
           >
             <div className="pointer-events-none absolute inset-0">
               <div
-                className="absolute opacity-60 blur-2xl"
+                className="absolute opacity-60 blur-2xl -z-10"
                 style={{
                   right: "-100px",
                   top: "-120px",
                   width: "321px",
-                  height: "262px",
+                  height: "262px", zIndex: "0",
                   background:
                     "radial-gradient(50% 50% at 50% 50%, rgba(255,173,122,0.40) 0%, rgba(93,104,157,0.40) 58.08%, rgba(20,35,55,0.40) 200%)",
                 }}
@@ -50,6 +50,7 @@ export default function PaymentAccordion() {
                 <p className="text-sm text-white/80">{section.title}</p>
                 <ExpandToggleButton
                   isOpen={isOpen}
+                  className="w-[58px] h-[123px] rounded-[20px]"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                 />
               </div>

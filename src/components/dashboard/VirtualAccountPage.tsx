@@ -24,17 +24,17 @@ export default function VirtualAccountPage() {
   return (
     <PageContainer className="text-white space-y-6">
       <div className="flex items-center justify-between px-4 pt-6 z-0">
-        <div                      className="absolute opacity-60 blur-2xl"
+        <div                      className="absolute opacity-60 blur-2xl -z-10"
                 style={{
                   right: "82px",
                   top: "-20px",
                   width: "321px",
-                  height: "262px",
-                  zIndex: '0',
+                  height: "262px", zIndex: "0",
+                  
                   background:
                     "radial-gradient(50% 50% at 50% 50%, rgba(255,173,122,0.40) 0%, rgba(93,104,157,0.40) 58.08%, rgba(20,35,55,0.40) 200%)",
                 }}></div>
-        <BackButton />
+       <div className="flex justify-between w-full z-1"><BackButton /></div>
       </div>
     <div className="pt-6 relative rounded-3xl px-4 bg-black z-1">
       <div className="flex justify-between items-center">
@@ -49,14 +49,14 @@ export default function VirtualAccountPage() {
 
       <div className="space-y-2">
         <p className="text-xs text-white">Select currency</p>
-        <div className="flex items-center justify-between rounded-[14px] bg-[#0f0f11] border border-white/10 px-4 py-3 mb-4">
+        <div className="flex items-center justify-between rounded-[14px] bg-[#0f0f11] px-4 py-3 mb-4">
           <div className="flex items-center gap-3">
             <img
               src={currency.flag}
               alt=""
-              className="h-9 w-14 rounded-[10px] object-cover"
+              className="h-6 w-14 rounded-[10px] object-cover"
             />
-            <span className="text-lg tracking-[0.08em]">{currency.name}</span>
+            <span className="text-[13px] tracking-[0.08em]">{currency.name}</span>
           </div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -82,14 +82,14 @@ export default function VirtualAccountPage() {
             className="h-12 w-12 rounded-[14px] object-cover"
           />
           <div className="space-y-1">
-            <p className="text-base font-medium tracking-tight">
+            <p className="text-[11px] font-medium tracking-tight">
               {currency.name}
             </p>
-            <p className="text-xs text-white/60">Accepted Currencies</p>
+            <p className="text-[8px] text-white/60">Accepted Currencies</p>
           </div>
         </div>
 
-        <p className="text-sm text-white">Sender's bank location</p>
+        <p className="text-[11px] text-white">Sender's bank location</p>
 
         <div className="space-y-3">
           <LocationCard
@@ -107,7 +107,7 @@ export default function VirtualAccountPage() {
           />
         </div>
         <div className="flex items-center justify-between gap-3">
-          <p className="text-sm text-white tracking-[0.05em]">
+          <p className="text-[11.6px] text-white tracking-[0.05em]">
             US Faster payment - account details
           </p>
           <div className="flex items-center gap-2">
@@ -119,10 +119,10 @@ export default function VirtualAccountPage() {
           {accountDetails.map((field) => (
             <div
               key={field.label}
-              className="flex items-center justify-between text-sm text-white/80"
+              className="flex items-center justify-between text-[11px] "
             >
               <span className="tracking-[0.03em]">{field.label}</span>
-              <div className="flex items-center gap-3 text-base text-white">
+              <div className="flex items-center gap-3 text-[11px] text-white">
                 <span>{field.value}</span>
                 <CopyButton value={field.value} />
               </div>
@@ -152,9 +152,9 @@ function LocationCard({
     <button
       type="button"
       onClick={onClick}
-      className="flex w-full items-center justify-between rounded-[14px] bg-[#2E2E2E] px-4 py-3 text-left"
+      className="flex w-full items-center justify-between rounded-[14px] bg-[#2E2E2E]  text-left"
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 px-3 py-2">
         <span
           className={[
             "h-5 w-5 rounded-full border-2 shrink-0 flex items-center justify-center",
@@ -166,12 +166,12 @@ function LocationCard({
           )}
         </span>
         <div>
-          <p className="text-base text-white tracking-[0.02em]">{title}</p>
-          <p className="text-xs text-white/60">{subtitle}</p>
+          <p className="text-[11px] text-white tracking-[0.02em]">{title}</p>
+          <p className="text-[8px] text-white/60">{subtitle}</p>
         </div>
       </div>
       {badge && (
-        <span className="rounded-[12px] bg-[#1f1f21] px-3 py-2 text-xs text-white/80">
+        <span className="rounded-[12px] bg-[#1f1f21] p-[18px] text-xs text-white/80">
           {badge}
         </span>
       )}
