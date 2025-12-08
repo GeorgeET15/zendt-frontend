@@ -83,32 +83,44 @@ function DashboardDesktopNav() {
 
 function DashboardMobileNav() {
   return (
-    <div className="fixed bottom-4 left-1/2 z-40 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 h-[58px] md:hidden">
-      <div className="pointer-events-auto flex justify-center items-center h-auto gap-1 p-1 bg-[#1F1F1F]/95 rounded-full font-normal whitespace-nowrap shadow-[0_24px_45px_rgba(6,6,9,0.4)] backdrop-blur">
-        {tabs.map((tab) => {
-          return (
-            <NavLink
-              key={tab.to}
-              to={`/dashboard/${tab.to}`}
-              className={({ isActive }) =>
-                [
-                  "inline-flex justify-center items-center px-3 py-2 gap-1 rounded-full border border-transparent font-extralight! transition focus-visible:outline-none",
-                  "hover:scale-105 hover:text-white",
-                  isActive ? " text-white active-tab" : "text-slate-500",
-                ].join(" ")
-              }
-            >
-              {({ isActive }) => (
-                <img
-                  src={isActive ? tab.iconHighlighted : tab.icon}
-                  className="h-6 w-6 object-contain"
-                />
-              )}
-            </NavLink>
-          );
-        })}
+    <>
+      {/* Full-width background container starting from top of nav bar */}
+      <div className="fixed bottom-0 left-0 right-0 h-[94px] bg-[#141414] z-30 md:hidden" />
+      
+      <div className="fixed bottom-6 left-1/2 z-40 -translate-x-1/2 md:hidden">
+        <div 
+          className="pointer-events-auto flex justify-center items-center gap-1 p-1 bg-[#1F1F1F] rounded-full font-normal whitespace-nowrap shadow-[0_24px_45px_rgba(6,6,9,0.4)]"
+          style={{
+            width: '374px',
+            height: '70px',
+            borderRadius: '66px'
+          }}
+        >
+          {tabs.map((tab) => {
+            return (
+              <NavLink
+                key={tab.to}
+                to={`/dashboard/${tab.to}`}
+                className={({ isActive }) =>
+                  [
+                    "inline-flex justify-center items-center px-3 py-2 gap-1 rounded-full border border-transparent font-extralight! transition focus-visible:outline-none",
+                    "hover:scale-105 hover:text-white",
+                    isActive ? " text-white active-tab" : "text-slate-500",
+                  ].join(" ")
+                }
+              >
+                {({ isActive }) => (
+                  <img
+                    src={isActive ? tab.iconHighlighted : tab.icon}
+                    className="h-7 w-7 object-contain"
+                  />
+                )}
+              </NavLink>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -147,7 +159,7 @@ export default function Dashboard() {
     location.pathname === "/dashboard";
 
   return (
-    <div className="min-h-screen w-full bg-black text-white overflow-y-scroll no-scrollbar">
+    <div className="min-h-screen w-full bg-[#141414] text-white overflow-y-scroll no-scrollbar">
       {/* 🔹 Small top-right toast */}
       {showKycToast && (
         <div className="fixed flex  items-center right-4 top-4 z-1000 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-xs text-white shadow-lg backdrop-blur">

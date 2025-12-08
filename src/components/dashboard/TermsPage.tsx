@@ -1,9 +1,19 @@
+import { useEffect, useState } from "react";
 import BackButton from "./BackButton";
 import PageContainer from "./PageContainer";
-
-const paragraphs = new Array(4).fill(`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`);
+import { dataService } from "../../services/dataService";
 
 export default function TermsPage() {
+  const [paragraphs, setParagraphs] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await dataService.getTermsParagraphs();
+      setParagraphs(data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <PageContainer>
            <div className="flex items-center justify-between px-4 pt-12 z-0">

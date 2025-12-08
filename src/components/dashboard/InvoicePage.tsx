@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BackButton from "./BackButton";
 import PageContainer from "./PageContainer";
+import Toast from "../Toast";
 
 interface ServiceItem {
   id: number;
@@ -13,6 +14,8 @@ export default function InvoicePage() {
   const [services, setServices] = useState<ServiceItem[]>([
     { id: 1, description: "Service", rate: 200, quantity: 3 },
   ]);
+
+  const [showToast, setShowToast] = useState(false);
 
   const handleServiceChange = (
     id: number,
@@ -51,8 +54,35 @@ export default function InvoicePage() {
     0
   );
 
+  const handleCopyTotal = () => {
+    navigator.clipboard.writeText(`INR ${total.toFixed(2)}`);
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 2000);
+  };
+
   return (
     <PageContainer className="text-white">
+
+      {/* 🔥 TOAST */}
+      <Toast
+        message="Copied"
+        subMessage="Total amount has been copied."
+        visible={showToast}
+        icon={
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            fill="none"
+            stroke="lime"
+            strokeWidth="2"
+          >
+            <circle cx="9" cy="9" r="8" />
+            <path d="m7 9 2 2 4-4" />
+          </svg>
+        }
+      />
+
       <div className="flex items-center justify-between px-4 pt-6 relative z-0">
         <div
           className="absolute opacity-60 blur-2xl -z-10"
@@ -67,34 +97,30 @@ export default function InvoicePage() {
         />
         <BackButton />
       </div>
-      <div className="relative  rounded-t-[32px] bg-black z-1 space-y-6">
-        <section className="bg-black p-6 shadow-[0_25px_45px_rgba(4,4,7,0.55)]  rounded-t-[32px] space-y-6">
-          <header className="space-y-1"> 
+
+      <div className="relative rounded-t-[32px] bg-black z-1 space-y-6 pb-20">
+        <section className="bg-black p-6 shadow-[0_25px_45px_rgba(4,4,7,0.55)] rounded-t-[32px] space-y-6">
+
+          <header className="space-y-1">
             <h1 className="text-[18px] font-semibold">Create invoice</h1>
           </header>
 
           <div className="space-y-6">
+
             <FormField label="Invoice Number" placeholder="12345" />
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormField
-                label="Creation date"
-                placeholder="Select date"
-                type="date"
-              />
-              <FormField
-                label="Due date"
-                placeholder="Select date"
-                type="date"
-              />
+              <FormField label="Creation date" placeholder="Select date" type="date" />
+              <FormField label="Due date" placeholder="Select date" type="date" />
             </div>
 
             <AddressBlock title="Bills from" />
             <AddressBlock title="Bills to" />
 
+            {/* SERVICES */}
             <div className="space-y-4">
-              <p className="text-sm uppercase tracking-tight text-white/70">
-                Services
-              </p>
+              <p className="text-sm uppercase tracking-tight text-white/70">Services</p>
+
               <div className="space-y-3">
                 {services.map((service) => (
                   <div key={service.id}>
@@ -102,40 +128,35 @@ export default function InvoicePage() {
                       className="w-full rounded-[10px] bg-[#1E1E1E] px-4 py-2 text-sm focus:outline-none mb-4"
                       value={service.description}
                       onChange={(event) =>
-                        handleServiceChange(
-                          service.id,
-                          "description",
-                          event.target.value
-                        )
+                        handleServiceChange(service.id, "description", event.target.value)
                       }
                     />
+
                     <div className="flex flex-wrap items-center gap-3 text-sm">
+
                       <NumberBubble
                         value={service.rate}
                         onChange={(event) =>
-                          handleServiceChange(
-                            service.id,
-                            "rate",
-                            event.target.value
-                          )
+                          handleServiceChange(service.id, "rate", event.target.value)
                         }
                       />
+
                       <span className="text-white/60">×</span>
+
                       <NumberBubble
                         value={service.quantity}
                         onChange={(event) =>
-                          handleServiceChange(
-                            service.id,
-                            "quantity",
-                            event.target.value
-                          )
+                          handleServiceChange(service.id, "quantity", event.target.value)
                         }
                       />
+
                       <span className="text-white/60">=</span>
+
                       <div className="rounded-[10px] bg-[#1E1E1E] px-4 py-2 text-[10px] w-20">
                         INR {(service.rate * service.quantity).toFixed(2)}
                       </div>
                     </div>
+
                     <button
                       type="button"
                       className="text-[10px] text-white/70 hover:text-white"
@@ -148,16 +169,30 @@ export default function InvoicePage() {
               </div>
             </div>
 
+            {/* TOTAL WITH COPY */}
             <div className="flex items-center justify-between rounded-[10px] text-[13px] bg-[#1E1E1E] px-4 py-3 text-lg">
               <span>Total</span>
-              <span className="font-semibold">INR {total.toFixed(2)}</span>
+
+              <div className="flex items-center gap-3">
+                <span className="font-semibold">INR {total.toFixed(2)}</span>
+
+                {/* 🔥 COPY BUTTON */}
+                <button
+                  type="button"
+                  onClick={handleCopyTotal}
+                  className="text-xs text-white/60 hover:text-white"
+                >
+                  Copy
+                </button>
+              </div>
             </div>
 
             <div className="space-y-3">
               <p className="text-sm uppercase tracking-tight text-white/70">
                 Mode of payment
               </p>
-              <div className="space-y-3  text-[13px]">
+
+              <div className="space-y-3 text-[13px]">
                 {["Payment link", "Direct to account", "Crypto"].map((mode) => (
                   <button
                     key={mode}
@@ -181,6 +216,7 @@ export default function InvoicePage() {
               </button>
             </div>
           </div>
+
         </section>
       </div>
     </PageContainer>
@@ -194,12 +230,7 @@ interface FormFieldProps {
   rows?: number;
 }
 
-function FormField({
-  label,
-  placeholder,
-  type = "text",
-  rows,
-}: FormFieldProps) {
+function FormField({ label, placeholder, type = "text", rows }: FormFieldProps) {
   const sharedClass =
     "w-full rounded-[10px] bg-[#1E1E1E] px-4 py-3 text-[10px] text-white placeholder:text-white/40 focus:outline-none";
 
@@ -207,11 +238,7 @@ function FormField({
     <label className="flex flex-col gap-2 text-[10px] text-white/70">
       {label}
       {rows ? (
-        <textarea
-          rows={rows}
-          placeholder={placeholder}
-          className={sharedClass}
-        />
+        <textarea rows={rows} placeholder={placeholder} className={sharedClass} />
       ) : (
         <input
           type={type === "date" ? "date" : "text"}
@@ -226,9 +253,8 @@ function FormField({
 function AddressBlock({ title }: { title: string }) {
   return (
     <div className="space-y-3">
-      <p className="text-sm uppercase tracking-tight text-white/70">
-        {title}
-      </p>
+      <p className="text-sm uppercase tracking-tight text-white/70">{title}</p>
+
       <div className="space-y-3">
         {["Name", "Email", "Number", "Address"].map((field) => (
           <input

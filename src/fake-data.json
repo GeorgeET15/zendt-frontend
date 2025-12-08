@@ -1,0 +1,341 @@
+{
+  "plans": [
+    {
+      "name": "Starter",
+      "price": "$0/mo",
+      "description": "Best for testing and small volumes.",
+      "features": ["2 payment methods", "Email support", "3 team seats"]
+    },
+    {
+      "name": "Growth",
+      "price": "$49/mo",
+      "description": "Preferred tier for scaling brands.",
+      "features": ["All payment rails", "Priority support", "Unlimited team seats"]
+    },
+    {
+    "name": "Growth",
+    "price": "$149/mo",
+    "description": "Perfect for fast-scaling businesses.",
+    "features": [
+      "50,000 transactions",
+      "Priority settlements",
+      "Automation workflows",
+      "Advanced fraud monitoring"
+    ]
+  }
+  ],
+  "aboutValues": [
+    { "title": "Borderless payouts", "detail": "Move funds to 150+ countries with a single compliant workflow." },
+    { "title": "Realtime visibility", "detail": "Track balances, FX conversions, and beneficiaries from one dashboard." },
+    { "title": "Human support", "detail": "A dedicated success manager is paired with every Zendt business account." }
+  ],
+  "profileSettings": {
+    "initialAddress": {
+      "line1": "123 Paper Street",
+      "city": "Austin",
+      "postal": "78701",
+      "country": "United States"
+    },
+    "addressFields": [
+      { "label": "Address line 1", "key": "line1" },
+      { "label": "City / Town", "key": "city" },
+      { "label": "Postal / Zip", "key": "postal" },
+      { "label": "Country", "key": "country" }
+    ],
+    "brandFields": [
+      { "label": "Name", "key": "name" },
+      { "label": "Email", "key": "email" }
+    ],
+    "initialProfileData": {
+      "name": "Roberto Augustus",
+      "email": "robertoaugustus@gmail.com"
+    }
+  },
+  "settingsToggles": [
+    { "key": "autopay", "label": "Enable autopayments", "description": "Automatically collect recurring payments from your customers." },
+    { "key": "alerts", "label": "Transaction alerts", "description": "Send me push notification whenever a payment is received." },
+    { "key": "weeklyReport", "label": "Weekly email summary", "description": "Receive a digest with balances and statements every Monday." }
+  ],
+  "businessProfile": {
+    "addressFields": [{ "label": "Address line 1", "key": "line1" }],
+    "initialAddress": {
+      "line1": "123 Paper Street",
+      "city": "Austin",
+      "postal": "78701",
+      "country": "United States"
+    },
+    "brandFields": [
+      { "label": "Brand name", "key": "brandName" },
+      { "label": "Email", "key": "email" },
+      { "label": "Mobile Number", "key": "phone" },
+      { "label": "Website", "key": "website" }
+    ],
+    "initialBrandData": {
+      "brandName": "Roberto Augustus",
+      "email": "robertoaugustus@gmail.com",
+      "phone": "+1 232 343 4545",
+      "website": "robertoaugustus.com"
+    }
+  },
+  "bankDetails": [
+    { "label": "Account holder name", "value": "Alen Thomas" },
+    { "label": "Account type", "value": "Checking" },
+    { "label": "Sort Code", "value": "041404" },
+    { "label": "Account number", "value": "41234432" },
+    { "label": "Bank name", "value": "The currency cloud" },
+    { "label": "Bank address", "value": "12 street, the texas hijo building elud 89" }
+  ],
+  "termsParagraphs": [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  ],
+  "profileHubItems": [
+    { "label": "Business profile", "to": "/dashboard/business-profile", "icon": "Briefcase" },
+    { "label": "Settings", "to": "/dashboard/settings", "icon": "Settings" },
+    { "label": "Bank accounts", "to": "/dashboard/bank-accounts", "icon": "Building2" },
+    { "label": "Verification / KYC", "to": "/dashboard/kyc", "icon": "ClipboardCheck" },
+    { "label": "Pricing", "to": "/dashboard/pricing", "icon": "Tag" },
+    { "label": "About Zendt", "to": "/dashboard/about", "icon": "Info" },
+    { "label": "Help and Support", "to": "/dashboard/help", "icon": "LifeBuoy", "showArrow": true }
+  ],
+  "cards": [
+    {
+      "cardNumber": "1234 56** ****",
+      "cardHolder": "Roberto Augustus",
+      "brandLogo": "/assets/mastercard.png"
+    },
+    {
+      "cardNumber": "9876 54** ****",
+      "cardHolder": "Crafts of taste",
+      "brandLogo": "/assets/visa.svg"
+    },
+    {
+      "cardNumber": "4455 11** ****",
+      "cardHolder": "Paper Studio",
+      "brandLogo": "/assets/amex.svg"
+    }
+  ],
+  "kycSteps": [
+    { "title": "Business documents", "detail": "Upload certificate of incorporation and proof of address." },
+    { "title": "Identity verification", "detail": "Capture a government issued ID for all beneficial owners." },
+    { "title": "Bank statement", "detail": "Share a PDF copy from the last 3 months to verify ownership." }
+  ],
+  "paymentSections": [
+    {
+      "title": "International payments",
+      "items": [
+        { "label": "Direct to account", "to": "/dashboard/virtual-account" },
+        { "label": "Payment links", "to": "/dashboard/payment-links" }
+      ]
+    },
+    {
+      "title": "Domestic payments",
+      "items": [
+        { "label": "Direct to account", "to": "/dashboard/virtual-account" },
+        { "label": "Payment links", "to": "/dashboard/payment-links" }
+      ]
+    }
+  ],
+  "clientOptions": {
+    "countries": ["United States", "India", "United Arab Emirates"],
+    "purposeCodes": ["Consulting", "Services", "Merchandise"]
+  },
+  "faqs": [
+    {
+      "question": "How do I generate payment links?",
+      "answer": "Head to Collect → Payment links. You can share branded URLs or embed buttons on your site."
+    },
+    {
+      "question": "When do payouts arrive?",
+      "answer": "Domestic payouts usually settle same day. International transfers land within 2 to 3 business days."
+    },
+    {
+      "question": "Where can I talk to support?",
+      "answer": "Ping us anytime in the dashboard chat or write to success@zendt.com."
+    }
+  ],
+  "wallets": [
+    { "code": "INR", "amount": "23,098 rs", "image": "/india.png" },
+    { "code": "USD", "amount": "203 usd", "image": "/usa.png" },
+    { "code": "AED", "amount": "2,234 aed", "image": "/uae.png" },
+    { "code": "EUR", "amount": "560 eur", "image": "/euro.png" }
+  ],
+  "transactions": [
+    { "id": 1, "name": "Aginaldo", "amount": 353.01, "date": "24 Apr 2024" },
+    { "id": 2, "name": "Aginaldo", "amount": 353.01, "date": "24 Apr 2024" },
+    { "id": 3, "name": "Aginaldo", "amount": 353.01, "date": "24 Apr 2024" },
+    { "id": 4, "name": "Aginaldo", "amount": 353.01, "date": "24 Apr 2024" },
+    { "id": 5, "name": "Aginaldo 5", "amount": 353.01, "date": "24 Apr 2024" },
+    { "id": 6, "name": "Aginaldo 6", "amount": 353.01, "date": "24 Apr 2024" },
+    { "id": 7, "name": "Aginaldo 7", "amount": 353.01, "date": "24 Apr 2024" },
+    { "id": 8, "name": "Aginaldo 8", "amount": 353.01, "date": "24 Apr 2024" },
+    { "id": 9, "name": "Aginaldo 9", "amount": 353.01, "date": "24 Apr 2024" },
+    { "id": 10, "name": "Aginaldo 10", "amount": 353.01, "date": "24 Apr 2024" },
+    { "id": 11, "name": "Aginaldo 11", "amount": 353.01, "date": "24 Apr 2024" },
+    { "id": 12, "name": "Aginaldo 12", "amount": 353.01, "date": "24 Apr 2024" }
+  ],
+  "virtualAccounts": [
+    {
+      "currencyName": "U S DOLLARS",
+      "currencyCode": "USD",
+      "flag": "/usa.png",
+      "accountDetails": [
+        { "label": "Account holder name", "value": "Alen thomas" },
+        { "label": "Account type", "value": "Checking" },
+        { "label": "Sort Code", "value": "041404" },
+        { "label": "Account number", "value": "41234432" },
+        { "label": "Bank name", "value": "The currency cloud" },
+        { "label": "Bank address", "value": "12 street, the texas hijo building elud 89" }
+      ]
+    },
+    {
+      "currencyName": "UAE DIRHAM",
+      "currencyCode": "AED",
+      "flag": "/uae.png",
+      "accountDetails": [
+        { "label": "Account holder name", "value": "Alen thomas" },
+        { "label": "IBAN", "value": "AE123456789012345678901" },
+        { "label": "Bank name", "value": "Emirates NBD" },
+        { "label": "Bank address", "value": "Baniyas Road, Deira, Dubai, UAE" },
+        { "label": "SWIFT / BIC", "value": "EBBDAEAD" }
+      ]
+    },
+    {
+      "currencyName": "QATARI RIYAL",
+      "currencyCode": "QAR",
+      "flag": "/qatar.png",
+      "accountDetails": [
+        { "label": "Account holder name", "value": "Alen thomas" },
+        { "label": "IBAN", "value": "QA123456789012345678901" },
+        { "label": "Bank name", "value": "Qatar National Bank" },
+        { "label": "Bank address", "value": "Corniche Road, Doha, Qatar" },
+        { "label": "SWIFT / BIC", "value": "QNBAQAQA" }
+      ]
+    }
+  ],
+  "paymentLinks": [
+    {
+      "id": "PLNK-1001",
+      "referenceId": "REF-1001",
+      "customer": { "name": "John Doe", "email": "john@example.com", "phone": "+1 202 555 0101" },
+      "amount": 500,
+      "status": "Created",
+      "createdOn": "2024-01-15"
+    },
+    {
+      "id": "PLNK-1002",
+      "referenceId": "REF-1002",
+      "customer": { "name": "Sarah Miller", "email": "sarah@example.com", "phone": "+1 202 555 0149" },
+      "amount": 1200,
+      "status": "Partially paid",
+      "createdOn": "2024-02-01"
+    },
+    {
+      "id": "PLNK-1003",
+      "referenceId": "REF-1003",
+      "customer": { "name": "Priya Sharma", "email": "priya@example.com", "phone": "+91 98765 43210" },
+      "amount": 750,
+      "status": "Paid",
+      "createdOn": "2024-02-20"
+    },
+    {
+      "id": "PLNK-1004",
+      "referenceId": "REF-1004",
+      "customer": { "name": "Luis Alberto", "email": "luis@example.com", "phone": "+971 52 555 9876" },
+      "amount": 230,
+      "status": "Cancelled",
+      "createdOn": "2023-12-10"
+    },
+    {
+      "id": "PLNK-1005",
+      "referenceId": "REF-1005",
+      "customer": { "name": "Emily Carter", "email": "emily@example.com", "phone": "+1 301 555 7000" },
+      "amount": 999,
+      "status": "Expired",
+      "createdOn": "2023-11-04"
+    },
+    {
+      "id": "PLNK-1006",
+      "referenceId": "REF-2001",
+      "customer": { "name": "Daniel Zhang", "email": "danielz@example.com", "phone": "+86 555 9090" },
+      "amount": 55,
+      "status": "Paid",
+      "createdOn": "2024-02-27"
+    },
+    {
+      "id": "PLNK-1007",
+      "referenceId": "REF-2002",
+      "customer": { "name": "Mia Johnson", "email": "mia@example.com", "phone": "+1 213 555 1200" },
+      "amount": 5000,
+      "status": "Paid",
+      "createdOn": "2023-10-15"
+    },
+    {
+      "id": "PLNK-1008",
+      "referenceId": "REF-2003",
+      "customer": { "name": "Alex Green", "email": "alexg@example.com", "phone": "+44 20 7777 1234" },
+      "amount": 40,
+      "status": "Created",
+      "createdOn": "2024-02-29"
+    },
+    {
+      "id": "PLNK-1009",
+      "referenceId": "REF-2004",
+      "customer": { "name": "Huda Ali", "email": "huda@example.com", "phone": "+971 54 442 2299" },
+      "amount": 185,
+      "status": "Cancelled",
+      "createdOn": "2023-09-12"
+    },
+    {
+      "id": "PLNK-1010",
+      "referenceId": "REF-2005",
+      "customer": { "name": "Jean Pierre", "email": "jeanp@example.fr", "phone": "+33 6 55 44 33 22" },
+      "amount": 310,
+      "status": "Partially paid",
+      "createdOn": "2024-02-10"
+    },
+    {
+      "id": "PLNK-1011",
+      "referenceId": "REF-3001",
+      "customer": { "name": "Mark Wood", "email": "mark@example.com", "phone": "+1 202 555 9981" },
+      "amount": 5,
+      "status": "Expired",
+      "createdOn": "2023-06-01"
+    },
+    {
+      "id": "PLNK-1012",
+      "referenceId": "REF-3002",
+      "customer": { "name": "Sofia Lin", "email": "sofia@example.com", "phone": "+886 987 123 444" },
+      "amount": 22000,
+      "status": "Paid",
+      "createdOn": "2024-01-02"
+    },
+    {
+      "id": "PLNK-1013",
+      "referenceId": "REF-3003",
+      "customer": { "name": "Michael Adams", "email": "madams@example.com", "phone": "+1 202 555 7781" },
+      "amount": 150,
+      "status": "Created",
+      "createdOn": "2024-02-28"
+    },
+    {
+      "id": "PLNK-1014",
+      "referenceId": "REF-3004",
+      "customer": { "name": "Helena Costa", "email": "helena@example.pt", "phone": "+351 911 555 100" },
+      "amount": 950,
+      "status": "Cancelled",
+      "createdOn": "2024-01-20"
+    },
+    {
+      "id": "PLNK-1015",
+      "referenceId": "REF-3005",
+      "customer": { "name": "Ivan Petrov", "email": "ivan@example.ru", "phone": "+7 495 555 90 90" },
+      "amount": 400,
+      "status": "Partially paid",
+      "createdOn": "2023-12-22"
+    }
+  ]
+  
+}

@@ -1,27 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ExpandToggleButton from "./ExpandToggleButton";
+import { dataService } from "../../services/dataService";
 
-const sections = [
-  {
-    title: "International payments",
-    items: [
-      { label: "Direct to account", to: "/dashboard/virtual-account" },
-      { label: "Payment links", to: "/dashboard/payment-links" },
-    ],
-  },
-  {
-    title: "Domestic payments",
-    items: [
-      { label: "Direct to account", to: "/dashboard/virtual-account" },
-      { label: "Payment links", to: "/dashboard/payment-links" },
-    ],
-  },
-];
+type PaymentItem = {
+  label: string;
+  to?: string;
+};
+
+type PaymentSection = {
+  title: string;
+  items: PaymentItem[];
+};
 
 export default function PaymentAccordion() {
+  const [sections, setSections] = useState<PaymentSection[]>([]);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await dataService.getPaymentSections();
+      setSections(data);
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="space-y-3">

@@ -1,30 +1,39 @@
+import { useEffect, useState } from "react";
 import { useAvatar } from "../../context/AvatarContext";
 import BackButton from "./BackButton";
 import EditableDetailsCard from "./EditableDetailsCard";
 import PageContainer from "./PageContainer";
+import { dataService } from "../../services/dataService";
+
+type Field = {
+  label: string;
+  key: string;
+};
+
+type ProfileSettings = {
+  initialAddress: Record<string, string>;
+  addressFields: Field[];
+  brandFields: Field[];
+  initialProfileData: Record<string, string>;
+};
 
 export default function ProfileSettingsPage() {
   const avatarSrc = useAvatar();
-  const initialAddress = {
-    line1: "123 Paper Street",
-    city: "Austin",
-    postal: "78701",
-    country: "United States",
-  };
-  const addressFields = [
-    { label: "Address line 1", key: "line1" },
-    { label: "City / Town", key: "city" },
-    { label: "Postal / Zip", key: "postal" },
-    { label: "Country", key: "country" },
-  ];
-  const brandFields = [
-    { label: "Name", key: "name" },
-    { label: "Email", key: "email" },
-  ];
-  const initialProfileData = {
-    name: "Roberto Augustus",
-    email: "robertoaugustus@gmail.com",
-  };
+  const [data, setData] = useState<ProfileSettings | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await dataService.getProfileSettings();
+      setData(result as any);
+    };
+    fetchData();
+  }, []);
+
+  if (!data) {
+    return <PageContainer className="text-white space-y-6"><div className="p-6">Loading...</div></PageContainer>;
+  }
+
+  const { initialAddress, addressFields, brandFields, initialProfileData } = data;
 
   return (
     <PageContainer className="text-white space-y-6">

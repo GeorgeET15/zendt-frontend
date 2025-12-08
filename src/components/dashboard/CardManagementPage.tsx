@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAvatar } from "../../context/AvatarContext";
 import CreditCard from "../creditCard";
 import PageContainer from "./PageContainer";
@@ -7,27 +7,27 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { dataService } from "../../services/dataService";
 
-const cards = [
-  {
-    cardNumber: "1234 56** ****",
-    cardHolder: "Roberto Augustus",
-    brandLogo: "/assets/mastercard.png",
-  },
-  {
-    cardNumber: "9876 54** ****",
-    cardHolder: "Crafts of taste",
-    brandLogo: "/assets/visa.svg",
-  },
-  {
-    cardNumber: "4455 11** ****",
-    cardHolder: "Paper Studio",
-    brandLogo: "/assets/amex.svg",
-  },
-];
+type Card = {
+  cardNumber: string;
+  cardHolder: string;
+  brandLogo: string;
+};
 
 export default function CardManagementPage() {
   const avatarSrc = useAvatar();
+  const [cards, setCards] = useState<Card[]>([]);
+  const [selectedCardIndex, setSelectedCardIndex] = useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await dataService.getCards();
+      setCards(data);
+    };
+    fetchData();
+  }, []);
+
   const transactionsByCard = useMemo(
     () => [
       [
@@ -47,8 +47,14 @@ export default function CardManagementPage() {
     ],
     [avatarSrc]
   );
-  const currentCard = cards[0];
-  const currentTransactions = transactionsByCard[0] ?? [];
+  
+  // Handle case where cards are loading
+  if (cards.length === 0) {
+    return <PageContainer className="text-white space-y-8"><div className="p-6">Loading...</div></PageContainer>;
+  }
+
+  const currentCard = cards[selectedCardIndex];
+  const currentTransactions = transactionsByCard[selectedCardIndex] ?? [];
 
   return (
     <PageContainer className="text-white space-y-8">
@@ -65,6 +71,7 @@ export default function CardManagementPage() {
               slidesPerView={1}
               spaceBetween={16}
               className="card-swiper"
+              onSlideChange={(swiper) => setSelectedCardIndex(swiper.activeIndex)}
             >
               {cards.map((card) => (
                 <SwiperSlide key={card.cardNumber} className="!w-full">
@@ -98,7 +105,7 @@ export default function CardManagementPage() {
                   <path
                     d="M0.5 0.5L7.67158 7.67158C9.23367 9.23367 9.23367 11.7663 7.67157 13.3284L0.5 20.5"
                     stroke="#5B5B5B"
-                    stroke-linecap="round"
+                    strokeLinecap="round"
                   />
                 </svg>
               }

@@ -26,7 +26,7 @@ export default function DoubleBgBox({
   const baseClasses =
     "relative overflow-hidden rounded-[20px] bg-[#262626] text-gray-100 shadow-[0_25px_45px_rgba(0,0,0,0.45)]";
   const sizeClass =
-    variant === "wallet" ? "w-[102px] aspect-[102/135]" : "w-full aspect-[185/135]";
+    variant === "wallet" ? "w-[130px] aspect-[130/135]" : "w-full aspect-[185/135]";
   const containerClass = [baseClasses, sizeClass, className].filter(Boolean).join(" ");
 
   return (
@@ -64,7 +64,7 @@ export default function DoubleBgBox({
         <img
           src={flagImage}
           alt=""
-          className="absolute z-0 right-0 top-0 h-9 w-11 object-cover rounded-bl-3xl"
+          className="absolute z-0 -right-3 top-[-5px] h-11 w-14 object-cover rounded-bl-3xl"
         />
       )}
 
@@ -88,7 +88,7 @@ export default function DoubleBgBox({
         ) : (
           <>
             {(topLeft || topRight) && (
-              <div className="flex items-start justify-between text-[8px] uppercase tracking-[0.35em] text-white">
+              <div className="flex items-start justify-between text-[9px] uppercase tracking-[0.35em] text-white">
                 <span>{topLeft}</span>
                 <span className="ml-4">{topRight}</span>
               </div>
@@ -107,7 +107,7 @@ export default function DoubleBgBox({
             {(bottomLeft || bottomRight) && (
               <div className="flex flex-col gap-1 text-left text-white">
                 {bottomLeft && (
-                  <div className="text-base font-semibold leading-tight">
+                  <div className="text-[17px] font-semibold leading-tight">
                     {bottomLeft}
                   </div>
                 )}

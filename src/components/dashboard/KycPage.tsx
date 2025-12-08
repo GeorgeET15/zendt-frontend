@@ -1,13 +1,24 @@
+import { useEffect, useState } from "react";
 import BackButton from "./BackButton";
 import PageContainer from "./PageContainer";
+import { dataService } from "../../services/dataService";
 
-const steps = [
-  { title: "Business documents", detail: "Upload certificate of incorporation and proof of address." },
-  { title: "Identity verification", detail: "Capture a government issued ID for all beneficial owners." },
-  { title: "Bank statement", detail: "Share a PDF copy from the last 3 months to verify ownership." },
-];
+type KycStep = {
+  title: string;
+  detail: string;
+};
 
 export default function KycPage() {
+  const [steps, setSteps] = useState<KycStep[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await dataService.getKycSteps();
+      setSteps(data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <PageContainer className="text-white space-y-6">
            <div className="flex items-center justify-between px-4 pt-12 z-0">

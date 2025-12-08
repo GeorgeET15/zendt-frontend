@@ -1,13 +1,24 @@
+import { useEffect, useState } from "react";
 import BackButton from "./BackButton";
 import PageContainer from "./PageContainer";
+import { dataService } from "../../services/dataService";
 
-const values = [
-  { title: "Borderless payouts", detail: "Move funds to 150+ countries with a single compliant workflow." },
-  { title: "Realtime visibility", detail: "Track balances, FX conversions, and beneficiaries from one dashboard." },
-  { title: "Human support", detail: "A dedicated success manager is paired with every Zendt business account." },
-];
+type Value = {
+  title: string;
+  detail: string;
+};
 
 export default function AboutPage() {
+  const [values, setValues] = useState<Value[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await dataService.getAboutValues();
+      setValues(data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <PageContainer className="text-white space-y-6">
       <div className="flex items-center justify-between px-4 pt-12 z-0">

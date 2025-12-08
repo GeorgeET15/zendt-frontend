@@ -1,30 +1,37 @@
+import { useEffect, useState } from "react";
 import BackButton from "./BackButton";
 import PageContainer from "./PageContainer";
 import EditableDetailsCard from "./EditableDetailsCard";
+import { dataService } from "../../services/dataService";
+
+type Field = {
+  label: string;
+  key: string;
+};
+
+type BusinessProfile = {
+  addressFields: Field[];
+  initialAddress: Record<string, string>;
+  brandFields: Field[];
+  initialBrandData: Record<string, string>;
+};
 
 export default function BusinessProfileEditPage() {
-  const addressFields = [{ label: "Address line 1", key: "line1" }];
+  const [data, setData] = useState<BusinessProfile | null>(null);
 
-  const initialAddress = {
-    line1: "123 Paper Street",
-    city: "Austin",
-    postal: "78701",
-    country: "United States",
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await dataService.getBusinessProfile();
+      setData(result as any);
+    };
+    fetchData();
+  }, []);
 
-  const brandFields = [
-    { label: "Brand name", key: "brandName" },
-    { label: "Email", key: "email" },
-    { label: "Mobile Number", key: "phone" },
-    { label: "Website", key: "website" },
-  ];
+  if (!data) {
+    return <PageContainer className="text-white space-y-6"><div className="p-6">Loading...</div></PageContainer>;
+  }
 
-  const initialBrandData = {
-    brandName: "Roberto Augustus",
-    email: "robertoaugustus@gmail.com",
-    phone: "+1 232 343 4545",
-    website: "robertoaugustus.com",
-  };
+  const { addressFields, initialAddress, brandFields, initialBrandData } = data;
 
   return (
     <PageContainer className="text-white space-y-6">

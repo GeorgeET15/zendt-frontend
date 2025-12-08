@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useAvatar } from "../../context/AvatarContext";
-
 const drawerItems = [
   { label: "Share Virtual Account", to: "/dashboard/virtual-account" },
   { label: "Show payment links info", to: "/dashboard/payment-links" },
@@ -9,6 +8,7 @@ const drawerItems = [
   { label: "Create an invoice", to: "/dashboard/invoice" },
   { label: "Add Client", to: "/dashboard/add-client" },
 ];
+
 
 interface NavigationBarProps {
   className?: string;

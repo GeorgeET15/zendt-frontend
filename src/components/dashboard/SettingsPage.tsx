@@ -1,24 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BackButton from "./BackButton";
 import PageContainer from "./PageContainer";
+import { dataService } from "../../services/dataService";
 
-const toggleSettings = [
-  { key: "autopay", label: "Enable autopayments", description: "Automatically collect recurring payments from your customers." },
-  { key: "alerts", label: "Transaction alerts", description: "Send me push notification whenever a payment is received." },
-  { key: "weeklyReport", label: "Weekly email summary", description: "Receive a digest with balances and statements every Monday." },
-];
-
-const initialPreferences = toggleSettings.reduce<Record<string, boolean>>((acc, setting) => {
-  acc[setting.key] = setting.key !== "autopay";
-  return acc;
-}, {});
+type ToggleSetting = {
+  key: string;
+  label: string;
+  description: string;
+};
 
 export default function SettingsPage() {
-  const [preferences, setPreferences] = useState(initialPreferences);
+  const [toggleSettings, setToggleSettings] = useState<ToggleSetting[]>([]);
+  const [preferences, setPreferences] = useState<Record<string, boolean>>({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await dataService.getSettingsToggles();
+      setToggleSettings(data);
+      
+      const initialPreferences = data.reduce<Record<string, boolean>>((acc, setting) => {
+        acc[setting.key] = setting.key !== "autopay";
+        return acc;
+      }, {});
+      setPreferences(initialPreferences);
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
 
   const handleToggle = (key: string) => {
     setPreferences((prev) => ({ ...prev, [key]: !prev[key] }));
   };
+
+  if (loading) {
+    return <PageContainer className="text-white space-y-6"><div className="p-6">Loading...</div></PageContainer>;
+  }
 
   return (
     <PageContainer className="text-white space-y-6">

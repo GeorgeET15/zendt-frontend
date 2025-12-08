@@ -1,15 +1,27 @@
+import { useEffect, useState } from "react";
 import CopyButton from "./CopyButton";
+import { dataService } from "../../services/dataService";
 
-const bankFields = [
-  { label: "Account holder name", value: "Alen Thomas" },
-  { label: "Account type", value: "Checking" },
-  { label: "Sort Code", value: "041404" },
-  { label: "Account number", value: "41234432" },
-  { label: "Bank name", value: "The currency cloud" },
-  { label: "Bank address", value: "12 street, the texas hijo building elud 89" },
-];
+type BankField = {
+  label: string;
+  value: string;
+};
 
 export default function BankDetailsCard() {
+  const [bankFields, setBankFields] = useState<BankField[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await dataService.getBankDetails();
+      setBankFields(data);
+    };
+    fetchData();
+  }, []);
+
+  if (bankFields.length === 0) {
+    return <section className="rounded-[32px] bg-[#111316] text-white p-6 md:p-8 shadow-[0_30px_55px_rgba(4,4,7,0.55)] border border-white/5">Loading...</section>;
+  }
+
   return (
     <section className="rounded-[32px] bg-[#111316] text-white p-6 md:p-8 shadow-[0_30px_55px_rgba(4,4,7,0.55)] border border-white/5">
       <div className="space-y-5">
