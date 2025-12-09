@@ -1,73 +1,69 @@
-# React + TypeScript + Vite
+# Zendt Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, high-performance fintech dashboard application built with **React**, **TypeScript**, and **Vite**. This project features a sleek, dark-themed UI with glassmorphism effects, interactive financial tools, and a responsive layout.
 
-Currently, two official plugins are available:
+## 🚀 About the Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This repository is a fork of [princysivakumar/zendt-frontend](https://github.com/princysivakumar/zendt-frontend).
 
-## React Compiler
+Significant enhancements and UI/UX improvements were made by **GeorgeET15** ([georgeemmanuelthomas.dev](https://georgeemmanuelthomas.dev)) during an internship at **Zendit** (Dec 3, 2025 - Dec 17, 2025).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 📄 Change Log
+For a detailed breakdown of all features, UI refinements, and architectural changes implemented during this period, please refer to:
 
-## Expanding the ESLint configuration
+👉 **[GeorgeET15.md](./GeorgeET15.md)**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Framework:** React 18
+- **Language:** TypeScript
+- **Build Tool:** Vite
+- **Styling:** Tailwind CSS
+- **Icons:** Custom SVG Components
+- **State Management:** React Context API (Auth)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📦 Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Follow these steps to set up the project locally.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Prerequisites
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Node.js (v16 or higher)
+- npm or yarn
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/GeorgeET15/zendt-frontend.git
+   cd zendt-frontend
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for production**
+   ```bash
+   npm run build
+   ```
+
+## ✨ Key Features
+
+- **Authentication:** Secure login with persistence.
+- **Dashboard:** Interactive wallet carousel, recent transactions, and quick actions.
+- **Financial Tools:**
+  - **Virtual Accounts:** Create and manage virtual IBANs.
+  - **Payment Links:** Generate and share payment links.
+  - **Invoicing:** Create professional invoices with dynamic calculations.
+  - **Cards:** Manage physical/virtual cards with realistic UI.
+- **Modern UI:** Dark mode, glassmorphism, custom animations, and responsive design.
+
+---
+*Maintained by GeorgeET15*
