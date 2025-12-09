@@ -83,7 +83,7 @@ export default function DashboardTransactions() {
       <div
         className="
           rounded-b-[32px]
-          bg-[#161616]/80
+          bg-[#141414]
           backdrop-blur-xl
           border border-white/10
           shadow-[0_35px_65px_rgba(4,4,7,0.55)]
@@ -132,25 +132,16 @@ export default function DashboardTransactions() {
           {filtered.map((tx) => (
             <div
               key={tx.id}
-              className="
-                flex items-center justify-between
-                px-5 py-4
-                rounded-[22px]
-                bg-white/[0.04]
-                border border-white/5
-                backdrop-blur-lg
-              "
+              className="flex items-center justify-between py-2"
             >
               <div className="flex items-center gap-4">
-
-
                 <div className="flex flex-col">
-                  <p className="text-base font-medium tracking-wide">{tx.name}</p>
+                  <p className="text-base font-medium tracking-wide text-white">{tx.name}</p>
                   <p className="text-xs text-white/50">{tx.date}</p>
                 </div>
               </div>
 
-              <span className="text-lg font-semibold tracking-wide">
+              <span className="text-lg font-semibold tracking-wide text-white">
                 ${tx.amount.toFixed(2)}
               </span>
             </div>

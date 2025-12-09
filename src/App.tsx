@@ -30,6 +30,7 @@ import SettlementDetailsPage from "./components/dashboard/SettlementDetailsPage"
 import BusinessProfileEditPage from "./components/dashboard/BusinessProfileEditPage";
 import AddClientPage from "./components/dashboard/AddClientPage";
 import BankAccountsPage from "./components/dashboard/BankAccountsPage";
+import PaymentPagesOptions from "./components/dashboard/PaymentPagesOptions";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 
 function RequireAuth() {
@@ -75,6 +76,7 @@ export default function App() {
               <Route path="invoice" element={<InvoicePage />} />
               <Route path="payment-links" element={<PaymentLinksPage />} />
               <Route path="payment-links/new" element={<PaymentLinkCreatePage />} />
+              <Route path="payment-pages" element={<PaymentPagesOptions />} />
               <Route path="add-client" element={<AddClientPage />} />
               <Route path="explore" element={<ExplorePage />} />
               <Route path="settlement" element={<SettlementDetailsPage />} />
