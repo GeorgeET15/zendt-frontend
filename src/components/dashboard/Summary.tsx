@@ -4,7 +4,13 @@ import { useAvatar } from "../../context/AvatarContext";
 import DoubleBgBox from "../doubleBgBox";
 import ExpandToggleButton from "./ExpandToggleButton";
 import PaymentAccordion from "./PaymentAccordion";
+import GradientBlob from "../icons/GradientBlob";
 import { dataService } from "../../services/dataService";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import CreditCard from "../creditCard";
 
 type Transaction = {
   id: number;
@@ -20,12 +26,19 @@ type Wallet = {
   image: string;
 };
 
+type Card = {
+  cardNumber: string;
+  cardHolder: string;
+  brandLogo: string;
+};
+
 import WalletActionModal from "./WalletActionModal";
 
 export default function DashboardSummary() {
   const avatarSrc = useAvatar();
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [wallets, setWallets] = useState<Wallet[]>([]);
+  const [cards, setCards] = useState<Card[]>([]);
   const walletScrollRef = useRef<HTMLDivElement | null>(null);
   
   // Modal State
@@ -53,13 +66,15 @@ export default function DashboardSummary() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const [txs, wals] = await Promise.all([
+      const [txs, wals, cardsData] = await Promise.all([
         dataService.getTransactions(),
         dataService.getWallets(),
+        dataService.getCards(),
       ]);
 
-      setTransactions(txs.slice(0, 4).map((t) => ({ ...t, avatar: avatarSrc })));
+      setTransactions(txs.slice(0, 4).map((t) => ({ ...t, avatar: "/avatar-placeholder.svg" })));
       setWallets(wals);
+      setCards(cardsData);
     };
     fetchData();
   }, [avatarSrc]);
@@ -231,7 +246,17 @@ export default function DashboardSummary() {
       )}
 
       {/* RECENT TRANSACTIONS */}
-      <section className="rounded-[19px] p-8 mb-9 text-left text-white bg-[#161616]">
+      <section className="relative overflow-hidden rounded-[19px] p-8 mb-9 text-left text-white bg-[#161616]">
+        <GradientBlob
+          className="absolute opacity-30 blur-2xl -z-10"
+          style={{
+            right: "-100px",
+            top: "-50px",
+            width: "321px",
+            height: "262px",
+            zIndex: "0",
+          }}
+        />
         <header className="flex flex-col gap-2 mb-6">
           <h3 className="text-xl font-semibold">Recent transaction</h3>
           <div className="flex items-center justify-between text-xs uppercase tracking-[0.35em] text-gray-400">
@@ -245,7 +270,7 @@ export default function DashboardSummary() {
           {transactions.map((tx) => (
             <li key={tx.id} className="flex items-center justify-between text-sm text-gray-200">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-2xl bg-black/60 overflow-hidden">
+                <div className="h-10 w-10 rounded-2xl bg-[#141414]/60 overflow-hidden">
                   <img src={tx.avatar} alt={tx.name} className="h-full w-full object-cover" />
                 </div>
                 <span className="text-base text-white">{tx.name}</span>
@@ -261,6 +286,34 @@ export default function DashboardSummary() {
           </Link>
         </div>
       </section>
+
+      {/* AVAILABLE CARDS */}
+      {cards.length > 0 && (
+        <section className="space-y-4 mb-20">
+          <h2 className="text-2xl font-light text-white">Available Cards</h2>
+          <Swiper
+            modules={[Navigation]}
+            slidesPerView={1}
+            spaceBetween={16}
+            className="w-full"
+          >
+            {cards.map((card, index) => (
+              <SwiperSlide key={card.cardNumber}>
+                <div 
+                  className="w-full max-w-[400px] mx-auto cursor-pointer"
+                  onClick={() => navigate("/dashboard/card-management", { state: { initialCardIndex: index } })}
+                >
+                  <CreditCard
+                    cardNumber={card.cardNumber}
+                    cardHolder={card.cardHolder}
+                    brandLogo={card.brandLogo}
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </section>
+      )}
     </div>
   );
 }

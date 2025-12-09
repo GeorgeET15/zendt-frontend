@@ -1,9 +1,18 @@
 import { useNavigate } from "react-router-dom";
 
-export default function BackButton() {
+interface BackButtonProps {
+  onClick?: () => void;
+}
+
+export default function BackButton({ onClick }: BackButtonProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
+    if (onClick) {
+      onClick();
+      return;
+    }
+
     const entryIdx = Number(sessionStorage.getItem("dashboardEntryIdx") ?? 0);
     const currentIdx = window.history.state?.idx ?? 0;
 

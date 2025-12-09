@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Settings, Briefcase, Building2, ClipboardCheck, Tag, Info, LifeBuoy, LogOut } from "lucide-react";
+import GradientBlob from "../icons/GradientBlob";
 import { useAvatar } from "../../context/AvatarContext";
 import { useAuth } from "../../context/AuthContext";
 import BackButton from "./BackButton";
@@ -41,30 +42,28 @@ export default function ProfileHub() {
   return (
     <PageContainer className="text-white mb-4">
       <div className="flex items-center justify-between px-4 pt-12 z-0">
-        <div
+        <GradientBlob
           className="absolute opacity-60 blur-2xl -z-10"
           style={{
             right: "82px",
-            top: "-20px",
+            top: "-50px",
             width: "321px",
             height: "262px",
             zIndex: "0",
-            background:
-              "radial-gradient(50% 50% at 50% 50%, rgba(255,173,122,0.40) 0%, rgba(93,104,157,0.40) 58.08%, rgba(20,35,55,0.40) 200%)",
           }}
-        ></div>
+        />
         <div className="flex justify-between w-full z-1">
           <BackButton />
         </div>
       </div>
 
       <div className="mx-auto w-full max-w-[480px]">
-        <div className="rounded-t-[48px] bg-[#141414] p-5 shadow-[0_24px_45px_rgba(6,6,9,0.5)] z-1 relative overflow-hidden">
+        <div className="rounded-t-[48px] bg-[#141414] p-5 z-1 relative overflow-hidden">
 
           {/* Profile Header */}
           <div className="flex items-start gap-4">
             <div className="relative">
-              <div className="h-[110px] w-[110px] rounded-full overflow-hidden bg-black/60">
+              <div className="h-[110px] w-[110px] rounded-full overflow-hidden bg-[#141414]/60">
                 <img src={avatarSrc} alt="Profile" className="h-full w-full object-cover" />
               </div>
               <div className="absolute left-1/2 top-[110px] h-[calc(100%-110px)] w-px -translate-x-1/2 bg-white/15" />

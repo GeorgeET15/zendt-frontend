@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useAvatar } from "../../context/AvatarContext";
 import CreditCard from "../creditCard";
 import PageContainer from "./PageContainer";
@@ -8,6 +9,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { dataService } from "../../services/dataService";
+import GradientBlob from "../icons/GradientBlob";
 
 type Card = {
   cardNumber: string;
@@ -16,9 +18,12 @@ type Card = {
 };
 
 export default function CardManagementPage() {
+  const location = useLocation();
+  const initialIndex = (location.state as { initialCardIndex?: number })?.initialCardIndex ?? 0;
+
   const avatarSrc = useAvatar();
   const [cards, setCards] = useState<Card[]>([]);
-  const [selectedCardIndex, setSelectedCardIndex] = useState(0);
+  const [selectedCardIndex, setSelectedCardIndex] = useState(initialIndex);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,6 +72,7 @@ export default function CardManagementPage() {
         <div className="flex items-stretch gap-3 w-full mb-5">
           <div className="flex-1">
             <Swiper
+              initialSlide={initialIndex}
               modules={[Navigation]}
               slidesPerView={1}
               spaceBetween={16}
@@ -117,35 +123,37 @@ export default function CardManagementPage() {
           </div>
         </div>
 
-        <section className="rounded-[32px] bg-[#0f1115]/90 border border-white/10 shadow-[0_25px_45px_rgba(4,4,7,0.55)] p-6 space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm uppercase tracking-[0.35em] text-white/60">
-                Recent transactions
-              </p>
-              <p className="text-xs text-white/60">Linked to this card</p>
+        <section className="relative overflow-hidden rounded-[19px] p-8 mb-9 text-left text-white bg-[#161616]">
+          <GradientBlob
+            className="absolute opacity-30 blur-2xl -z-10"
+            style={{
+              right: "-100px",
+              top: "-50px",
+              width: "321px",
+              height: "262px",
+              zIndex: "0",
+            }}
+          />
+          <header className="flex flex-col gap-2 mb-6">
+            <h3 className="text-xl font-semibold">Recent transaction</h3>
+            <div className="flex items-center justify-between text-xs uppercase tracking-[0.35em] text-gray-400">
+              <span>THIS MONTH</span>
+              <span className="text-emerald-400">
+                $
+                {currentTransactions
+                  .reduce((sum, tx) => sum + tx.amount, 0)
+                  .toFixed(0)}
+              </span>
             </div>
-            <p className="text-emerald-300 text-sm font-semibold">
-              $
-              {currentTransactions
-                .reduce((sum, tx) => sum + tx.amount, 0)
-                .toFixed(0)}
-            </p>
-          </div>
+            <hr className="border-t border-white/10" />
+          </header>
 
           <ul className="space-y-4">
             {currentTransactions.map((tx) => (
-              <li key={tx.id} className="flex items-center justify-between">
+              <li key={tx.id} className="flex items-center justify-between text-sm text-gray-200">
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-2xl bg-black/60 overflow-hidden">
-                    <img
-                      src={tx.avatar}
-                      alt={tx.name}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
                   <div>
-                    <p className="text-base">{tx.name}</p>
+                    <p className="text-base text-white">{tx.name}</p>
                     <p className="text-xs text-white/60">
                       ••• {currentCard.cardNumber.slice(-4)}
                     </p>

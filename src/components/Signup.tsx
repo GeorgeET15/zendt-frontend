@@ -102,7 +102,7 @@ export default function Signup() {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex items-center justify-between bg-black text-white border border-gray-600 rounded-full py-0.5 pl-2 pr-0.5 w-24 disabled:opacity-50"
+                className="flex items-center justify-between bg-[#141414] text-white border border-gray-600 rounded-full py-0.5 pl-2 pr-0.5 w-24 disabled:opacity-50"
               >
                 <span className="text-sm">{loading ? "..." : "Signup"}</span>
                 <span className="w-7 h-7 bg-gray-300 text-black rounded-full flex items-center justify-center text-sm">
@@ -136,7 +136,7 @@ export default function Signup() {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex items-center justify-between bg-black text-white border border-gray-600 rounded-full py-0.5 pl-2 pr-0.5 w-32 disabled:opacity-50"
+                className="flex items-center justify-between bg-[#141414] text-white border border-gray-600 rounded-full py-0.5 pl-2 pr-0.5 w-32 disabled:opacity-50"
               >
                 <span className="text-sm">{loading ? "..." : "Verify"}</span>
                 <span className="w-7 h-7 bg-gray-300 text-black rounded-full flex items-center justify-center text-sm">

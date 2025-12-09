@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { useAvatar } from "../../context/AvatarContext";
+
 import { dataService } from "../../services/dataService";
 
 type Transaction = {
@@ -14,7 +14,7 @@ type FilterType = "all" | "today" | "week" | "month";
 type SortType = "none" | "high" | "low";
 
 export default function DashboardTransactions() {
-  const avatarSrc = useAvatar();
+
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   const [filter, setFilter] = useState<FilterType>("all");
@@ -24,10 +24,10 @@ export default function DashboardTransactions() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await dataService.getTransactions();
-      setTransactions(data.map((t) => ({ ...t, avatar: avatarSrc })));
+      setTransactions(data.map((t) => ({ ...t, avatar: "/avatar-placeholder.svg" })));
     };
     fetchData();
-  }, [avatarSrc]);
+  }, []);
 
   // Filtering + Sorting
   const filtered = useMemo(() => {
@@ -142,13 +142,7 @@ export default function DashboardTransactions() {
               "
             >
               <div className="flex items-center gap-4">
-                <div className="h-11 w-11 rounded-2xl bg-black/60 overflow-hidden">
-                  <img
-                    src={tx.avatar}
-                    alt={tx.name}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
+
 
                 <div className="flex flex-col">
                   <p className="text-base font-medium tracking-wide">{tx.name}</p>

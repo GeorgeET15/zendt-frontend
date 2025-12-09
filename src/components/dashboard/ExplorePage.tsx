@@ -1,5 +1,6 @@
 // Explore Page Component
 import BackButton from "./BackButton";
+import GradientBlob from "../icons/GradientBlob";
 import PageContainer from "./PageContainer";
 import { Icon1 as RippleIcon } from "../icons/RippleIcon";
 import { Icon2 as BarsIcon } from "../icons/BarsIcon";
@@ -11,18 +12,16 @@ export default function ExplorePage() {
   return (
     <PageContainer className="text-white space-y-6">
       <div className="flex items-center justify-between px-4 pt-12 z-0">
-        <div
+        <GradientBlob
           className="absolute opacity-60 blur-2xl -z-10"
           style={{
             right: "82px",
-            top: "-20px",
+            top: "-50px",
             width: "321px",
             height: "262px",
             zIndex: "0",
-            background:
-              "radial-gradient(50% 50% at 50% 50%, rgba(255,173,122,0.40) 0%, rgba(93,104,157,0.40) 58.08%, rgba(20,35,55,0.40) 200%)",
           }}
-        ></div>
+        />
         <div className="flex justify-between w-full z-1">
           <BackButton />
         </div>
@@ -37,7 +36,7 @@ export default function ExplorePage() {
         <div className="grid grid-cols-2 gap-4 pb-20">
           {/* Top Row: 2 Containers */}
           <div className="rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-5 min-h-[180px] flex flex-col justify-end relative overflow-hidden">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-80">
+            <div className="absolute top-[46%] left-5 -translate-y-1/2">
                <BarsIcon />
             </div>
             <div className="relative z-10 mt-auto">
@@ -48,11 +47,11 @@ export default function ExplorePage() {
             </div>
           </div>
 
-          <div className="rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-5 min-h-[180px] flex flex-col justify-center items-center relative">
-            <div className="mb-4">
+          <div className="rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-5 min-h-[180px] flex flex-col justify-end relative overflow-hidden">
+            <div className="absolute top-[46%] left-5 -translate-y-1/2">
               <RippleIcon />
             </div>
-            <div className="text-left w-full">
+            <div className="relative z-10 mt-auto">
               <p className="text-[9px] uppercase tracking-wider text-white/60 mb-1">
                 September Spends
               </p>
@@ -68,7 +67,7 @@ export default function ExplorePage() {
               </p>
               <p className="text-xl font-light">Pay bills instantly</p>
             </div>
-            <div className="opacity-80">
+            <div className="">
               <WavesIcon />
             </div>
           </div>
@@ -81,7 +80,7 @@ export default function ExplorePage() {
               </p>
               <p className="text-xl font-light">Earn $150</p>
             </div>
-            <div className="self-start opacity-80">
+            <div className="self-start">
               <StepsIcon />
             </div>
           </div>
@@ -93,7 +92,7 @@ export default function ExplorePage() {
               </p>
               <p className="text-xl font-light">0 Active</p>
             </div>
-            <div className="self-start opacity-80">
+            <div className="self-start">
               <CurveIcon />
             </div>
           </div>

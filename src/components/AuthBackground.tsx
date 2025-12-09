@@ -13,7 +13,7 @@ export default function AuthBackground({
   navigationContent,
 }: AuthBackgroundProps) {
   return (
-    <div className="bg-black relative min-h-screen w-full bg-linear-to-b overflow-hidden text-white flex flex-col items-center">
+    <div className="bg-[#141414] relative min-h-screen w-full bg-linear-to-b overflow-hidden text-white flex flex-col items-center">
       {showNavigation && (
         <NavigationBar className={` relative z-50 w-full max-w-4xl pt-8`} centerContent={navigationContent} />
       )}

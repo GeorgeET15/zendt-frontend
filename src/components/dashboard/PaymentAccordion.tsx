@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ExpandToggleButton from "./ExpandToggleButton";
+import GradientBlob from "../icons/GradientBlob";
 import { dataService } from "../../services/dataService";
 
 type PaymentItem = {
@@ -36,15 +37,14 @@ export default function PaymentAccordion() {
             className="relative overflow-hidden rounded-4xl border border-white/5 px-4 py-3 text-white shadow-[0_22px_40px_rgba(4,4,7,0.55)] bg-[#161616]"
           >
             <div className="pointer-events-none absolute inset-0">
-              <div
+              <GradientBlob
                 className="absolute opacity-60 blur-2xl -z-10"
                 style={{
                   right: "-100px",
-                  top: "-120px",
+                  top: "-150px",
                   width: "321px",
-                  height: "262px", zIndex: "0",
-                  background:
-                    "radial-gradient(50% 50% at 50% 50%, rgba(255,173,122,0.40) 0%, rgba(93,104,157,0.40) 58.08%, rgba(20,35,55,0.40) 200%)",
+                  height: "262px",
+                  zIndex: "0",
                 }}
               />
             </div>

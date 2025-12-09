@@ -1,5 +1,6 @@
 import { useState } from "react";
 import BackButton from "./BackButton";
+import GradientBlob from "../icons/GradientBlob";
 import PageContainer from "./PageContainer";
 import Toast from "../Toast";
 
@@ -84,22 +85,21 @@ export default function InvoicePage() {
       />
 
       <div className="flex items-center justify-between px-4 pt-6 relative z-0">
-        <div
+        <GradientBlob
           className="absolute opacity-60 blur-2xl -z-10"
           style={{
             right: "82px",
-            top: "-20px",
+            top: "-50px",
             width: "321px",
             height: "262px",
-            background:
-              "radial-gradient(50% 50% at 50% 50%, rgba(255,173,122,0.40) 0%, rgba(93,104,157,0.40) 58.08%, rgba(20,35,55,0.40) 200%)",
+            zIndex: "0",
           }}
         />
         <BackButton />
       </div>
 
-      <div className="relative rounded-t-[32px] bg-black z-1 space-y-6 pb-20">
-        <section className="bg-black p-6 shadow-[0_25px_45px_rgba(4,4,7,0.55)] rounded-t-[32px] space-y-6">
+      <div className="relative rounded-t-[32px] bg-[#141414] z-1 space-y-6 pb-20">
+        <section className="bg-[#141414] p-6 shadow-[0_25px_45px_rgba(4,4,7,0.55)] rounded-t-[32px] space-y-6">
 
           <header className="space-y-1">
             <h1 className="text-[18px] font-semibold">Create invoice</h1>

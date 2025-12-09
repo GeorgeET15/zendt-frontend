@@ -15,7 +15,7 @@ export default function FormSelect({
       <select
         {...props}
         className={[
-          "appearance-none rounded-3xl border border-white/15 bg-black/30 px-4 py-3 pr-12 text-white focus:outline-none",
+          "appearance-none rounded-3xl border border-white/15 bg-[#141414]/30 px-4 py-3 pr-12 text-white focus:outline-none",
           className,
         ]
           .filter(Boolean)

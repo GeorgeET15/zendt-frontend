@@ -1,5 +1,6 @@
 import { useState, useEffect, type ReactNode } from "react";
 import BackButton from "./BackButton";
+import GradientBlob from "../icons/GradientBlob";
 import PageContainer from "./PageContainer";
 import ToggleCheckbox from "./ToggleCheckbox";
 import { dataService } from "../../services/dataService";
@@ -110,7 +111,7 @@ export default function PaymentLinksPage() {
   };
 
   const Section = ({ children }: { children: ReactNode }) => (
-    <section className="rounded-[32px] bg-black relative z-10 p-5 pt-10 shadow-[0_25px_45px_rgba(4,4,7,0.55)] space-y-3">
+    <section className="rounded-[32px] bg-[#141414] relative z-10 p-5 pt-10 shadow-[0_25px_45px_rgba(4,4,7,0.55)] space-y-3">
       {children}
     </section>
   );
@@ -126,15 +127,13 @@ export default function PaymentLinksPage() {
     <PageContainer className="text-white space-y-6 overflow-y-auto">
       {/* HEADER */}
       <div className="flex items-center justify-between px-4 pt-12 z-0 relative">
-      <div
+      <GradientBlob
         className="absolute opacity-60 blur-2xl -z-10"
         style={{
           right: "82px",
-          top: "-20px",
+            top: "-50px",
           width: "321px",
           height: "262px",
-          background:
-            "radial-gradient(50% 50% at 50% 50%, rgba(255,173,122,0.40) 0%, rgba(93,104,157,0.40) 58.08%, rgba(20,35,55,0.40) 200%)",
         }}
       />
       <div className="flex justify-between w-full z-1">
@@ -173,7 +172,7 @@ export default function PaymentLinksPage() {
           />
 
           {statusOpen && (
-            <div className="mt-2 rounded-2xl border border-white/10 bg-black/30 p-3 space-y-2 text-xs text-white/80">
+            <div className="mt-2 rounded-2xl border border-white/10 bg-[#141414]/30 p-3 space-y-2 text-xs text-white/80">
               <label className="flex items-center gap-2 mb-2">
                 <ToggleCheckbox
                   size="sm"
@@ -189,7 +188,7 @@ export default function PaymentLinksPage() {
                 {statusOptions.map((status) => (
                   <label
                     key={status}
-                    className="flex items-center gap-2 rounded-xl bg-black/20 px-2 py-2"
+                    className="flex items-center gap-2 rounded-xl bg-[#141414]/20 px-2 py-2"
                   >
                     <ToggleCheckbox
                       size="sm"
@@ -214,7 +213,7 @@ export default function PaymentLinksPage() {
           />
 
           {durationOpen && (
-            <div className="rounded-2xl border border-white/10 bg-black/30 p-3 space-y-1">
+            <div className="rounded-2xl border border-white/10 bg-[#141414]/30 p-3 space-y-1">
               {durationOptions.map((option) => (
                 <button
                   key={option}

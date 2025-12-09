@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import NavigationBar from "./layout/NavigationBar";
+import CoreFeaturesModal from "./dashboard/CoreFeaturesModal";
 
 type TabDefinition = {
   to: string;
   label: string;
   icon: string;
   iconHighlighted: string;
+  isAction?: boolean;
 };
 
 const tabs: TabDefinition[] = [
@@ -23,22 +25,23 @@ const tabs: TabDefinition[] = [
     iconHighlighted: "/card-highlighted.png",
   },
   {
-    to: "profile",
-    label: "Profile",
-    icon: "/profile.png",
-    iconHighlighted: "/profile-highlighted.png",
-  },
-  {
-    to: "virtual-account",
+    to: "virtual-account-action", // Dummy route for action
     label: "Virtual",
     icon: "/virtual.png",
     iconHighlighted: "/virtual-highlighted.png",
+    isAction: true,
   },
   {
     to: "explore",
     label: "Explore",
     icon: "/explore.png",
     iconHighlighted: "/explore-highlighted.png",
+  },
+  {
+    to: "profile",
+    label: "Profile",
+    icon: "/profile.png",
+    iconHighlighted: "/profile-highlighted.png",
   },
 ];
 
@@ -51,13 +54,13 @@ function DashboardDesktopNav() {
         return (
           <NavLink
             key={tab.to}
-            to={`/dashboard/${tab.to}`}
+            to={tab.isAction ? "#" : `/dashboard/${tab.to}`}
             onMouseEnter={() => setHoveredTab(tab.to)}
             onMouseLeave={() => setHoveredTab(null)}
             className={({ isActive }) =>
               [
                 "flex items-center gap-2 text-sm px-3 py-2 rounded-[20px] transition focus-visible:outline-none",
-                isActive ? "bg-white/10 text-white" : "text-slate-300 hover:text-white",
+                isActive && !tab.isAction ? "bg-white/10 text-white" : "text-slate-300 hover:text-white",
               ].join(" ")
             }
           >
@@ -65,7 +68,7 @@ function DashboardDesktopNav() {
               <>
                 <img
                   src={
-                    isActive || hoveredTab === tab.to
+                    (isActive && !tab.isAction) || hoveredTab === tab.to
                       ? tab.iconHighlighted
                       : tab.icon
                   }
@@ -81,7 +84,7 @@ function DashboardDesktopNav() {
   );
 }
 
-function DashboardMobileNav() {
+function DashboardMobileNav({ onActionClick, isActionActive }: { onActionClick: (tab: TabDefinition) => void, isActionActive?: boolean }) {
   return (
     <>
       {/* Full-width background container starting from top of nav bar */}
@@ -89,7 +92,7 @@ function DashboardMobileNav() {
       
       <div className="fixed bottom-6 left-1/2 z-40 -translate-x-1/2 md:hidden">
         <div 
-          className="pointer-events-auto flex justify-center items-center gap-1 p-1 bg-[#1F1F1F] rounded-full font-normal whitespace-nowrap shadow-[0_24px_45px_rgba(6,6,9,0.4)]"
+          className="pointer-events-auto flex justify-between items-center px-6 bg-[#1F1F1F] rounded-full font-normal whitespace-nowrap shadow-[0_24px_45px_rgba(6,6,9,0.4)]"
           style={{
             width: '374px',
             height: '70px',
@@ -97,13 +100,38 @@ function DashboardMobileNav() {
           }}
         >
           {tabs.map((tab) => {
+            if (tab.isAction) {
+              return (
+                <button
+                  key={tab.to}
+                  onClick={() => onActionClick(tab)}
+                  className="inline-flex justify-center items-center p-2 rounded-full border border-transparent transition focus-visible:outline-none hover:scale-105 hover:text-white text-slate-500"
+                >
+                  {isActionActive ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="21" fill="none" className="rotate-90">
+                      <path
+                        d="M0.5 0.5L7.67158 7.67158C9.23367 9.23367 9.23367 11.7663 7.67157 13.3284L0.5 20.5"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  ) : (
+                    <img
+                      src={tab.icon}
+                      className="h-7 w-7 object-contain"
+                    />
+                  )}
+                </button>
+              );
+            }
+
             return (
               <NavLink
                 key={tab.to}
                 to={`/dashboard/${tab.to}`}
                 className={({ isActive }) =>
                   [
-                    "inline-flex justify-center items-center px-3 py-2 gap-1 rounded-full border border-transparent font-extralight! transition focus-visible:outline-none",
+                    "inline-flex justify-center items-center p-2 rounded-full border border-transparent transition focus-visible:outline-none",
                     "hover:scale-105 hover:text-white",
                     isActive ? " text-white active-tab" : "text-slate-500",
                   ].join(" ")
@@ -134,6 +162,7 @@ export default function Dashboard() {
   }, []);
 
   const location = useLocation();
+  const [isCoreFeaturesModalOpen, setIsCoreFeaturesModalOpen] = useState(false);
 
   // 🔹 Initialize from navigation state ONCE (no effect needed for this)
   const navigationState = location.state as { showKycToast?: boolean } | null;
@@ -178,11 +207,23 @@ export default function Dashboard() {
       )}
 
       <div className="relative flex min-h-screen flex-col w-full items-center">
-        <DashboardMobileNav />
+        <DashboardMobileNav 
+          onActionClick={(tab) => {
+            if (tab.label === "Virtual") {
+              setIsCoreFeaturesModalOpen((prev) => !prev);
+            }
+          }}
+          isActionActive={isCoreFeaturesModalOpen}
+        />
         <div className="w-full flex-1">
           <Outlet />
         </div>
       </div>
+
+      <CoreFeaturesModal 
+        isOpen={isCoreFeaturesModalOpen} 
+        onClose={() => setIsCoreFeaturesModalOpen(false)} 
+      />
     </div>
   );
 }

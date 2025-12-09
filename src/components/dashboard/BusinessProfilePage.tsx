@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import BackButton from "./BackButton";
+import GradientBlob from "../icons/GradientBlob";
 import PageContainer from "./PageContainer";
 
 const socials = [
@@ -14,17 +15,16 @@ export default function BusinessProfilePage() {
     <PageContainer className="text-white space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center justify-between px-4 pt-12 z-0 w-full">
-          <div
+          <GradientBlob
             className="absolute opacity-60 blur-2xl -z-10"
             style={{
               right: "82px",
-              top: "-20px",
+              top: "-50px",
               width: "321px",
-              height: "262px", zIndex: "0",
-              background:
-                "radial-gradient(50% 50% at 50% 50%, rgba(255,173,122,0.40) 0%, rgba(93,104,157,0.40) 58.08%, rgba(20,35,55,0.40) 200%)",
+              height: "262px",
+              zIndex: "0",
             }}
-          ></div>
+          />
           <div className="flex justify-between w-full z-1">
           <BackButton />
                   <Link
@@ -37,13 +37,13 @@ export default function BusinessProfilePage() {
 
         </div>
       </div>
-      <div className="pt-6 relative rounded-t-3xl pb-18 px-4 bg-black z-1">
+      <div className="pt-6 relative rounded-t-3xl pb-18 px-4 bg-[#141414] z-1">
         <div className="space-y-6">
         <div className="mx-auto w-full max-w-[480px]">
-          <div className="rounded-[28px] bg-black p-6 shadow-[0_24px_45px_rgba(6,6,9,0.5)] relative overflow-hidden">
+          <div className="rounded-[28px] bg-[#141414] p-6 shadow-[0_24px_45px_rgba(6,6,9,0.5)] relative overflow-hidden">
             <div className="flex items-start gap-4">
               <div className="relative">
-                <div className="h-[129px] w-[129px] rounded-[28px] overflow-hidden bg-black/60 mx-auto">
+                <div className="h-[129px] w-[129px] rounded-[28px] overflow-hidden bg-[#141414]/60 mx-auto">
                   <img src="/bussinessProfileImage.jpg" alt="Crafts of taste" className="h-full w-full object-cover" />
                 </div>
                 <div className="absolute left-1/2 top-[140px] h-[calc(100%-140px)] w-px -translate-x-1/2 bg-white/15" />

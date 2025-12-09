@@ -1,5 +1,6 @@
 import { useState } from "react";
 import BackButton from "./BackButton";
+import GradientBlob from "../icons/GradientBlob";
 import FormSelect from "./FormSelect";
 import PageContainer from "./PageContainer";
 import ToggleCheckbox from "./ToggleCheckbox";
@@ -76,18 +77,16 @@ export default function PaymentLinkCreatePage() {
 
       {/* HEADER */}
       <div className="flex items-center justify-between px-4 pt-12 z-0">
-        <div
+        <GradientBlob
           className="absolute opacity-60 blur-2xl -z-10"
           style={{
             right: "82px",
-            top: "-20px",
+            top: "-50px",
             width: "321px",
             height: "262px",
             zIndex: "0",
-            background:
-              "radial-gradient(50% 50% at 50% 50%, rgba(255,173,122,0.40) 0%, rgba(93,104,157,0.40) 58.08%, rgba(20,35,55,0.40) 200%)",
           }}
-        ></div>
+        />
 
         <div className="flex justify-between w-full z-1">
           <BackButton />
@@ -95,7 +94,7 @@ export default function PaymentLinkCreatePage() {
       </div>
 
       {/* CONTENT */}
-      <div className="bg-black p-6 shadow-[0_25px_45px_rgba(4,4,7,0.55)] space-y-6 rounded-t-[32px] relative z-2 pb-20">
+      <div className="bg-[#141414] p-6 shadow-[0_25px_45px_rgba(4,4,7,0.55)] space-y-6 rounded-t-[32px] relative z-2 pb-20">
 
         {!linkCreated ? (
           <h1 className="text-[18px] font-semibold">Create payment link</h1>
@@ -263,7 +262,7 @@ export default function PaymentLinkCreatePage() {
                 Attach invoice
               </p>
 
-              <label className="flex flex-col items-center justify-center border border-dashed border-white/20 bg-black/20 px-4 py-6 text-sm text-white/60">
+              <label className="flex flex-col items-center justify-center border border-dashed border-white/20 bg-[#141414]/20 px-4 py-6 text-sm text-white/60">
                 <input
                   type="file"
                   className="hidden"
