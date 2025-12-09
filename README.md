@@ -2,18 +2,18 @@
 
 A modern, high-performance fintech dashboard application built with **React**, **TypeScript**, and **Vite**. This project features a sleek, dark-themed UI with glassmorphism effects, interactive financial tools, and a responsive layout.
 
-## 🚀 About the Project
+## Project Overview
 
 This repository is a fork of [princysivakumar/zendt-frontend](https://github.com/princysivakumar/zendt-frontend).
 
 Significant enhancements and UI/UX improvements were made by **GeorgeET15** ([georgeemmanuelthomas.dev](https://georgeemmanuelthomas.dev)) during an internship at **Zendit** (Dec 3, 2025 - Dec 17, 2025).
 
-### 📄 Change Log
+### Change Log
 For a detailed breakdown of all features, UI refinements, and architectural changes implemented during this period, please refer to:
 
-👉 **[GeorgeET15.md](./GeorgeET15.md)**
+**[GeorgeET15.md](./GeorgeET15.md)**
 
-## 🛠️ Tech Stack
+## Technology Stack
 
 - **Framework:** React 18
 - **Language:** TypeScript
@@ -22,7 +22,7 @@ For a detailed breakdown of all features, UI refinements, and architectural chan
 - **Icons:** Custom SVG Components
 - **State Management:** React Context API (Auth)
 
-## 📦 Getting Started
+## Setup Instructions
 
 Follow these steps to set up the project locally.
 
@@ -54,7 +54,7 @@ Follow these steps to set up the project locally.
    npm run build
    ```
 
-## ✨ Key Features
+## Features
 
 - **Authentication:** Secure login with persistence.
 - **Dashboard:** Interactive wallet carousel, recent transactions, and quick actions.
