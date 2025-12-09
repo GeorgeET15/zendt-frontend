@@ -118,3 +118,15 @@ This document outlines the comprehensive changes I made to the Zendt Frontend ap
 - **Core Features Modal:**
   - I added a central modal for quick actions (Payment Links, Invoices, etc.).
   - I integrated it with the "Virtual" tab in the bottom navigation.
+
+## 8. Recent Refinements & Documentation
+- **Documentation:**
+  - I completely rewrote `README.md` to adopt a professional tone.
+  - I added a "Mobile Development" section with Capacitor commands.
+  - I performed a codebase analysis to identify and document unused files in `unused_code.md`.
+- **UI Enhancements:**
+  - **Login/Auth:**
+    - I replaced the static SVG background with the dynamic `GradientBlob` component.
+    - I centered the auth pattern image and adjusted its rotation and position for a more balanced look.
+  - **Dashboard:**
+    - I added a "Swipe" indicator with a pulse animation to the "Available Cards" section to improve discoverability when multiple cards are present.

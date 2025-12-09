@@ -1,5 +1,4 @@
 import React from "react";
-import GradientBlob from "./icons/GradientBlob";
 
 interface CreditCardProps {
   cardNumber?: string;

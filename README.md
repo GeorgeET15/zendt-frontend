@@ -18,6 +18,7 @@ For a detailed breakdown of all features, UI refinements, and architectural chan
 - **Framework:** React 18
 - **Language:** TypeScript
 - **Build Tool:** Vite
+- **Mobile Runtime:** Capacitor
 - **Styling:** Tailwind CSS
 - **Icons:** Custom SVG Components
 - **State Management:** React Context API (Auth)
@@ -30,6 +31,8 @@ Follow these steps to set up the project locally.
 
 - Node.js (v16 or higher)
 - npm or yarn
+- Android Studio (for Android development)
+- Xcode (for iOS development, macOS only)
 
 ### Installation
 
@@ -53,6 +56,29 @@ Follow these steps to set up the project locally.
    ```bash
    npm run build
    ```
+
+## Mobile Development (Capacitor)
+
+This project uses **Capacitor** to run the web app as a native mobile application.
+
+### Running on Devices
+
+1. **Sync web assets to native projects**
+   ```bash
+   npm run cap:sync
+   ```
+
+2. **Open Android Studio**
+   ```bash
+   npm run cap:open:android
+   ```
+
+3. **Open Xcode (iOS)**
+   ```bash
+   npm run cap:open:ios
+   ```
+
+
 
 ## Features
 

@@ -290,7 +290,17 @@ export default function DashboardSummary() {
       {/* AVAILABLE CARDS */}
       {cards.length > 0 && (
         <section className="space-y-4 mb-20">
-          <h2 className="text-2xl font-light text-white">Available Cards</h2>
+          <div className="flex items-center justify-between pr-4">
+            <h2 className="text-2xl font-light text-white">Available Cards</h2>
+            {cards.length > 1 && (
+              <div className="flex items-center gap-2 text-white/40 text-xs uppercase tracking-wider">
+                <span>Swipe</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+            )}
+          </div>
           <Swiper
             modules={[Navigation]}
             slidesPerView={1}

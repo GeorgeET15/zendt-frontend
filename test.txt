@@ -1,0 +1,9 @@
+npm run build
+npx cap init
+npm i @capacitor/android @capacitor/ios
+npx cap add android
+npx cap add ios
+npx cap sync
+npx capacitor-assets generate
+npx cap sync
+npx cap open android
