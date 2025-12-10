@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface BankAccountCardProps {
   bankName: string;
   currency: string;
