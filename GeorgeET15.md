@@ -130,3 +130,22 @@ This document outlines the comprehensive changes I made to the Zendt Frontend ap
     - I centered the auth pattern image and adjusted its rotation and position for a more balanced look.
   - **Dashboard:**
     - I added a "Swipe" indicator with a pulse animation to the "Available Cards" section to improve discoverability when multiple cards are present.
+
+## 9. Recent Updates (Dec 10, 2025)
+- **Splash Screen:**
+  - I implemented a new `SplashScreen` component as the initial route.
+  - It features a 3-slide carousel using `swiper` with custom animations.
+  - I added a "Get Started" button on the final slide to navigate to the login page.
+  - I styled it to match the Login UI for a seamless transition.
+- **Dashboard Visibility Toggles:**
+  - I added a "Dashboard Visibility" section to the `SettingsPage`.
+  - I created a `useDashboardSettings` hook to persist visibility preferences for Wallets, Transactions, and Cards using `localStorage`.
+  - I updated the Dashboard Summary to conditionally render these sections based on user settings.
+- **Bank Accounts Redesign:**
+  - I completely redesigned the `BankAccountsPage` to match the Profile Hub UI.
+  - I created a new `BankAccountCard` component featuring:
+    - A custom "wavy" SVG background on the left side.
+    - Left-aligned flag that sits "behind" the waves.
+    - Bank logo and details (Name, Currency, Account Number).
+  - I added interactive "Active/Inactive" and "Default" toggle buttons with visual state feedback (darker background when selected).
+  - I updated `fake-data.json` and `dataService.ts` to support multiple bank accounts with specific logos (`sbi.png`, `axis.png`).

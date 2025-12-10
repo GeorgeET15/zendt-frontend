@@ -29,6 +29,15 @@ export default function NavigationBar({ className, centerContent }: NavigationBa
   return (
     <header className={["relative z-[999]", className].filter(Boolean).join(" ")}>
       <div className="mx-auto flex max-w-4xl items-center justify-between rounded-[28px] px-4 py-3 backdrop-blur gap-4">
+        {/* Logo on the left */}
+        <div className="flex items-center">
+          <img 
+            src="/z-logo-nobg.png" 
+            alt="Zendt Logo" 
+            className="h-17 w-17 object-contain"
+          />
+        </div>
+
         <div className="relative">
           {/* Hamburger menu removed */}
           <GradientBlob

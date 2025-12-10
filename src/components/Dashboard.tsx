@@ -105,7 +105,7 @@ function DashboardMobileNav({ onActionClick, isActionActive }: { onActionClick: 
                 <button
                   key={tab.to}
                   onClick={() => onActionClick(tab)}
-                  className="inline-flex justify-center items-center p-2 rounded-full border border-transparent transition focus-visible:outline-none hover:scale-105 hover:text-white text-slate-500"
+                  className="inline-flex justify-center items-center p-2 rounded-full border border-transparent transition focus-visible:outline-none hover:scale-105 hover:text-white text-slate-500 w-[44px] h-[44px]"
                 >
                   {isActionActive ? (
                     <svg xmlns="http://www.w3.org/2000/svg" width="10" height="21" fill="none" className="rotate-90">
@@ -129,6 +129,11 @@ function DashboardMobileNav({ onActionClick, isActionActive }: { onActionClick: 
               <NavLink
                 key={tab.to}
                 to={`/dashboard/${tab.to}`}
+                onClick={() => {
+                  if (isActionActive) {
+                    onActionClick(tabs.find(t => t.isAction)!);
+                  }
+                }}
                 className={({ isActive }) =>
                   [
                     "inline-flex justify-center items-center p-2 rounded-full border border-transparent transition focus-visible:outline-none",

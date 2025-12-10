@@ -1,4 +1,5 @@
 // Explore Page Component
+import { Link } from "react-router-dom";
 import BackButton from "./BackButton";
 import GradientBlob from "../icons/GradientBlob";
 import PageContainer from "./PageContainer";
@@ -34,68 +35,80 @@ export default function ExplorePage() {
 
         {/* 5-Container Grid Layout */}
         <div className="grid grid-cols-2 gap-4 pb-20">
-          {/* Top Row: 2 Containers */}
-          <div className="rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-5 min-h-[180px] flex flex-col justify-end relative overflow-hidden">
-            <div className="absolute top-[46%] left-5 -translate-y-1/2">
-               <BarsIcon />
+          {/* Rewards Card */}
+          <Link to="/dashboard/rewards" className="block">
+            <div className="rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-5 min-h-[180px] flex flex-col justify-end relative overflow-hidden transition-all active:scale-95">
+              <div className="absolute top-[46%] left-5 -translate-y-1/2">
+                <BarsIcon />
+              </div>
+              <div className="relative z-10 mt-auto">
+                <p className="text-[10px] uppercase tracking-wider text-white/60 mb-1">
+                  Play & Win
+                </p>
+                <p className="text-xl font-light">Rewards</p>
+              </div>
             </div>
-            <div className="relative z-10 mt-auto">
-              <p className="text-[10px] uppercase tracking-wider text-white/60 mb-1">
-                Play & Win
-              </p>
-              <p className="text-xl font-light">Rewards</p>
-            </div>
-          </div>
+          </Link>
 
-          <div className="rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-5 min-h-[180px] flex flex-col justify-end relative overflow-hidden">
-            <div className="absolute top-[46%] left-5 -translate-y-1/2">
-              <RippleIcon />
+          {/* September Spends Card */}
+          <Link to="/dashboard/coming-soon" className="block">
+            <div className="rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-5 min-h-[180px] flex flex-col justify-end relative overflow-hidden transition-all active:scale-95">
+              <div className="absolute top-[46%] left-5 -translate-y-1/2">
+                <RippleIcon />
+              </div>
+              <div className="relative z-10 mt-auto">
+                <p className="text-[9px] uppercase tracking-wider text-white/60 mb-1">
+                  September Spends
+                </p>
+                <p className="text-xl font-light">0 $</p>
+              </div>
             </div>
-            <div className="relative z-10 mt-auto">
-              <p className="text-[9px] uppercase tracking-wider text-white/60 mb-1">
-                September Spends
-              </p>
-              <p className="text-xl font-light">0 $</p>
-            </div>
-          </div>
+          </Link>
 
-          {/* Middle Row: 1 Container spanning full width */}
-          <div className="col-span-2 rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-6 min-h-[140px] flex items-center justify-between">
-            <div>
-              <p className="text-[10px] uppercase tracking-wider text-white/60 mb-2">
-                Electricity, Gas, Mobile & More
-              </p>
-              <p className="text-xl font-light">Pay bills instantly</p>
+          {/* Pay Bills Card */}
+          <Link to="/dashboard/coming-soon" className="col-span-2 block">
+            <div className="rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-6 min-h-[140px] flex items-center justify-between transition-all active:scale-95">
+              <div>
+                <p className="text-[10px] uppercase tracking-wider text-white/60 mb-2">
+                  Electricity, Gas, Mobile & More
+                </p>
+                <p className="text-xl font-light">Pay bills instantly</p>
+              </div>
+              <div className="">
+                <WavesIcon />
+              </div>
             </div>
-            <div className="">
-              <WavesIcon />
-            </div>
-          </div>
+          </Link>
 
-          {/* Bottom Row: 2 Containers */}
-          <div className="rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-5 min-h-[180px] flex flex-col justify-between">
-            <div>
-              <p className="text-[10px] uppercase tracking-wider text-white/60 mb-1">
-                Invite
-              </p>
-              <p className="text-xl font-light">Earn $150</p>
+          {/* Invite (Earn $150) Card */}
+          <Link to="/dashboard/coming-soon" className="block">
+            <div className="rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-5 min-h-[180px] flex flex-col justify-between transition-all active:scale-95">
+              <div>
+                <p className="text-[10px] uppercase tracking-wider text-white/60 mb-1">
+                  Invite
+                </p>
+                <p className="text-xl font-light">Earn $150</p>
+              </div>
+              <div className="self-start">
+                <StepsIcon />
+              </div>
             </div>
-            <div className="self-start">
-              <StepsIcon />
-            </div>
-          </div>
+          </Link>
 
-          <div className="rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-5 min-h-[180px] flex flex-col justify-between">
-            <div>
-              <p className="text-[10px] uppercase tracking-wider text-white/60 mb-1">
-                Autopay
-              </p>
-              <p className="text-xl font-light">0 Active</p>
+          {/* Autopay Card */}
+          <Link to="/dashboard/coming-soon" className="block">
+            <div className="rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-5 min-h-[180px] flex flex-col justify-between transition-all active:scale-95">
+              <div>
+                <p className="text-[10px] uppercase tracking-wider text-white/60 mb-1">
+                  Autopay
+                </p>
+                <p className="text-xl font-light">0 Active</p>
+              </div>
+              <div className="self-start">
+                <CurveIcon />
+              </div>
             </div>
-            <div className="self-start">
-              <CurveIcon />
-            </div>
-          </div>
+          </Link>
         </div>
       </div>
     </PageContainer>

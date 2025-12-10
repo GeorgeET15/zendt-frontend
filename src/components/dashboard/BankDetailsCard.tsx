@@ -12,18 +12,26 @@ export default function BankDetailsCard() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await dataService.getBankDetails();
-      setBankFields(data);
+      const accounts = await dataService.getBankAccounts();
+      if (accounts.length > 0) {
+        const account = accounts[0];
+        setBankFields([
+          { label: "Bank Name", value: account.bankName },
+          { label: "Currency", value: account.currency },
+          { label: "Account Number", value: account.accountNumber },
+          { label: "Status", value: account.status },
+        ]);
+      }
     };
     fetchData();
   }, []);
 
   if (bankFields.length === 0) {
-    return <section className="rounded-[32px] bg-[#111316] text-white p-6 md:p-8 shadow-[0_30px_55px_rgba(4,4,7,0.55)] border border-white/5">Loading...</section>;
+    return <section className="rounded-[32px] bg-[#161616] text-white p-6 md:p-8 shadow-[0_30px_55px_rgba(4,4,7,0.55)] border border-white/5">Loading...</section>;
   }
 
   return (
-    <section className="rounded-[32px] bg-[#111316] text-white p-6 md:p-8 shadow-[0_30px_55px_rgba(4,4,7,0.55)] border border-white/5">
+    <section className={`rounded-[32px] bg-[#161616] text-white p-6 md:p-8 shadow-[0_30px_55px_rgba(4,4,7,0.55)] border border-white/5`}>
       <div className="space-y-5">
         {bankFields.map((field) => (
           <div key={field.label} className="space-y-2">

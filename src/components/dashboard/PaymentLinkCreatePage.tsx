@@ -94,7 +94,7 @@ export default function PaymentLinkCreatePage() {
       </div>
 
       {/* CONTENT */}
-      <div className="bg-[#141414] p-6 shadow-[0_25px_45px_rgba(4,4,7,0.55)] space-y-6 rounded-t-[32px] relative z-2 pb-20">
+      <div className="bg-[#141414] p-6 space-y-6 rounded-t-[32px] relative z-2 pb-20">
 
         {!linkCreated ? (
           <h1 className="text-[18px] font-semibold">Create payment link</h1>
@@ -104,7 +104,7 @@ export default function PaymentLinkCreatePage() {
           /* -----------------------------
              🔵 SUCCESS SCREEN
           ------------------------------*/
-          <section className="space-y-4 shadow-[0_25px_45px_rgba(4,4,7,0.55)]">
+          <section className="space-y-4">
             <h2 className="text-2xl font-semibold">Link created successfully</h2>
             <p className="text-white/70 text-sm">
               Share this URL with your customer to collect the payment.

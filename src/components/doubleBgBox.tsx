@@ -4,11 +4,13 @@ interface DoubleBgBoxProps {
   className?: string;
   backgroundImage?: string;
   flagImage?: string;
+  arcColor?: string;
   topLeft?: ReactNode;
   topRight?: ReactNode;
   bottomLeft?: ReactNode;
   bottomRight?: ReactNode;
   variant?: "wallet" | "others";
+  flagPosition?: "left" | "right";
   children?: ReactNode;
 }
 
@@ -17,6 +19,8 @@ export default function DoubleBgBox({
   variant = "others",
   backgroundImage,
   flagImage,
+  flagPosition = "right",
+  arcColor,
   topLeft,
   topRight,
   bottomLeft,
@@ -24,9 +28,9 @@ export default function DoubleBgBox({
   children,
 }: DoubleBgBoxProps) {
   const baseClasses =
-    "relative overflow-hidden rounded-[20px] bg-[#262626] text-gray-100 shadow-[0_25px_45px_rgba(0,0,0,0.45)]";
+    "relative overflow-hidden rounded-[20px]   text-gray-100 ";
   const sizeClass =
-    variant === "wallet" ? "w-[130px] aspect-[130/135]" : "w-full aspect-[185/135]";
+    variant === "wallet" ? "w-full aspect-[130/135]" : "w-full aspect-[185/135]";
   const containerClass = [baseClasses, sizeClass, className].filter(Boolean).join(" ");
 
   return (
@@ -64,8 +68,26 @@ export default function DoubleBgBox({
         <img
           src={flagImage}
           alt=""
-          className="absolute z-0 -right-3 top-[-5px] h-11 w-14 object-cover rounded-bl-3xl"
+          className={`absolute z-0 top-[-5px] h-11 w-14 object-cover ${
+            flagPosition === "left" 
+              ? "-left-3 rounded-br-3xl" 
+              : "-right-3 rounded-bl-3xl"
+          }`}
         />
+      )}
+      {arcColor && (
+        <svg
+          className="absolute -right-3 top-[-5px] h-11 w-14 z-0"
+          viewBox="0 0 56 44"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0 0H56V44C56 44 42 34 28 34C14 34 0 44 0 44V0Z"
+            fill={arcColor}
+          />
+        </svg>
       )}
 
       {backgroundImage && (

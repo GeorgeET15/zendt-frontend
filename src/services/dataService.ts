@@ -16,7 +16,7 @@ export const dataService = {
   getProfileSettings: () => mockResponse(fakeData.profileSettings),
   getSettingsToggles: () => mockResponse(fakeData.settingsToggles),
   getBusinessProfile: () => mockResponse(fakeData.businessProfile),
-  getBankDetails: () => mockResponse(fakeData.bankDetails),
+  getBankAccounts: () => mockResponse(fakeData.bankAccounts),
   getTermsParagraphs: () => mockResponse(fakeData.termsParagraphs),
   getProfileHubItems: () => mockResponse(fakeData.profileHubItems),
   getCards: () => mockResponse(fakeData.cards),
@@ -28,4 +28,6 @@ export const dataService = {
   getWallets: () => mockResponse(fakeData.wallets),
   getTransactions: () => mockResponse(fakeData.transactions),
   getPaymentLinks: () => mockResponse(fakeData.paymentLinks),
+  getInvoiceBillFrom: () => mockResponse(fakeData.invoiceBillFrom),
+  getInvoiceClients: () => mockResponse(fakeData.invoiceClients),
 };

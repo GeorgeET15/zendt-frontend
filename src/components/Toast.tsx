@@ -8,10 +8,12 @@ type ToastProps = {
 };
 
 export default function Toast({ message, subMessage, icon, visible }: ToastProps) {
-  if (!visible) return null;
-
   return (
-    <div className="fixed flex items-center right-4 top-4 z-[1000] rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-xs text-white shadow-lg backdrop-blur">
+    <div
+      className={`fixed right-4 top-4 z-[1000] flex items-center rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-xs text-white shadow-lg backdrop-blur transition-all duration-500 ease-in-out ${
+        visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4 pointer-events-none"
+      }`}
+    >
       {icon && <div className="flex-shrink-0">{icon}</div>}
 
       <div className="ml-2">

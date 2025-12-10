@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Pencil } from "lucide-react";
 import BackButton from "./BackButton";
 import GradientBlob from "../icons/GradientBlob";
 import PageContainer from "./PageContainer";
@@ -26,24 +27,26 @@ export default function BusinessProfilePage() {
             }}
           />
           <div className="flex justify-between w-full z-1">
-          <BackButton />
-                  <Link
-          to="/dashboard/business-profile/edit"
-          className="inline-flex h-10 w-10 text-xl items-center justify-center text-white/80 hover:text-white"
-        >
-          ✎
-        </Link>
+            <BackButton />
           </div>
 
         </div>
       </div>
-      <div className="pt-6 relative rounded-t-3xl pb-18 px-4 bg-[#141414] z-1">
+      <div className="pt-6 relative rounded-t-3xl pb-18 px-4 bg-[#141414] z-1 pb-30">
         <div className="space-y-6">
         <div className="mx-auto w-full max-w-[480px]">
-          <div className="rounded-[28px] bg-[#141414] p-6 shadow-[0_24px_45px_rgba(6,6,9,0.5)] relative overflow-hidden">
+          <div className="rounded-[28px] bg-[#141414] p-6 relative overflow-hidden">
+            {/* Edit Button */}
+            <Link
+              to="/dashboard/business-profile/edit"
+              className="absolute top-4 right-4 inline-flex h-8 w-8 items-center justify-center text-white/60 hover:text-white transition-colors z-20"
+            >
+              <Pencil size={16} />
+            </Link>
+            
             <div className="flex items-start gap-4">
               <div className="relative">
-                <div className="h-[129px] w-[129px] rounded-[28px] overflow-hidden bg-[#141414]/60 mx-auto">
+                <div className="h-[129px] w-[129px] rounded-[28px] overflow-hidden bg-[#141414] mx-auto">
                   <img src="/bussinessProfileImage.jpg" alt="Crafts of taste" className="h-full w-full object-cover" />
                 </div>
                 <div className="absolute left-1/2 top-[140px] h-[calc(100%-140px)] w-px -translate-x-1/2 bg-white/15" />
@@ -67,8 +70,19 @@ export default function BusinessProfilePage() {
           </div>
         </div>
           <h3 className="text-[17px] font-light tracking-wide">About business</h3>
-          <div className="space-y-4 rounded-[32px] bg-[#101014] border border-white/5 p-6">
-            <p className="text-[10px] text-white/80 leading-relaxed">
+          <div className="relative space-y-4 rounded-[20px] bg-[#1E1E1E] border border-white/5 p-8 overflow-hidden">
+            <GradientBlob
+              className="absolute opacity-60 blur-2xl"
+              style={{
+                right: "-20px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                width: "250px",
+                height: "180px",
+                zIndex: "0",
+              }}
+            />
+            <p className="text-[13px] text-white/80 leading-relaxed relative z-10">
               we bring creativity to life through the art of paper crafting.
               Founded with a passion for handmade beauty, we specialize in
               unique, high-quality paper products—from greeting cards and gift
@@ -76,7 +90,7 @@ export default function BusinessProfilePage() {
             </p>
           </div>
           <h3 className="text-[17px] font-light tracking-wide">Social profiles</h3>
-          <div className="space-y-4 rounded-[32px] bg-[#101014] border border-white/5 p-6">
+          <div className="space-y-4 rounded-[32px] bg-[#1E1E1E] border border-white/5 p-6">
             <div className="space-y-3">
               {socials.map((social) => (
                 <div
@@ -88,9 +102,11 @@ export default function BusinessProfilePage() {
                 </div>
               ))}
             </div>
+          <div className="flex justify-center">
             <button className="text-sm text-white/70 hover:text-white">
               Add Any Socials
             </button>
+          </div>
           </div>
         </div>
       </div>

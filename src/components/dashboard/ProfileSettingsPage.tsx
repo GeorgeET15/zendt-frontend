@@ -37,7 +37,7 @@ export default function ProfileSettingsPage() {
   const { initialAddress, addressFields, brandFields, initialProfileData } = data;
 
   return (
-    <PageContainer className="text-white space-y-6">
+    <PageContainer className="text-white mb-4">
       <div className="flex items-center justify-between px-4 pt-12 z-0">
         <GradientBlob
           className="absolute opacity-60 blur-2xl -z-10"
@@ -53,27 +53,29 @@ export default function ProfileSettingsPage() {
           <BackButton />
         </div>
       </div>
-      <div className="p-6 bg-[#141414] rounded-t-[32px] pb-18">
-        <div className="relative mb-4 mx-auto flex justify-center">
-          <div className="h-[140px] w-[140px] rounded-full overflow-hidden bg-[#141414]/60 relative ">
-            <img
-              src={avatarSrc}
-              alt="Roberto Augustus"
-              className="h-full w-full object-cover"
-            />
-          </div>
-        </div>
 
-        <EditableDetailsCard
-          title="Brand name"
-          fields={brandFields}
-          initialValues={initialProfileData}
-        />
-        <EditableDetailsCard
-          title="Business address"
-          fields={addressFields}
-          initialValues={initialAddress}
-        />
+      <div className="mx-auto w-full max-w-[480px] pb-25">
+        <div className="rounded-t-[48px] bg-[#141414] p-5 z-1 relative overflow-hidden">
+          
+          {/* Profile Photo - Centered */}
+          <div className="relative mb-6 flex justify-center">
+            <div className="h-[120px] w-[120px] rounded-full overflow-hidden bg-[#141414]/60">
+              <img src={avatarSrc} alt="Profile" className="h-full w-full object-cover" />
+            </div>
+          </div>
+
+          {/* Editable Cards */}
+          <EditableDetailsCard
+            title="Name and Email"
+            fields={brandFields}
+            initialValues={initialProfileData}
+          />
+          <EditableDetailsCard
+            title="Address"
+            fields={addressFields}
+            initialValues={initialAddress}
+          />
+        </div>
       </div>
     </PageContainer>
   );

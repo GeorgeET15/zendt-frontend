@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
+import SplashScreen from "./components/SplashScreen";
 import Login from "./components/login";
 import Signup from "./components/Signup";
 import Dashboard from "./components/Dashboard";
@@ -31,6 +32,9 @@ import BusinessProfileEditPage from "./components/dashboard/BusinessProfileEditP
 import AddClientPage from "./components/dashboard/AddClientPage";
 import BankAccountsPage from "./components/dashboard/BankAccountsPage";
 import PaymentPagesOptions from "./components/dashboard/PaymentPagesOptions";
+import ComingSoonPage from "./components/dashboard/ComingSoonPage";
+import RewardsPage from "./components/dashboard/RewardsPage";
+import InvoiceSuccessPage from "./components/dashboard/InvoiceSuccessPage";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 
 function RequireAuth() {
@@ -43,7 +47,7 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<SplashScreen />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           
@@ -74,11 +78,14 @@ export default function App() {
               <Route path="virtual-account" element={<VirtualAccountPage />} />
               <Route path="virtual-account/new" element={<AddVirtualAccountPage />} />
               <Route path="invoice" element={<InvoicePage />} />
+              <Route path="invoice/success" element={<InvoiceSuccessPage />} />
               <Route path="payment-links" element={<PaymentLinksPage />} />
               <Route path="payment-links/new" element={<PaymentLinkCreatePage />} />
               <Route path="payment-pages" element={<PaymentPagesOptions />} />
               <Route path="add-client" element={<AddClientPage />} />
               <Route path="explore" element={<ExplorePage />} />
+              <Route path="rewards" element={<RewardsPage />} />
+              <Route path="coming-soon" element={<ComingSoonPage />} />
               <Route path="settlement" element={<SettlementDetailsPage />} />
             </Route>
           </Route>

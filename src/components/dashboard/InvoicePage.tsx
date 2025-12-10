@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import BackButton from "./BackButton";
 import GradientBlob from "../icons/GradientBlob";
 import PageContainer from "./PageContainer";
 import Toast from "../Toast";
+import CustomDropdown from "../CustomDropdown";
+import { dataService } from "../../services/dataService";
 
 interface ServiceItem {
   id: number;
@@ -12,11 +15,53 @@ interface ServiceItem {
 }
 
 export default function InvoicePage() {
+  const navigate = useNavigate();
   const [services, setServices] = useState<ServiceItem[]>([
     { id: 1, description: "Service", rate: 200, quantity: 3 },
   ]);
 
   const [showToast, setShowToast] = useState(false);
+  
+  // Bill From state
+  const [billFromOptions, setBillFromOptions] = useState<any>(null);
+  const [selectedBillFrom, setSelectedBillFrom] = useState<string>("personal");
+  const [billFromData, setBillFromData] = useState({ name: "", email: "", phone: "", address: "" });
+  
+  // Bill To state
+  const [clients, setClients] = useState<any[]>([]);
+  const [selectedClient, setSelectedClient] = useState<string>("");
+  const [billToData, setBillToData] = useState({ name: "", email: "", phone: "", address: "" });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const billFromData = await dataService.getInvoiceBillFrom();
+      const clientsData = await dataService.getInvoiceClients();
+      setBillFromOptions(billFromData);
+      setClients(clientsData);
+      // Set default bill from (personal)
+      if (billFromData?.personal) {
+        setBillFromData(billFromData.personal);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleBillFromChange = (value: string) => {
+    setSelectedBillFrom(value);
+    if (billFromOptions) {
+      setBillFromData(billFromOptions[value] || { name: "", email: "", phone: "", address: "" });
+    }
+  };
+
+  const handleClientChange = (value: string) => {
+    setSelectedClient(value);
+    const client = clients.find(c => c.id.toString() === value);
+    if (client) {
+      setBillToData({ name: client.name, email: client.email, phone: client.phone, address: client.address });
+    } else {
+      setBillToData({ name: "", email: "", phone: "", address: "" });
+    }
+  };
 
   const handleServiceChange = (
     id: number,
@@ -84,7 +129,7 @@ export default function InvoicePage() {
         }
       />
 
-      <div className="flex items-center justify-between px-4 pt-6 relative z-0">
+      <div className="flex items-center justify-between px-4 pt-6 relative z-20 select-none">
         <GradientBlob
           className="absolute opacity-60 blur-2xl -z-10"
           style={{
@@ -92,10 +137,11 @@ export default function InvoicePage() {
             top: "-50px",
             width: "321px",
             height: "262px",
-            zIndex: "0",
+            zIndex: "-1",
+            pointerEvents: "none",
           }}
         />
-        <BackButton />
+        <BackButton onClick={() => navigate("/dashboard/home")} />
       </div>
 
       <div className="relative rounded-t-[32px] bg-[#141414] z-1 space-y-6 pb-20">
@@ -114,8 +160,28 @@ export default function InvoicePage() {
               <FormField label="Due date" placeholder="Select date" type="date" />
             </div>
 
-            <AddressBlock title="Bills from" />
-            <AddressBlock title="Bills to" />
+            <AddressBlock 
+              title="Bills from"
+              selectedOption={selectedBillFrom}
+              onOptionChange={handleBillFromChange}
+              options={[
+                { value: "personal", label: "Personal" },
+                { value: "brand", label: "Brand" }
+              ]}
+              data={billFromData}
+              onDataChange={setBillFromData}
+            />
+            <AddressBlock 
+              title="Bills to"
+              selectedOption={selectedClient}
+              onOptionChange={handleClientChange}
+              options={[
+                { value: "", label: "Select Client" },
+                ...clients.map(c => ({ value: c.id.toString(), label: c.name }))
+              ]}
+              data={billToData}
+              onDataChange={setBillToData}
+            />
 
             {/* SERVICES */}
             <div className="space-y-4">
@@ -193,7 +259,7 @@ export default function InvoicePage() {
               </p>
 
               <div className="space-y-3 text-[13px]">
-                {["Payment link", "Direct to account", "Crypto"].map((mode) => (
+                {["Payment link", "Direct to account"].map((mode) => (
                   <button
                     key={mode}
                     type="button"
@@ -210,6 +276,7 @@ export default function InvoicePage() {
             <div className="flex justify-end pb-12">
               <button
                 type="button"
+                onClick={() => navigate("/dashboard/invoice/success")}
                 className="rounded-[10px] bg-white/10 px-6 py-2 text-[10px] text-white w-42 hover:bg-white/20"
               >
                 Create
@@ -250,19 +317,54 @@ function FormField({ label, placeholder, type = "text", rows }: FormFieldProps) 
   );
 }
 
-function AddressBlock({ title }: { title: string }) {
+interface AddressBlockProps {
+  title: string;
+  selectedOption: string;
+  onOptionChange: (value: string) => void;
+  options: { value: string; label: string }[];
+  data: { name: string; email: string; phone: string; address: string };
+  onDataChange: (data: { name: string; email: string; phone: string; address: string }) => void;
+}
+
+function AddressBlock({ title, selectedOption, onOptionChange, options, data, onDataChange }: AddressBlockProps) {
   return (
     <div className="space-y-3">
       <p className="text-sm uppercase tracking-tight text-white/70">{title}</p>
+      
+      {/* Custom Dropdown */}
+      <CustomDropdown
+        value={selectedOption}
+        onChange={onOptionChange}
+        options={options}
+        placeholder="Select an option"
+      />
 
+      {/* Auto-filled fields */}
       <div className="space-y-3">
-        {["Name", "Email", "Number", "Address"].map((field) => (
-          <input
-            key={field}
-            placeholder={field}
-            className="w-full rounded-[10px] bg-[#1E1E1E] px-4 py-3 text-[10px] text-white placeholder:text-white/40 focus:outline-none"
-          />
-        ))}
+        <input
+          placeholder="Name"
+          value={data.name}
+          onChange={(e) => onDataChange({ ...data, name: e.target.value })}
+          className="w-full rounded-[10px] bg-[#1E1E1E] px-4 py-3 text-[10px] text-white placeholder:text-white/40 focus:outline-none"
+        />
+        <input
+          placeholder="Email"
+          value={data.email}
+          onChange={(e) => onDataChange({ ...data, email: e.target.value })}
+          className="w-full rounded-[10px] bg-[#1E1E1E] px-4 py-3 text-[10px] text-white placeholder:text-white/40 focus:outline-none"
+        />
+        <input
+          placeholder="Number"
+          value={data.phone}
+          onChange={(e) => onDataChange({ ...data, phone: e.target.value })}
+          className="w-full rounded-[10px] bg-[#1E1E1E] px-4 py-3 text-[10px] text-white placeholder:text-white/40 focus:outline-none"
+        />
+        <input
+          placeholder="Address"
+          value={data.address}
+          onChange={(e) => onDataChange({ ...data, address: e.target.value })}
+          className="w-full rounded-[10px] bg-[#1E1E1E] px-4 py-3 text-[10px] text-white placeholder:text-white/40 focus:outline-none"
+        />
       </div>
     </div>
   );

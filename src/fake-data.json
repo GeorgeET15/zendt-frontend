@@ -77,13 +77,27 @@
       "website": "robertoaugustus.com"
     }
   },
-  "bankDetails": [
-    { "label": "Account holder name", "value": "Alen Thomas" },
-    { "label": "Account type", "value": "Checking" },
-    { "label": "Sort Code", "value": "041404" },
-    { "label": "Account number", "value": "41234432" },
-    { "label": "Bank name", "value": "The currency cloud" },
-    { "label": "Bank address", "value": "12 street, the texas hijo building elud 89" }
+  "bankAccounts": [
+    {
+      "id": 1,
+      "bankName": "State Bank of India",
+      "currency": "INR",
+      "accountNumber": "09182994749032",
+      "status": "ACTIVE",
+      "isDefault": true,
+      "flag": "/india.png",
+      "logo": "/sbi.png"
+    },
+    {
+      "id": 2,
+      "bankName": "Axis Bank",
+      "currency": "INR",
+      "accountNumber": "09182994749032",
+      "status": "IN ACTIVE",
+      "isDefault": false,
+      "flag": "/india.png",
+      "logo": "/axis.png"
+    }
   ],
   "termsParagraphs": [
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
@@ -335,6 +349,43 @@
       "amount": 400,
       "status": "Partially paid",
       "createdOn": "2023-12-22"
+    }
+  ],
+  "invoiceBillFrom": {
+    "personal": {
+      "name": "Roberto Augustus",
+      "email": "robertoaugustus@gmail.com",
+      "phone": "+1 232 343 4545",
+      "address": "123 Paper Street, Austin, TX 78701, United States"
+    },
+    "brand": {
+      "name": "Zendt Technologies",
+      "email": "hello@zendt.com",
+      "phone": "+1 800 555 0100",
+      "address": "456 Innovation Drive, San Francisco, CA 94105, United States"
+    }
+  },
+  "invoiceClients": [
+    {
+      "id": 1,
+      "name": "Acme Corporation",
+      "email": "contact@acme.com",
+      "phone": "+1 555 123 4567",
+      "address": "789 Business Ave, New York, NY 10001, United States"
+    },
+    {
+      "id": 2,
+      "name": "Tech Solutions Inc",
+      "email": "info@techsolutions.com",
+      "phone": "+1 555 987 6543",
+      "address": "321 Tech Park, Seattle, WA 98101, United States"
+    },
+    {
+      "id": 3,
+      "name": "Global Enterprises",
+      "email": "admin@globalent.com",
+      "phone": "+1 555 456 7890",
+      "address": "555 Commerce Street, Chicago, IL 60601, United States"
     }
   ]
   

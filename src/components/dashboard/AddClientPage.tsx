@@ -96,7 +96,7 @@ export default function AddClientPage() {
 
         <form
           onSubmit={handleSubmit}
-          className="space-y-6 shadow-[0_25px_45px_rgba(4,4,7,0.55)]"
+          className="space-y-6"
         >
           <div className="flex justify-center items-center">
             <div className="flex border border-white/15 rounded-[11px] bg-[#1E1E1E] overflow-hidden w-full max-w-sm">

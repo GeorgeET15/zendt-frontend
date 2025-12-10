@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Settings, Briefcase, Building2, ClipboardCheck, Tag, Info, LifeBuoy, LogOut } from "lucide-react";
 import GradientBlob from "../icons/GradientBlob";
 import { useAvatar } from "../../context/AvatarContext";
 import { useAuth } from "../../context/AuthContext";
@@ -8,14 +7,24 @@ import BackButton from "./BackButton";
 import PageContainer from "./PageContainer";
 import { dataService } from "../../services/dataService";
 
-const iconMap: Record<string, any> = {
-  Briefcase,
-  Settings,
-  Building2,
-  ClipboardCheck,
-  Tag,
-  Info,
-  LifeBuoy,
+// Import PNG icons
+import settingsIcon from "../../assets/icons/settings.png";
+import businessProfileIcon from "../../assets/icons/business-profile.png";
+import bankAccountsIcon from "../../assets/icons/bank-accounts.png";
+import verificationIcon from "../../assets/icons/verification.png";
+import pricingIcon from "../../assets/icons/pricing.png";
+import aboutIcon from "../../assets/icons/about.png";
+import helpIcon from "../../assets/icons/help.png";
+import logoutIcon from "../../assets/icons/logout.png";
+
+const iconMap: Record<string, string> = {
+  Settings: settingsIcon,
+  Briefcase: businessProfileIcon,
+  Building2: bankAccountsIcon,
+  ClipboardCheck: verificationIcon,
+  Tag: pricingIcon,
+  Info: aboutIcon,
+  LifeBuoy: helpIcon,
 };
 
 type ProfileItem = {
@@ -30,11 +39,14 @@ export default function ProfileHub() {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const [items, setItems] = useState<ProfileItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const data = await dataService.getProfileHubItems();
       setItems(data);
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -90,24 +102,37 @@ export default function ProfileHub() {
 
           {/* Options List */}
           <div className="mt-8 flex flex-col gap-4">
-            {items.map(({ label, to, icon, showArrow }) => {
-              const Icon = iconMap[icon] || Info;
-              return (
-                <Link
-                  key={label}
-                  to={to}
-                  className="flex items-center gap-2.5 text-[15px] font-light tracking-wide text-white hover:text-white/80"
+            {loading ? (
+              // Skeleton Loading
+              Array.from({ length: 5 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-2.5 text-[15px] h-10"
                 >
-                  <Icon className="h-4 w-4 text-white/70" strokeWidth={1} />
-                  <span className="flex-1">{label}</span>
-                  {showArrow && (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="20" viewBox="0 0 9 21" fill="none">
-                      <path d="M0.5 20.5L6.96447 14.0355C8.91709 12.0829 8.91709 8.91709 6.96447 6.96447L0.499999 0.5" stroke="white" strokeLinecap="round"></path>
-                    </svg>
-                  )}
-                </Link>
-              );
-            })}
+                  <div className="h-5 w-4 rounded bg-white/5 animate-pulse" style={{ animationDelay: `${index * 100}ms` }} />
+                  <div className="h-5 rounded bg-white/5 animate-pulse flex-1 max-w-[180px]" style={{ animationDelay: `${index * 100}ms` }} />
+                </div>
+              ))
+            ) : (
+              items.map(({ label, to, icon, showArrow }) => {
+                const iconSrc = iconMap[icon];
+                return (
+                  <Link
+                    key={label}
+                    to={to}
+                    className="flex items-center gap-2.5 text-[15px] font-light tracking-wide text-white hover:text-white/80"
+                  >
+                    {iconSrc && <img src={iconSrc} alt={label} className="h-5 w-5 object-contain opacity-70" />}
+                    <span className="flex-1">{label}</span>
+                    {showArrow && (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="20" viewBox="0 0 9 21" fill="none">
+                        <path d="M0.5 20.5L6.96447 14.0355C8.91709 12.0829 8.91709 8.91709 6.96447 6.96447L0.499999 0.5" stroke="white" strokeLinecap="round"></path>
+                      </svg>
+                    )}
+                  </Link>
+                );
+              })
+            )}
 
             {/* Logout Button (Smaller) */}
             <button
@@ -115,9 +140,9 @@ export default function ProfileHub() {
                 logout();
                 navigate("/login");
               }}
-              className="flex items-center gap-2 text-[15px] font-light tracking-wide text-white hover:text-red-300"
+              className="flex items-center gap-2.5 text-[15px] font-light tracking-wide text-white hover:text-red-300"
             >
-              <LogOut className="h-4 w-4 text-white/70" strokeWidth={1} />
+              <img src={logoutIcon} alt="Logout" className="h-5 w-5 object-contain opacity-70" />
               <span>Log out</span>
             </button>
           </div>
