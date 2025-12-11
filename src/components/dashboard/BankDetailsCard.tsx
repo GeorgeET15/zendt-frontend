@@ -25,19 +25,19 @@ export default function BankDetailsCard({ account }: BankDetailsCardProps) {
   ];
 
   return (
-    <section className="rounded-[24px] bg-[#1E1E1E] text-white p-5 shadow-lg border border-white/5">
-      <h3 className="text-xs font-medium tracking-wider text-white/50 uppercase mb-4">
+    <section className="rounded-[24px] bg-[#1E1E1E] text-white p-6 space-y-4">
+      <h3 className="text-[15px] font-light tracking-tight text-white/80 mb-2">
         Account Details
       </h3>
       <div className="space-y-4">
         {bankFields.map((field) => (
           <div key={field.label} className="space-y-1">
-            <div className="flex items-center justify-between gap-3 text-sm">
-              <div className="text-white/60 text-xs">{field.label}</div>
-              <div className="flex items-center gap-2 text-sm text-white">
-                <span className="break-all font-mono">{field.value}</span>
-                <CopyButton value={field.value} />
-              </div>
+            <p className="text-[11px] uppercase tracking-wide text-white/50">
+              {field.label}
+            </p>
+            <div className="flex items-center justify-between border-b border-white/10 pb-2">
+              <span className="text-[14px] text-white/90 font-mono">{field.value}</span>
+              <CopyButton value={field.value} />
             </div>
           </div>
         ))}
