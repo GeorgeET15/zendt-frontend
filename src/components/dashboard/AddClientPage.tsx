@@ -19,7 +19,6 @@ export default function AddClientPage() {
     companyWebsite: "",
   });
   const [allowPartial, setAllowPartial] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [showToast, setShowToast] = useState(false); 
   const [countryOptions, setCountryOptions] = useState<string[]>([]);
   const [purposeCodes, setPurposeCodes] = useState<string[]>([]);
@@ -41,7 +40,6 @@ export default function AddClientPage() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSubmitted(true);
 
     // ✅ Show toast
     setShowToast(true);
