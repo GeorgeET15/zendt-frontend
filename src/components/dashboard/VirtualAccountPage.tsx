@@ -24,7 +24,6 @@ export default function VirtualAccountPage() {
   const [location, setLocation] = useState<LocationOption>("domestic");
   const [virtualAccounts, setVirtualAccounts] = useState<VirtualAccount[]>([]);
   const [selectedAccountIndex, setSelectedAccountIndex] = useState(0);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // 🔹 Toast state
   const [toastMessage, setToastMessage] = useState("");
@@ -133,58 +132,72 @@ export default function VirtualAccountPage() {
 
         {/* DROPDOWN */}
         <div className="space-y-2 relative z-20">
-          <p className="text-xs text-white">Select currency</p>
-          <button
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="w-full flex items-center justify-between rounded-[14px] bg-[#1E1E1E] px-4 py-3 mb-4"
-          >
-            <div className="flex items-center gap-3">
-              <img
-                src={currentAccount.flag}
-                alt=""
-                className="h-6 w-14 rounded-[10px] object-cover"
-              />
-              <span className="text-[13px] tracking-[0.08em]">
-                {currentAccount.currencyName}
-              </span>
-            </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="9"
-              height="21"
-              className={`transition-transform ${isDropdownOpen ? "rotate-90" : ""}`}
-            >
-              <path
-                d="M0.5 20.5L6.96447 14.0355C8.91709 12.0829 8.91709 8.91709 6.96447 6.96447L0.499999 0.5"
-                stroke="white"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
-
-          {isDropdownOpen && (
-            <div className="absolute top-full left-0 w-full mt-1 bg-[#1E1E1E] rounded-[14px] overflow-hidden z-50 shadow-xl border border-white/10">
-              {virtualAccounts.map((account, index) => (
-                <button
-                  key={account.currencyCode}
-                  onClick={() => {
-                    setSelectedAccountIndex(index);
-                    setIsDropdownOpen(false);
-                  }}
-                  className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition"
-                >
+          {/* BANK CARDS - Horizontal Scrollable */}
+        <div className="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
+          <div className="flex gap-3 min-w-max">
+            {virtualAccounts.map((account, index) => (
+              <button
+                key={account.currencyCode}
+                onClick={() => setSelectedAccountIndex(index)}
+                className={`flex-shrink-0 w-[280px] rounded-[24px] p-5 transition-all duration-300 ${
+                  selectedAccountIndex === index
+                    ? 'bg-gradient-to-br from-[#2E2E2E] to-[#1E1E1E] border-2 border-white/20 scale-105'
+                    : 'bg-[#1E1E1E] border border-white/5 hover:border-white/10 active:scale-95'
+                }`}
+              >
+                <div className="flex items-center gap-3 mb-4">
                   <img
                     src={account.flag}
                     alt=""
-                    className="h-6 w-14 rounded-[10px] object-cover"
+                    className="h-10 w-10 rounded-full object-cover"
                   />
-                  <span className="text-[13px] tracking-[0.08em]">
-                    {account.currencyName}
-                  </span>
-                </button>
-              ))}
-            </div>
-          )}
+                  <div className="text-left">
+                    <p className="text-sm font-medium tracking-tight text-white">
+                      {account.currencyCode}
+                    </p>
+                    <p className="text-[10px] text-white/50">
+                      {account.currencyName}
+                    </p>
+                  </div>
+                </div>
+                <div className="h-[1px] bg-white/10 mb-3" />
+                <p className="text-xs text-white/60 text-left">
+                  {account.accountDetails[0]?.label}
+                </p>
+                <p className="text-xs text-white font-mono mt-1 text-left truncate">
+                  {account.accountDetails[0]?.value}
+                </p>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* ACTION BUTTONS */}
+        <div className="flex items-center gap-3 px-1">
+          <button
+            onClick={handleCopyAll}
+            className="flex-1 flex items-center justify-center gap-2 bg-[#1E1E1E] hover:bg-[#2E2E2E] border border-white/10 rounded-[20px] px-6 py-4 transition-all active:scale-95"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span className="text-sm font-medium text-white">Copy All</span>
+          </button>
+          <button
+            onClick={handleShare}
+            className="flex-1 flex items-center justify-center gap-2 bg-[#1E1E1E] hover:bg-[#2E2E2E] border border-white/10 rounded-[20px] px-6 py-4 transition-all active:scale-95"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            <span className="text-sm font-medium text-white">Share</span>
+          </button>
+        </div>
         </div>
 
         {/* ACCOUNT DETAILS */}
@@ -221,15 +234,9 @@ export default function VirtualAccountPage() {
             />
           </div>
 
-          <div className="flex items-center justify-between gap-3">
-            <p className="text-[11.6px] text-white tracking-[0.05em]">
-              US Faster payment - account details
-            </p>
-            <div className="flex items-center gap-2">
-              <ActionButton label="Copy" onClick={handleCopyAll} />
-              <ActionButton label="Share" icon="share" onClick={handleShare} />
-            </div>
-          </div>
+          <p className="text-[11.6px] text-white tracking-[0.05em]">
+            US Faster payment - account details
+          </p>
 
           <div className="space-y-3 bg-[#2E2E2E] rounded-[18px] px-4 py-3 ">
             {currentAccount.accountDetails.map((field) => (

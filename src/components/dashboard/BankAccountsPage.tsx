@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BackButton from "./BackButton";
 import GradientBlob from "../icons/GradientBlob";
 import PageContainer from "./PageContainer";
 import BankAccountCard from "./BankAccountCard";
+import BankAccountSkeleton from "./BankAccountSkeleton";
 import { dataService } from "../../services/dataService";
 
 type BankAccount = {
@@ -19,6 +21,7 @@ type BankAccount = {
 export default function BankAccountsPage() {
   const [accounts, setAccounts] = useState<BankAccount[]>([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,14 +50,6 @@ export default function BankAccountsPage() {
       }))
     );
   };
-
-  if (loading) {
-    return (
-      <PageContainer className="text-white space-y-6">
-        <div className="p-6">Loading...</div>
-      </PageContainer>
-    );
-  }
 
   return (
     <PageContainer className="text-white space-y-6">
@@ -85,17 +80,25 @@ export default function BankAccountsPage() {
           </h1>
         </header>
 
-        {/* Bank Cards List */}
-        <div className="space-y-8">
+        {/* Bank Cards List or Skeleton */}
+        {loading ? (
+          <BankAccountSkeleton />
+        ) : (
+          <div className="space-y-8">
           {accounts.map((account) => (
             <div key={account.id} className="space-y-3">
-              <BankAccountCard
-                bankName={account.bankName}
-                currency={account.currency}
-                accountNumber={account.accountNumber}
-                flag={account.flag}
-                logo={account.logo}
-              />
+              <button
+                onClick={() => navigate(`/dashboard/bank-account/${account.id}`)}
+                className="w-full text-left transition-transform active:scale-95"
+              >
+                <BankAccountCard
+                  bankName={account.bankName}
+                  currency={account.currency}
+                  accountNumber={account.accountNumber}
+                  flag={account.flag}
+                  logo={account.logo}
+                />
+              </button>
 
               {/* Action Buttons */}
               <div className="flex gap-3 px-1">
@@ -122,7 +125,8 @@ export default function BankAccountsPage() {
               </div>
             </div>
           ))}
-        </div>
+          </div>
+        )}
       </div>
     </PageContainer>
   );

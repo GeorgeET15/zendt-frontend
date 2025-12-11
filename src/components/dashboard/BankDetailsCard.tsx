@@ -1,44 +1,41 @@
-import { useEffect, useState } from "react";
 import CopyButton from "./CopyButton";
-import { dataService } from "../../services/dataService";
 
-type BankField = {
-  label: string;
-  value: string;
+type BankAccount = {
+  id: number;
+  bankName: string;
+  currency: string;
+  accountNumber: string;
+  status: string;
+  isDefault: boolean;
+  flag: string;
+  logo: string;
 };
 
-export default function BankDetailsCard() {
-  const [bankFields, setBankFields] = useState<BankField[]>([]);
+type BankDetailsCardProps = {
+  account: BankAccount;
+};
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const accounts = await dataService.getBankAccounts();
-      if (accounts.length > 0) {
-        const account = accounts[0];
-        setBankFields([
-          { label: "Bank Name", value: account.bankName },
-          { label: "Currency", value: account.currency },
-          { label: "Account Number", value: account.accountNumber },
-          { label: "Status", value: account.status },
-        ]);
-      }
-    };
-    fetchData();
-  }, []);
-
-  if (bankFields.length === 0) {
-    return <section className="rounded-[32px] bg-[#161616] text-white p-6 md:p-8 shadow-[0_30px_55px_rgba(4,4,7,0.55)] border border-white/5">Loading...</section>;
-  }
+export default function BankDetailsCard({ account }: BankDetailsCardProps) {
+  const bankFields = [
+    { label: "Bank Name", value: account.bankName },
+    { label: "Currency", value: account.currency },
+    { label: "Account Number", value: account.accountNumber },
+    { label: "Status", value: account.status },
+    { label: "Default", value: account.isDefault ? "Yes" : "No" },
+  ];
 
   return (
-    <section className={`rounded-[32px] bg-[#161616] text-white p-6 md:p-8 shadow-[0_30px_55px_rgba(4,4,7,0.55)] border border-white/5`}>
-      <div className="space-y-5">
+    <section className="rounded-[24px] bg-[#1E1E1E] text-white p-5 shadow-lg border border-white/5">
+      <h3 className="text-xs font-medium tracking-wider text-white/50 uppercase mb-4">
+        Account Details
+      </h3>
+      <div className="space-y-4">
         {bankFields.map((field) => (
-          <div key={field.label} className="space-y-2">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 text-sm">
-              <div className="text-white/70">{field.label}</div>
-              <div className="flex items-center gap-3 text-base text-white/90">
-                <span className="break-all">{field.value}</span>
+          <div key={field.label} className="space-y-1">
+            <div className="flex items-center justify-between gap-3 text-sm">
+              <div className="text-white/60 text-xs">{field.label}</div>
+              <div className="flex items-center gap-2 text-sm text-white">
+                <span className="break-all font-mono">{field.value}</span>
                 <CopyButton value={field.value} />
               </div>
             </div>

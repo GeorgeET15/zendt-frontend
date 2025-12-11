@@ -32,6 +32,7 @@ import SettlementDetailsPage from "./components/dashboard/SettlementDetailsPage"
 import BusinessProfileEditPage from "./components/dashboard/BusinessProfileEditPage";
 import AddClientPage from "./components/dashboard/AddClientPage";
 import BankAccountsPage from "./components/dashboard/BankAccountsPage";
+import BankAccountDetailPage from "./components/dashboard/BankAccountDetailPage";
 import PaymentPagesOptions from "./components/dashboard/PaymentPagesOptions";
 import ComingSoonPage from "./components/dashboard/ComingSoonPage";
 import RewardsPage from "./components/dashboard/RewardsPage";
@@ -90,6 +91,7 @@ export default function App() {
               <Route path="business-profile/edit" element={<BusinessProfileEditPage />} />
               <Route path="settings" element={<SettingsPage />} />
               <Route path="bank-accounts" element={<BankAccountsPage />} />
+              <Route path="bank-account/:id" element={<BankAccountDetailPage />} />
               <Route path="kyc" element={<KycPage />} />
               <Route path="pricing" element={<PricingPage />} />
               <Route path="about" element={<AboutPage />} />
