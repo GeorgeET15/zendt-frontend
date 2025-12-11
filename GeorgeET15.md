@@ -149,3 +149,25 @@ This document outlines the comprehensive changes I made to the Zendt Frontend ap
     - Bank logo and details (Name, Currency, Account Number).
   - I added interactive "Active/Inactive" and "Default" toggle buttons with visual state feedback (darker background when selected).
   - I updated `fake-data.json` and `dataService.ts` to support multiple bank accounts with specific logos (`sbi.png`, `axis.png`).
+
+## 10. Recent Updates (Dec 12, 2025)
+- **About Page Redesign (`AboutPage.tsx`):**
+  - I completely overhauled the UI with a premium glassmorphism aesthetic.
+  - I implemented a modern grid layout for feature cards.
+  - I enhanced the background with larger, more visible gradient blobs.
+  - I updated the typography with larger fonts and a cleaner hierarchy.
+  - I set the background color to `#141414` as per specific request.
+- **Virtual Account Page Overhaul (`VirtualAccountPage.tsx`):**
+  - I redesigned the page to match a specific "premium" reference UI.
+  - I added a "Domestic" vs "International" location toggle.
+  - I improved the currency selector dropdown.
+  - I integrated "Copy" and "Share" functionality directly into the new layout.
+  - I updated the data to include Qatar Riyal (QAR) and UAE Dirham (AED).
+- **Code Restoration & Fixes:**
+  - I restored missing content in `PricingPage.tsx` and `VirtualAccountPage.tsx`.
+  - I fixed the "Loading..." screen in `CardManagementPage.tsx` by replacing it with a skeleton loader.
+  - I adjusted the `FlappyGame` difficulty (slower speed, wider gaps) for better playability.
+  - I increased the graph size in `SpendingDetailsPage.tsx` for better visibility.
+  - I fixed a bug in `AddClientPage.tsx` related to the success message.
+- **Currency Updates:**
+  - I updated `fake-data.json` to replace Euro with Qatar Riyal (QAR) and GBP with UAE Dirham (AED) in wallets and virtual accounts.

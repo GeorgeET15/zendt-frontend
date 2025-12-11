@@ -23,10 +23,10 @@ export default function FlappyGame() {
 
   const BIRD_SIZE = 60;
   const OBSTACLE_WIDTH = 50;
-  const GAP_SIZE = 180; // Increased from 150
-  const GRAVITY = 0.35; // Reduced from 0.5
-  const JUMP_STRENGTH = -7; // Reduced from -8
-  const OBSTACLE_SPEED = 2; // Reduced from 3
+  const GAP_SIZE = 220; // Increased from 180 to make it easier
+  const GRAVITY = 0.25; // Reduced from 0.35 for slower fall
+  const JUMP_STRENGTH = -5; // Reduced from -7 for more control
+  const OBSTACLE_SPEED = 1.5; // Reduced from 2 for slower obstacles
 
   // Load bird image
   useEffect(() => {

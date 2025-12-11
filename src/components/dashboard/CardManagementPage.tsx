@@ -55,7 +55,48 @@ export default function CardManagementPage() {
   
   // Handle case where cards are loading
   if (cards.length === 0) {
-    return <PageContainer className="text-white space-y-8"><div className="p-6">Loading...</div></PageContainer>;
+    return (
+      <PageContainer className="text-white space-y-8">
+        <div className="px-6 pt-10 animate-pulse">
+          {/* Header Skeleton */}
+          <div className="h-8 w-64 bg-white/10 rounded-lg mb-5" />
+
+          {/* Card Carousel Skeleton */}
+          <div className="flex items-stretch gap-3 w-full mb-5">
+            <div className="flex-1">
+              <div className="w-full max-w-[520px] mx-auto aspect-[16/10] bg-white/10 rounded-2xl" />
+            </div>
+            <div className="w-12 bg-white/5 rounded-[10px]" />
+          </div>
+
+          {/* Transactions Skeleton */}
+          <div className="rounded-[19px] p-8 mb-9 bg-[#161616] border border-white/5">
+            <div className="flex flex-col gap-4 mb-6">
+              <div className="h-6 w-48 bg-white/10 rounded-lg" />
+              <div className="flex justify-between">
+                <div className="h-4 w-24 bg-white/5 rounded" />
+                <div className="h-4 w-16 bg-white/5 rounded" />
+              </div>
+              <div className="h-px bg-white/10 w-full" />
+            </div>
+
+            <div className="space-y-6">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="space-y-2">
+                      <div className="h-5 w-32 bg-white/10 rounded" />
+                      <div className="h-3 w-20 bg-white/5 rounded" />
+                    </div>
+                  </div>
+                  <div className="h-5 w-16 bg-white/10 rounded" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </PageContainer>
+    );
   }
 
   const currentCard = cards[selectedCardIndex];

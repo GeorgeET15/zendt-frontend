@@ -145,7 +145,7 @@ export default function InvoicePage() {
       </div>
 
       <div className="relative rounded-t-[32px] bg-[#141414] z-1 space-y-6 pb-20">
-        <section className="bg-[#141414] p-6 shadow-[0_25px_45px_rgba(4,4,7,0.55)] rounded-t-[32px] space-y-6">
+        <section className="bg-[#141414] p-6 rounded-t-[32px] space-y-6">
 
           <header className="space-y-1">
             <h1 className="text-[18px] font-semibold">Create invoice</h1>

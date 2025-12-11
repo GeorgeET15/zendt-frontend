@@ -208,10 +208,6 @@ export default function AddClientPage() {
             <span>Allow alternate reminders</span>
           </label>
 
-          {submitted && (
-            <p className="text-sm text-emerald-300">Client saved successfully.</p>
-          )}
-
           <div className="flex justify-end pb-20">
             <button
               type="submit"
