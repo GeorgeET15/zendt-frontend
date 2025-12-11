@@ -38,8 +38,6 @@ import RewardsPage from "./components/dashboard/RewardsPage";
 import SpendingDetailsPage from "./components/dashboard/SpendingDetailsPage";
 import InvoiceSuccessPage from "./components/dashboard/InvoiceSuccessPage";
 import { AuthProvider, useAuth } from "./context/AuthContext";
-import { SplashScreen as CapacitorSplashScreen } from "@capacitor/splash-screen";
-import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 function RequireAuth() {
@@ -61,9 +59,6 @@ function SplashGuard() {
 
 export default function App() {
 
-  useEffect(() => {
-    CapacitorSplashScreen.hide();
-  }, []);
   return (
     <AuthProvider>
       <BrowserRouter>

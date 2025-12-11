@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAvatar } from "../../context/AvatarContext";
 import DoubleBgBox from "../doubleBgBox";
 import ExpandToggleButton from "./ExpandToggleButton";
 import PaymentAccordion from "./PaymentAccordion";
@@ -39,7 +38,6 @@ import PullToRefreshIndicator from "../PullToRefreshIndicator";
 
 export default function DashboardSummary() {
   const { settings } = useDashboardSettings();
-  const avatarSrc = useAvatar();
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [wallets, setWallets] = useState<Wallet[]>([]);
   const [cards, setCards] = useState<Card[]>([]);

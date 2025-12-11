@@ -6,13 +6,13 @@ import { ShoppingBag, Utensils, Car, Film } from "lucide-react";
 
 // Mock Data for the graph
 const spendingData = [
-  { day: "1", amount: 45, label: "Sep 1" },
-  { day: "5", amount: 120, label: "Sep 5" },
-  { day: "10", amount: 80, label: "Sep 10" },
-  { day: "15", amount: 250, label: "Sep 15" },
-  { day: "20", amount: 160, label: "Sep 20" },
-  { day: "25", amount: 90, label: "Sep 25" },
-  { day: "30", amount: 310, label: "Sep 30" },
+  { day: "1", amount: 3750, label: "Sep 1" },
+  { day: "5", amount: 10000, label: "Sep 5" },
+  { day: "10", amount: 6650, label: "Sep 10" },
+  { day: "15", amount: 20850, label: "Sep 15" },
+  { day: "20", amount: 13300, label: "Sep 20" },
+  { day: "25", amount: 7500, label: "Sep 25" },
+  { day: "30", amount: 25850, label: "Sep 30" },
 ];
 
 export default function SpendingDetailsPage() {
@@ -69,7 +69,7 @@ export default function SpendingDetailsPage() {
             Spending Analysis
           </h1>
           <h2 className="text-3xl font-light text-white">September Spends</h2>
-          <p className="text-white/50 text-sm mt-2">Total spent: <span className="text-white font-medium">$1,055.00</span></p>
+          <p className="text-white/50 text-sm mt-2">Total spent: <span className="text-white font-medium">₹87,900</span></p>
         </header>
 
         {/* Interactive Graph Card */}
@@ -178,7 +178,7 @@ export default function SpendingDetailsPage() {
                 }}
               >
                 <div className="text-[10px] text-white/60 mb-0.5 uppercase tracking-wider">{spendingData[activePoint].label}</div>
-                <div className="text-lg font-light">${spendingData[activePoint].amount}</div>
+                <div className="text-lg font-light">₹{spendingData[activePoint].amount.toLocaleString('en-IN')}</div>
               </div>
             )}
           </div>
@@ -189,10 +189,10 @@ export default function SpendingDetailsPage() {
           <h3 className="text-lg font-light px-2">Top Categories</h3>
           <div className="space-y-3">
             {[
-              { name: "Shopping", amount: "$450", percent: "45%", color: "bg-blue-500", icon: ShoppingBag },
-              { name: "Food & Dining", amount: "$320", percent: "30%", color: "bg-orange-500", icon: Utensils },
-              { name: "Transport", amount: "$180", percent: "15%", color: "bg-green-500", icon: Car },
-              { name: "Entertainment", amount: "$105", percent: "10%", color: "bg-purple-500", icon: Film },
+              { name: "Shopping", amount: "₹37,500", percent: "45%", color: "bg-blue-500", icon: ShoppingBag },
+              { name: "Food & Dining", amount: "₹26,650", percent: "30%", color: "bg-orange-500", icon: Utensils },
+              { name: "Transport", amount: "₹15,000", percent: "15%", color: "bg-green-500", icon: Car },
+              { name: "Entertainment", amount: "₹8,750", percent: "10%", color: "bg-purple-500", icon: Film },
             ].map((cat) => (
               <div key={cat.name} className="relative overflow-hidden flex items-center justify-between bg-[#1E1E1E] p-4 rounded-[24px] border border-white/5 group active:scale-[0.98] transition-all">
                 {/* Progress Bar Background */}

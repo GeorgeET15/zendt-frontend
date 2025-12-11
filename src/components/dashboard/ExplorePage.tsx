@@ -51,7 +51,7 @@ export default function ExplorePage() {
           </Link>
 
           {/* September Spends Card */}
-          <Link to="/dashboard/coming-soon" className="block">
+          <Link to="/dashboard/spending-details" className="block">
             <div className="rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-5 min-h-[180px] flex flex-col justify-end relative overflow-hidden transition-all active:scale-95">
               <div className="absolute top-[46%] left-5 -translate-y-1/2">
                 <RippleIcon />
@@ -60,7 +60,7 @@ export default function ExplorePage() {
                 <p className="text-[9px] uppercase tracking-wider text-white/60 mb-1">
                   September Spends
                 </p>
-                <p className="text-xl font-light">0 $</p>
+                <p className="text-xl font-light">₹87,900</p>
               </div>
             </div>
           </Link>
