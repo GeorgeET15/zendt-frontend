@@ -171,17 +171,60 @@ export default function InvoicePage() {
               data={billFromData}
               onDataChange={setBillFromData}
             />
-            <AddressBlock 
-              title="Bills to"
-              selectedOption={selectedClient}
-              onOptionChange={handleClientChange}
-              options={[
-                { value: "", label: "Select Client" },
-                ...clients.map(c => ({ value: c.id.toString(), label: c.name }))
-              ]}
-              data={billToData}
-              onDataChange={setBillToData}
-            />
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <p className="text-sm uppercase tracking-tight text-white/70">Bills to</p>
+                <button
+                  type="button"
+                  onClick={() => navigate("/dashboard/add-client")}
+                  className="text-xs text-white/60 hover:text-white transition-colors flex items-center gap-1"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  Add Client
+                </button>
+              </div>
+              
+              <CustomDropdown
+                value={selectedClient}
+                onChange={handleClientChange}
+                options={[
+                  { value: "", label: "Select Client" },
+                  ...clients.map(c => ({ value: c.id.toString(), label: c.name }))
+                ]}
+                placeholder="Select Client"
+              />
+
+              {/* Auto-filled fields */}
+              <div className="space-y-3">
+                <input
+                  placeholder="Name"
+                  value={billToData.name}
+                  onChange={(e) => setBillToData({ ...billToData, name: e.target.value })}
+                  className="w-full rounded-[10px] bg-[#1E1E1E] px-4 py-3 text-[10px] text-white placeholder:text-white/40 focus:outline-none"
+                />
+                <input
+                  placeholder="Email"
+                  value={billToData.email}
+                  onChange={(e) => setBillToData({ ...billToData, email: e.target.value })}
+                  className="w-full rounded-[10px] bg-[#1E1E1E] px-4 py-3 text-[10px] text-white placeholder:text-white/40 focus:outline-none"
+                />
+                <input
+                  placeholder="Number"
+                  value={billToData.phone}
+                  onChange={(e) => setBillToData({ ...billToData, phone: e.target.value })}
+                  className="w-full rounded-[10px] bg-[#1E1E1E] px-4 py-3 text-[10px] text-white placeholder:text-white/40 focus:outline-none"
+                />
+                <input
+                  placeholder="Address"
+                  value={billToData.address}
+                  onChange={(e) => setBillToData({ ...billToData, address: e.target.value })}
+                  className="w-full rounded-[10px] bg-[#1E1E1E] px-4 py-3 text-[10px] text-white placeholder:text-white/40 focus:outline-none"
+                />
+              </div>
+            </div>
 
             {/* SERVICES */}
             <div className="space-y-4">

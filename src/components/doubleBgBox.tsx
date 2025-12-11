@@ -127,7 +127,11 @@ export default function DoubleBgBox({
             )}
 
             {(bottomLeft || bottomRight) && (
-              <div className="flex flex-col gap-1 text-left text-white">
+              <div 
+                className={`flex flex-col gap-1 text-left text-white ${
+                  variant === "wallet" ? "absolute bottom-4 left-4 w-[calc(100%-32px)]" : ""
+                }`}
+              >
                 {bottomLeft && (
                   <div className="text-[17px] font-semibold leading-tight">
                     {bottomLeft}

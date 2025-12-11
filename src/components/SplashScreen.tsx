@@ -1,9 +1,8 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import AuthBackground from "./AuthBackground";
-import { useAuth } from "../context/AuthContext";
 
 // Import Swiper styles
 import "swiper/css";
@@ -11,15 +10,14 @@ import "swiper/css/pagination";
 
 export default function SplashScreen() {
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<any>(null);
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/dashboard/home", { replace: true });
-    }
-  }, [isAuthenticated, navigate]);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     navigate("/dashboard/home", { replace: true });
+  //   }
+  // }, [isAuthenticated, navigate]);
 
   const slides = [
     {

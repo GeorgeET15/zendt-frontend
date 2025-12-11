@@ -21,6 +21,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = () => {
     setIsAuthenticated(false);
     localStorage.removeItem("isAuthenticated");
+    // Clear splash flag so it shows again on next login
+    sessionStorage.removeItem("hasSeenSplash");
   };
 
   return (

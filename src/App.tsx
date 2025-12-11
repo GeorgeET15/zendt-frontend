@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
+import LaunchScreen from "./components/LaunchScreen";
 import SplashScreen from "./components/SplashScreen";
 import Login from "./components/login";
 import Signup from "./components/Signup";
@@ -34,25 +35,48 @@ import BankAccountsPage from "./components/dashboard/BankAccountsPage";
 import PaymentPagesOptions from "./components/dashboard/PaymentPagesOptions";
 import ComingSoonPage from "./components/dashboard/ComingSoonPage";
 import RewardsPage from "./components/dashboard/RewardsPage";
+import SpendingDetailsPage from "./components/dashboard/SpendingDetailsPage";
 import InvoiceSuccessPage from "./components/dashboard/InvoiceSuccessPage";
 import { AuthProvider, useAuth } from "./context/AuthContext";
+import { SplashScreen as CapacitorSplashScreen } from "@capacitor/splash-screen";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 function RequireAuth() {
   const { isAuthenticated } = useAuth();
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
 }
 
+function SplashGuard() {
+  const location = useLocation();
+  const hasSeenSplash = sessionStorage.getItem("hasSeenSplash");
+  
+  // If user hasn't seen splash in this session and not already on splash screen
+  if (!hasSeenSplash && location.pathname !== "/") {
+    return <Navigate to="/" replace />;
+  }
+  
+  return <Outlet />;
+}
+
 export default function App() {
+
+  useEffect(() => {
+    CapacitorSplashScreen.hide();
+  }, []);
   return (
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<SplashScreen />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/" element={<LaunchScreen />} />
+          <Route path="/splash" element={<SplashScreen />} />
           
-          <Route element={<RequireAuth />}>
-            <Route path="/dashboard" element={<Dashboard />}>
+          <Route element={<SplashGuard />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            
+            <Route element={<RequireAuth />}>
+              <Route path="/dashboard" element={<Dashboard />}>
               <Route index element={<Navigate to="home" replace />} />
               <Route path="home" element={<DashboardSummary />} />
               <Route path="summary" element={<Navigate to="home" replace />} />
@@ -85,9 +109,11 @@ export default function App() {
               <Route path="add-client" element={<AddClientPage />} />
               <Route path="explore" element={<ExplorePage />} />
               <Route path="rewards" element={<RewardsPage />} />
+              <Route path="spending-details" element={<SpendingDetailsPage />} />
               <Route path="coming-soon" element={<ComingSoonPage />} />
               <Route path="settlement" element={<SettlementDetailsPage />} />
             </Route>
+          </Route>
           </Route>
 
           <Route path="*" element={<Navigate to="/login" replace />} />

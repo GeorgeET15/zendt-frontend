@@ -25,20 +25,22 @@ export default function WalletActionModal({
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center px-4 transition-opacity duration-300 ${
-        isOpen ? "opacity-100" : "opacity-0"
+      className={`fixed inset-0 z-50 flex items-center justify-center px-4 transition-all duration-300 ease-out ${
+        isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-[#141414]/60 backdrop-blur-sm"
+        className={`absolute inset-0 bg-[#141414]/60 backdrop-blur-sm transition-all duration-300 ${
+          isOpen ? "opacity-100" : "opacity-0"
+        }`}
         onClick={onClose}
       />
 
       {/* Modal Content */}
       <div
-        className={`relative w-full max-w-sm rounded-[28px] bg-[#1E1E1E] p-6 shadow-2xl transition-transform duration-300 ${
-          isOpen ? "scale-100 translate-y-0" : "scale-95 translate-y-4"
+        className={`relative w-full max-w-sm rounded-[28px] bg-[#1E1E1E] p-6 shadow-2xl transition-all duration-300 ease-out ${
+          isOpen ? "scale-100 translate-y-0 opacity-100" : "scale-90 translate-y-8 opacity-0"
         }`}
       >
         <div className="flex items-center justify-between mb-6">

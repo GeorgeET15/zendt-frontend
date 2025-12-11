@@ -24,7 +24,7 @@ export default function PricingPage() {
   }, []);
 
   return (
-    <PageContainer className="max-w-4xl text-white space-y-6 pb-24">
+    <PageContainer className="max-w-2xl text-white space-y-6 pb-24">
       <div className="flex items-center justify-between px-4 pt-12 z-0">
         <GradientBlob
           className="absolute opacity-60 blur-2xl -z-10"
@@ -53,7 +53,7 @@ export default function PricingPage() {
             <h2 className="text-xl font-light text-white/90 px-2">Fees for receiving money</h2>
             <div className="space-y-4">
               {/* Option 1 */}
-              <div className="group relative z-0 flex items-center justify-between p-8 rounded-[32px] bg-gradient-to-r from-[#1A1A1A] to-[#141414] border border-white/5 hover:border-white/10 transition-all cursor-pointer overflow-hidden min-h-[140px]">
+              <div className="group relative z-0 flex items-center justify-between p-5 rounded-[32px] bg-gradient-to-r from-[#1A1A1A] to-[#141414] border border-white/5 hover:border-white/10 transition-all cursor-pointer overflow-hidden min-h-[100px]">
                 <GradientBlob
                   className="absolute opacity-40 blur-2xl -z-10 group-hover:opacity-60 transition-opacity duration-500"
                   style={{
@@ -64,8 +64,8 @@ export default function PricingPage() {
                     height: "200px",
                   }}
                 />
-                <span className="text-lg font-light text-white z-10 max-w-[70%]">When a payment request is paid</span>
-                <div className="w-12 h-24 rounded-full bg-[#1F1F1F] flex items-center justify-center group-hover:bg-[#2A2A2A] transition-colors z-10 mr-[-12px]">
+                <span className="text-base font-light text-white z-10 max-w-[70%]">When a payment request is paid</span>
+                <div className="w-10 h-20 rounded-full bg-[#1F1F1F] flex items-center justify-center group-hover:bg-[#2A2A2A] transition-colors z-10 mr-[-8px]">
                   <svg xmlns="http://www.w3.org/2000/svg" width="10" height="21" fill="none">
                     <path
                       d="M0.5 0.5L7.67158 7.67158C9.23367 9.23367 9.23367 11.7663 7.67157 13.3284L0.5 20.5"
@@ -77,7 +77,7 @@ export default function PricingPage() {
               </div>
 
               {/* Option 2 */}
-              <div className="group relative z-0 flex items-center justify-between p-8 rounded-[32px] bg-gradient-to-r from-[#1A1A1A] to-[#141414] border border-white/5 hover:border-white/10 transition-all cursor-pointer overflow-hidden min-h-[140px]">
+              <div className="group relative z-0 flex items-center justify-between p-5 rounded-[32px] bg-gradient-to-r from-[#1A1A1A] to-[#141414] border border-white/5 hover:border-white/10 transition-all cursor-pointer overflow-hidden min-h-[100px]">
                 <GradientBlob
                   className="absolute opacity-40 blur-2xl -z-10 group-hover:opacity-60 transition-opacity duration-500"
                   style={{
@@ -88,8 +88,8 @@ export default function PricingPage() {
                     height: "200px",
                   }}
                 />
-                <span className="text-lg font-light text-white z-10 max-w-[70%]">Fees for transfers to your bank account</span>
-                <div className="w-12 h-24 rounded-full bg-[#1F1F1F] flex items-center justify-center group-hover:bg-[#2A2A2A] transition-colors z-10 mr-[-12px]">
+                <span className="text-base font-light text-white z-10 max-w-[70%]">Fees for transfers to your bank account</span>
+                <div className="w-10 h-20 rounded-full bg-[#1F1F1F] flex items-center justify-center group-hover:bg-[#2A2A2A] transition-colors z-10 mr-[-8px]">
                   <svg xmlns="http://www.w3.org/2000/svg" width="10" height="21" fill="none">
                     <path
                       d="M0.5 0.5L7.67158 7.67158C9.23367 9.23367 9.23367 11.7663 7.67157 13.3284L0.5 20.5"
@@ -102,7 +102,7 @@ export default function PricingPage() {
 
               {/* Option 3 - Links to Plans */}
               <div 
-                className="group relative z-0 flex items-center justify-between p-8 rounded-[32px] bg-gradient-to-r from-[#1A1A1A] to-[#141414] border border-white/5 hover:border-white/10 transition-all cursor-pointer overflow-hidden min-h-[140px]"
+                className="group relative z-0 flex items-center justify-between p-5 rounded-[32px] bg-gradient-to-r from-[#1A1A1A] to-[#141414] border border-white/5 hover:border-white/10 transition-all cursor-pointer overflow-hidden min-h-[100px]"
                 onClick={() => setView('plans')}
               >
                 <GradientBlob
@@ -115,8 +115,8 @@ export default function PricingPage() {
                     height: "200px",
                   }}
                 />
-                <span className="text-lg font-light text-white z-10 max-w-[70%]">Other fees</span>
-                <div className="w-12 h-24 rounded-full bg-[#1F1F1F] flex items-center justify-center group-hover:bg-[#2A2A2A] transition-colors z-10 mr-[-12px]">
+                <span className="text-base font-light text-white z-10 max-w-[70%]">Other fees</span>
+                <div className="w-10 h-20 rounded-full bg-[#1F1F1F] flex items-center justify-center group-hover:bg-[#2A2A2A] transition-colors z-10 mr-[-8px]">
                   <svg xmlns="http://www.w3.org/2000/svg" width="10" height="21" fill="none">
                     <path
                       d="M0.5 0.5L7.67158 7.67158C9.23367 9.23367 9.23367 11.7663 7.67157 13.3284L0.5 20.5"

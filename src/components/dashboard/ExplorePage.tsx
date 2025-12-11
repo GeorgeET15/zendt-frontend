@@ -82,7 +82,7 @@ export default function ExplorePage() {
 
           {/* Invite (Earn $150) Card */}
           <Link to="/dashboard/coming-soon" className="block">
-            <div className="rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-5 min-h-[180px] flex flex-col justify-between transition-all active:scale-95">
+            <div className="rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-5 min-h-[180px] max-h-[180px] flex flex-col justify-between transition-all active:scale-95">
               <div>
                 <p className="text-[10px] uppercase tracking-wider text-white/60 mb-1">
                   Invite
@@ -97,7 +97,7 @@ export default function ExplorePage() {
 
           {/* Autopay Card */}
           <Link to="/dashboard/coming-soon" className="block">
-            <div className="rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-5 min-h-[180px] flex flex-col justify-between transition-all active:scale-95">
+            <div className="rounded-[28px] bg-[#1E1E1E] shadow-[0_24px_45px_rgba(4,4,7,0.55)] p-5 min-h-[180px] max-h-[180px] flex flex-col justify-between transition-all active:scale-95">
               <div>
                 <p className="text-[10px] uppercase tracking-wider text-white/60 mb-1">
                   Autopay

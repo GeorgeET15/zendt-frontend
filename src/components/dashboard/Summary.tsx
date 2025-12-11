@@ -34,6 +34,8 @@ type Card = {
 };
 
 import WalletActionModal from "./WalletActionModal";
+import { usePullToRefresh } from "../../hooks/usePullToRefresh";
+import PullToRefreshIndicator from "../PullToRefreshIndicator";
 
 export default function DashboardSummary() {
   const { settings } = useDashboardSettings();
@@ -67,19 +69,29 @@ export default function DashboardSummary() {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const [txs, wals, cardsData] = await Promise.all([
-        dataService.getTransactions(),
-        dataService.getWallets(),
-        dataService.getCards(),
-      ]);
-
-      setTransactions(txs.slice(0, 4).map((t) => ({ ...t, avatar: "/avatar-placeholder.svg" })));
-      setWallets(wals);
-      setCards(cardsData);
-    };
     fetchData();
-  }, [avatarSrc]);
+  }, []);
+
+  const fetchData = async () => {
+    const [txs, wals, cardsData] = await Promise.all([
+      dataService.getTransactions(),
+      dataService.getWallets(),
+      dataService.getCards(),
+    ]);
+
+    setTransactions(txs.slice(0, 4).map((t) => ({ ...t, avatar: "/avatar-placeholder.svg" })));
+    setWallets(wals);
+    setCards(cardsData);
+  };
+
+  const handleRefresh = async () => {
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
+    await fetchData();
+  };
+
+  const pullToRefresh = usePullToRefresh({
+    onRefresh: handleRefresh,
+  });
 
   useEffect(() => {
     if (wallets.length > 0 && walletScrollRef.current) {
@@ -123,7 +135,13 @@ export default function DashboardSummary() {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 py-12 space-y-10">
+    <div ref={pullToRefresh.containerRef} className="relative h-full overflow-y-auto">
+      <PullToRefreshIndicator
+        pullDistance={pullToRefresh.pullDistance}
+        isRefreshing={pullToRefresh.isRefreshing}
+        threshold={pullToRefresh.threshold}
+      />
+      <div className="relative flex flex-col gap-6 pb-24 px-4 pt-6 w-full max-w-4xl mx-auto py-12 space-y-10">
       <WalletActionModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
@@ -330,6 +348,7 @@ export default function DashboardSummary() {
           </Swiper>
         </section>
       )}
+      </div>
     </div>
   );
 }

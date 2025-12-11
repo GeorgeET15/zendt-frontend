@@ -2,19 +2,19 @@
   "plans": [
     {
       "name": "Starter",
-      "price": "$0/mo",
+      "price": "₹0/mo",
       "description": "Best for testing and small volumes.",
       "features": ["2 payment methods", "Email support", "3 team seats"]
     },
     {
       "name": "Growth",
-      "price": "$49/mo",
+      "price": "₹4,099/mo",
       "description": "Preferred tier for scaling brands.",
       "features": ["All payment rails", "Priority support", "Unlimited team seats"]
     },
     {
     "name": "Growth",
-    "price": "$149/mo",
+    "price": "₹12,499/mo",
     "description": "Perfect for fast-scaling businesses.",
     "features": [
       "50,000 transactions",
@@ -31,10 +31,10 @@
   ],
   "profileSettings": {
     "initialAddress": {
-      "line1": "123 Paper Street",
-      "city": "Austin",
-      "postal": "78701",
-      "country": "United States"
+      "line1": "45 MG Road",
+      "city": "Mumbai",
+      "postal": "400001",
+      "country": "India"
     },
     "addressFields": [
       { "label": "Address line 1", "key": "line1" },
@@ -59,10 +59,10 @@
   "businessProfile": {
     "addressFields": [{ "label": "Address line 1", "key": "line1" }],
     "initialAddress": {
-      "line1": "123 Paper Street",
-      "city": "Austin",
-      "postal": "78701",
-      "country": "United States"
+      "line1": "45 MG Road",
+      "city": "Mumbai",
+      "postal": "400001",
+      "country": "India"
     },
     "brandFields": [
       { "label": "Brand name", "key": "brandName" },
@@ -73,7 +73,7 @@
     "initialBrandData": {
       "brandName": "Roberto Augustus",
       "email": "robertoaugustus@gmail.com",
-      "phone": "+1 232 343 4545",
+      "phone": "+91 98765 43210",
       "website": "robertoaugustus.com"
     }
   },
@@ -192,11 +192,24 @@
   ],
   "virtualAccounts": [
     {
+      "currencyName": "INDIAN RUPEE",
+      "currencyCode": "INR",
+      "flag": "/india.png",
+      "accountDetails": [
+        { "label": "Account holder name", "value": "Roberto Augustus" },
+        { "label": "Account type", "value": "Savings" },
+        { "label": "IFSC Code", "value": "SBIN0001234" },
+        { "label": "Account number", "value": "12345678901" },
+        { "label": "Bank name", "value": "State Bank of India" },
+        { "label": "Bank address", "value": "MG Road, Mumbai, Maharashtra 400001" }
+      ]
+    },
+    {
       "currencyName": "U S DOLLARS",
       "currencyCode": "USD",
       "flag": "/usa.png",
       "accountDetails": [
-        { "label": "Account holder name", "value": "Alen thomas" },
+        { "label": "Account holder name", "value": "Roberto Augustus" },
         { "label": "Account type", "value": "Checking" },
         { "label": "Sort Code", "value": "041404" },
         { "label": "Account number", "value": "41234432" },
@@ -209,7 +222,7 @@
       "currencyCode": "AED",
       "flag": "/uae.png",
       "accountDetails": [
-        { "label": "Account holder name", "value": "Alen thomas" },
+        { "label": "Account holder name", "value": "Roberto Augustus" },
         { "label": "IBAN", "value": "AE123456789012345678901" },
         { "label": "Bank name", "value": "Emirates NBD" },
         { "label": "Bank address", "value": "Baniyas Road, Deira, Dubai, UAE" },
@@ -217,15 +230,15 @@
       ]
     },
     {
-      "currencyName": "QATARI RIYAL",
-      "currencyCode": "QAR",
-      "flag": "/qatar.png",
+      "currencyName": "EURO",
+      "currencyCode": "EUR",
+      "flag": "/euro.png",
       "accountDetails": [
-        { "label": "Account holder name", "value": "Alen thomas" },
-        { "label": "IBAN", "value": "QA123456789012345678901" },
-        { "label": "Bank name", "value": "Qatar National Bank" },
-        { "label": "Bank address", "value": "Corniche Road, Doha, Qatar" },
-        { "label": "SWIFT / BIC", "value": "QNBAQAQA" }
+        { "label": "Account holder name", "value": "Roberto Augustus" },
+        { "label": "IBAN", "value": "DE89370400440532013000" },
+        { "label": "Bank name", "value": "Deutsche Bank" },
+        { "label": "Bank address", "value": "Taunusanlage 12, Frankfurt, Germany" },
+        { "label": "SWIFT / BIC", "value": "DEUTDEFF" }
       ]
     }
   ],

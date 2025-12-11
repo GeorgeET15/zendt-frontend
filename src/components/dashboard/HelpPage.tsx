@@ -24,7 +24,7 @@ export default function HelpPage() {
   }, []);
 
   return (
-    <PageContainer className="max-w-4xl text-white space-y-6 pb-24">
+    <PageContainer className="max-w-2xl text-white space-y-6 pb-24">
       <div className="flex items-center justify-between px-4 pt-12 z-0">
         <GradientBlob
           className="absolute opacity-60 blur-2xl -z-10"
@@ -56,7 +56,7 @@ export default function HelpPage() {
               {/* Contact Support */}
               <div className="group relative z-0 rounded-[32px] bg-gradient-to-r from-[#1A1A1A] to-[#141414] border border-white/5 hover:border-white/10 transition-all overflow-hidden">
                 <div 
-                  className="flex items-center justify-between p-8 cursor-pointer min-h-[140px]"
+                  className="flex items-center justify-between p-5 cursor-pointer min-h-[100px]"
                   onClick={() => setIsContactExpanded(!isContactExpanded)}
                 >
                 <GradientBlob
@@ -69,8 +69,8 @@ export default function HelpPage() {
                     height: "200px",
                   }}
                 />
-                <span className="text-lg font-light text-white z-10 max-w-[70%]">Contact Support</span>
-                <div className="w-12 h-24 rounded-full bg-[#1F1F1F] flex items-center justify-center group-hover:bg-[#2A2A2A] transition-colors z-10 mr-[-12px]">
+                <span className="text-base font-light text-white z-10 max-w-[70%]">Contact Support</span>
+                <div className="w-10 h-20 rounded-full bg-[#1F1F1F] flex items-center justify-center group-hover:bg-[#2A2A2A] transition-colors z-10 mr-[-8px]">
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     width="10" 
@@ -113,7 +113,7 @@ export default function HelpPage() {
               </div>
 
               {/* Documentation */}
-              <div className="group relative z-0 flex items-center justify-between p-8 rounded-[32px] bg-gradient-to-r from-[#1A1A1A] to-[#141414] border border-white/5 hover:border-white/10 transition-all cursor-pointer overflow-hidden min-h-[140px]">
+              <div className="group relative z-0 flex items-center justify-between p-5 rounded-[32px] bg-gradient-to-r from-[#1A1A1A] to-[#141414] border border-white/5 hover:border-white/10 transition-all cursor-pointer overflow-hidden min-h-[100px]">
                 <GradientBlob
                   className="absolute opacity-40 blur-2xl -z-10 group-hover:opacity-60 transition-opacity duration-500"
                   style={{
@@ -124,8 +124,8 @@ export default function HelpPage() {
                     height: "200px",
                   }}
                 />
-                <span className="text-lg font-light text-white z-10 max-w-[70%]">Documentation</span>
-                <div className="w-12 h-24 rounded-full bg-[#1F1F1F] flex items-center justify-center group-hover:bg-[#2A2A2A] transition-colors z-10 mr-[-12px]">
+                <span className="text-base font-light text-white z-10 max-w-[70%]">Documentation</span>
+                <div className="w-10 h-20 rounded-full bg-[#1F1F1F] flex items-center justify-center group-hover:bg-[#2A2A2A] transition-colors z-10 mr-[-8px]">
                   <svg xmlns="http://www.w3.org/2000/svg" width="10" height="21" fill="none">
                     <path
                       d="M0.5 0.5L7.67158 7.67158C9.23367 9.23367 9.23367 11.7663 7.67157 13.3284L0.5 20.5"
@@ -138,7 +138,7 @@ export default function HelpPage() {
 
               {/* FAQs */}
               <div 
-                className="group relative z-0 flex items-center justify-between p-8 rounded-[32px] bg-gradient-to-r from-[#1A1A1A] to-[#141414] border border-white/5 hover:border-white/10 transition-all cursor-pointer overflow-hidden min-h-[140px]"
+                className="group relative z-0 flex items-center justify-between p-5 rounded-[32px] bg-gradient-to-r from-[#1A1A1A] to-[#141414] border border-white/5 hover:border-white/10 transition-all cursor-pointer overflow-hidden min-h-[100px]"
                 onClick={() => setView('faqs')}
               >
                 <GradientBlob
@@ -151,8 +151,8 @@ export default function HelpPage() {
                     height: "200px",
                   }}
                 />
-                <span className="text-lg font-light text-white z-10 max-w-[70%]">Frequently Asked Questions</span>
-                <div className="w-12 h-24 rounded-full bg-[#1F1F1F] flex items-center justify-center group-hover:bg-[#2A2A2A] transition-colors z-10 mr-[-12px]">
+                <span className="text-base font-light text-white z-10 max-w-[70%]">Frequently Asked Questions</span>
+                <div className="w-10 h-20 rounded-full bg-[#1F1F1F] flex items-center justify-center group-hover:bg-[#2A2A2A] transition-colors z-10 mr-[-8px]">
                   <svg xmlns="http://www.w3.org/2000/svg" width="10" height="21" fill="none">
                     <path
                       d="M0.5 0.5L7.67158 7.67158C9.23367 9.23367 9.23367 11.7663 7.67157 13.3284L0.5 20.5"

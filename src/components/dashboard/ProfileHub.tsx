@@ -138,7 +138,7 @@ export default function ProfileHub() {
             <button
               onClick={() => {
                 logout();
-                navigate("/login");
+                navigate("/");
               }}
               className="flex items-center gap-2.5 text-[15px] font-light tracking-wide text-white hover:text-red-300"
             >
