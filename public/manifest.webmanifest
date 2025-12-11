@@ -10,19 +10,52 @@
   "scope": "/",
   "icons": [
     {
-      "src": "/z-logo.png",
+      "src": "assets/icons/icon-48.webp",
       "type": "image/png",
-      "sizes": "512x512",
+      "sizes": "48x48",
       "purpose": "any maskable"
     },
     {
-      "src": "/z-logo-nobg.png",
+      "src": "assets/icons/icon-72.webp",
+      "type": "image/png",
+      "sizes": "72x72",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-96.webp",
+      "type": "image/png",
+      "sizes": "96x96",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-128.webp",
+      "type": "image/png",
+      "sizes": "128x128",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-192.webp",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-256.webp",
+      "type": "image/png",
+      "sizes": "256x256",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-512.webp",
       "type": "image/png",
       "sizes": "512x512",
-      "purpose": "any"
+      "purpose": "any maskable"
     }
   ],
-  "categories": ["finance", "business"],
+  "categories": [
+    "finance",
+    "business"
+  ],
   "screenshots": [],
   "shortcuts": [
     {
@@ -30,14 +63,24 @@
       "short_name": "Home",
       "description": "Open Dashboard",
       "url": "/dashboard/home",
-      "icons": [{ "src": "/dashboard.png", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "/dashboard.png",
+          "sizes": "96x96"
+        }
+      ]
     },
     {
       "name": "Virtual Accounts",
       "short_name": "Virtual",
       "description": "View Virtual Accounts",
       "url": "/dashboard/virtual-account",
-      "icons": [{ "src": "/virtual.png", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "/virtual.png",
+          "sizes": "96x96"
+        }
+      ]
     }
   ]
 }
