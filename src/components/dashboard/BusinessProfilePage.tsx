@@ -53,16 +53,16 @@ export default function BusinessProfilePage() {
               </div>
 
               <div className="flex-1 pt-2 space-y-3">
-                <h2 className="text-[17px] font-light tracking-[0.01em]">craftsoftaste</h2>
+                <h2 className="text-[17px] font-light tracking-[0.01em]">Zynga</h2>
                 <div className="space-y-1 text-[10px] text-white/60 leading-relaxed">
                   <p>
-                    <span className="text-white/75">E-mail :</span> craftsoftaste@gmail.com
+                    <span className="text-white/75">E-mail :</span> zynga@gmail.com
                   </p>
                   <p>
                     <span className="text-white/75">Phone :</span> +91983784963
                   </p>
                   <p>
-                    <span className="text-white/75">Website :</span> craftsoftaste.com
+                    <span className="text-white/75">Website :</span> Zynga.com
                   </p>
                 </div>
               </div>
