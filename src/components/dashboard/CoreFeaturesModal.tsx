@@ -10,7 +10,7 @@ interface CoreFeaturesModalProps {
 const features = [
   { label: "Share Virtual Account", to: "/dashboard/virtual-account" },
   { label: "Payment links", to: "/dashboard/payment-links" },
-  { label: "Payment pages", to: "/dashboard/payment-pages" },
+  { label: "Payment creation", to: "/dashboard/payment-pages" },
   { label: "Create an invoice", to: "/dashboard/invoice" },
   { label: "Add Client", to: "/dashboard/add-client" },
 ];

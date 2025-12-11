@@ -24,6 +24,7 @@ export default function PaymentLinksPage() {
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>(["Created"]);
   const [durationOpen, setDurationOpen] = useState(false);
   const [duration, setDuration] = useState(durationOptions[0]);
+  const [filtersCollapsed, setFiltersCollapsed] = useState(false);
 
   const [paymentLinks, setPaymentLinks] = useState<any[]>([]);
   const [filtered, setFiltered] = useState<any[]>([]);
@@ -108,10 +109,11 @@ export default function PaymentLinksPage() {
     }
 
     setFiltered(data);
+    setFiltersCollapsed(true); // Collapse filters after applying
   };
 
   const Section = ({ children }: { children: ReactNode }) => (
-    <section className="rounded-[32px] bg-[#141414] relative z-10 p-5 pt-10 shadow-[0_25px_45px_rgba(4,4,7,0.55)] space-y-3">
+    <section className="rounded-[32px] bg-[#141414] relative z-10 p-5 pt-10 space-y-3">
       {children}
     </section>
   );
@@ -143,106 +145,131 @@ export default function PaymentLinksPage() {
 
       <Section>
         <header className="space-y-2 mb-4">
-  <h2 className="text-[17px] font-light">Payment Links</h2>
-  <p className="text-sm text-white/70">
-    View and manage your payment links.
-  </p>
-</header>
+          <div className="flex items-center justify-between">
+            <h2 className="text-[17px] font-light">Payment Links</h2>
+            {filtersCollapsed && (
+              <button
+                onClick={() => setFiltersCollapsed(false)}
+                className="text-xs text-white/60 hover:text-white/90 transition-colors flex items-center gap-2"
+              >
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="4" y1="21" x2="4" y2="14"></line>
+                  <line x1="4" y1="10" x2="4" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12" y2="3"></line>
+                  <line x1="20" y1="21" x2="20" y2="16"></line>
+                  <line x1="20" y1="12" x2="20" y2="3"></line>
+                  <line x1="1" y1="14" x2="7" y2="14"></line>
+                  <line x1="9" y1="8" x2="15" y2="8"></line>
+                  <line x1="17" y1="16" x2="23" y2="16"></line>
+                </svg>
+                Show Filters
+              </button>
+            )}
+          </div>
+          <p className="text-sm text-white/70">
+            View and manage your payment links.
+          </p>
+        </header>
 
-        <FieldToggle
-          label="Sort by"
-          value={sortBy}
-          onClick={() => setSortBy(nextSort(sortBy))}
-        />
+        {!filtersCollapsed && (
+          <>
+            <FieldToggle
+              label="Sort by"
+              value={sortBy}
+              onClick={() => setSortBy(nextSort(sortBy))}
+            />
 
-        <div className="grid grid-cols-2 gap-3">
-          <Input placeholder="Payment link ID" />
-          <Input placeholder="Reference ID" />
-          <Input placeholder="Customer contact" />
-          <Input placeholder="Customer Email" />
-          <Input placeholder="Count" />
-        </div>
+            <div className="grid grid-cols-2 gap-3">
+              <Input placeholder="Payment link ID" />
+              <Input placeholder="Reference ID" />
+              <Input placeholder="Customer contact" />
+              <Input placeholder="Customer Email" />
+              <Input placeholder="Count" />
+            </div>
 
-        {/* STATUS */}
-        <div>
-          <FieldToggle
-            label="Payment link status"
-            trailingIcon={<Chevron isOpen={statusOpen} />}
-            onClick={() => setStatusOpen((prev) => !prev)}
-          />
+            {/* STATUS */}
+            <div>
+              <FieldToggle
+                label="Payment link status"
+                trailingIcon={<Chevron isOpen={statusOpen} />}
+                onClick={() => setStatusOpen((prev) => !prev)}
+              />
 
-          {statusOpen && (
-            <div className="mt-2 rounded-2xl border border-white/10 bg-[#141414]/30 p-3 space-y-2 text-xs text-white/80">
-              <label className="flex items-center gap-2 mb-2">
-                <ToggleCheckbox
-                  size="sm"
-                  checked={selectedStatuses.length === statusOptions.length}
-                  onChange={(checked) =>
-                    setSelectedStatuses(checked ? statusOptions : [])
-                  }
-                />
-                <span className="text-xs">All</span>
-              </label>
-
-              <div className="grid grid-cols-2 gap-2">
-                {statusOptions.map((status) => (
-                  <label
-                    key={status}
-                    className="flex items-center gap-2 rounded-xl bg-[#141414]/20 px-2 py-2"
-                  >
+              {statusOpen && (
+                <div className="mt-2 rounded-2xl border border-white/10 bg-[#141414]/30 p-3 space-y-2 text-xs text-white/80">
+                  <label className="flex items-center gap-2 mb-2">
                     <ToggleCheckbox
                       size="sm"
-                      checked={selectedStatuses.includes(status)}
-                      onChange={() => toggleStatus(status)}
+                      checked={selectedStatuses.length === statusOptions.length}
+                      onChange={(checked) =>
+                        setSelectedStatuses(checked ? statusOptions : [])
+                      }
                     />
-                    <span className="text-xs">{status}</span>
+                    <span className="text-xs">All</span>
                   </label>
-                ))}
-              </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    {statusOptions.map((status) => (
+                      <label
+                        key={status}
+                        className="flex items-center gap-2 rounded-xl bg-[#141414]/20 px-2 py-2"
+                      >
+                        <ToggleCheckbox
+                          size="sm"
+                          checked={selectedStatuses.includes(status)}
+                          onChange={() => toggleStatus(status)}
+                        />
+                        <span className="text-xs">{status}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
-          )}
-        </div>
 
-        {/* DURATION */}
-        <div>
-          <FieldToggle
-            label="Duration"
-            value={duration}
-            trailingIcon={<Chevron isOpen={durationOpen} />}
-            onClick={() => setDurationOpen((prev) => !prev)}
-          />
+            {/* DURATION */}
+            <div>
+              <FieldToggle
+                label="Duration"
+                value={duration}
+                trailingIcon={<Chevron isOpen={durationOpen} />}
+                onClick={() => setDurationOpen((prev) => !prev)}
+              />
 
-          {durationOpen && (
-            <div className="rounded-2xl border border-white/10 bg-[#141414]/30 p-3 space-y-1">
-              {durationOptions.map((option) => (
-                <button
-                  key={option}
-                  type="button"
-                  className={`w-full text-left px-3 py-2 text-xs rounded-xl ${
-                    option === duration ? "bg-white/10" : "hover:bg-white/5"
-                  }`}
-                  onClick={() => {
-                    setDuration(option);
-                    setDurationOpen(false);
-                  }}
-                >
-                  {option}
-                </button>
-              ))}
+              {durationOpen && (
+                <div className="rounded-2xl border border-white/10 bg-[#141414]/30 p-3 space-y-1">
+                  {durationOptions.map((option) => (
+                    <button
+                      key={option}
+                      type="button"
+                      className={`w-full text-left px-3 py-2 text-xs rounded-xl ${
+                        option === duration ? "bg-white/10" : "hover:bg-white/5"
+                      }`}
+                      onClick={() => {
+                        setDuration(option);
+                        setDurationOpen(false);
+                      }}
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
-          )}
-        </div>
 
-        {/* APPLY */}
-        <div className="flex justify-end">
-          <button
-            type="button"
-            onClick={applyFilters}
-            className="mt-1 w-32 rounded-[10px] bg-[#1E1E1E] px-4 py-2 text-[10px] text-white hover:bg-white/20"
-          >
-            Apply
-          </button>
-        </div>
+            {/* APPLY */}
+            <div className="flex justify-end">
+              <button
+                type="button"
+                onClick={applyFilters}
+                className="mt-1 w-32 rounded-[10px] bg-[#1E1E1E] px-4 py-2 text-[10px] text-white hover:bg-white/20"
+              >
+                Apply
+              </button>
+            </div>
+          </>
+        )}
 
         {/* RESULTS */}
         <div className="mt-15 space-y-3 pb-10">

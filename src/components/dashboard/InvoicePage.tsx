@@ -280,7 +280,7 @@ export default function InvoicePage() {
 
             {/* TOTAL WITH COPY */}
             <div className="flex items-center justify-between rounded-[10px] text-[13px] bg-[#1E1E1E] px-4 py-3 text-lg">
-              <span>Total</span>
+              <span>Total Amount</span>
 
               <div className="flex items-center gap-3">
                 <span className="font-semibold">INR {total.toFixed(2)}</span>

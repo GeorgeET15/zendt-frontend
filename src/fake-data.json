@@ -172,9 +172,9 @@
   ],
   "wallets": [
     { "code": "INR", "amount": "23,098 rs", "image": "/india.png" },
-    { "code": "USD", "amount": "203 usd", "image": "/usa.png" },
+    { "code": "USD", "amount": "1,200 usd", "image": "/usa.png" },
     { "code": "AED", "amount": "2,234 aed", "image": "/uae.png" },
-    { "code": "EUR", "amount": "560 eur", "image": "/euro.png" }
+    { "code": "QAR", "amount": "2,100 qar", "image": "/qatar.png" }
   ],
   "transactions": [
     { "id": 1, "name": "Aginaldo", "amount": 353.01, "date": "24 Apr 2024" },
@@ -230,9 +230,9 @@
       ]
     },
     {
-      "currencyName": "EURO",
-      "currencyCode": "EUR",
-      "flag": "/euro.png",
+      "currencyName": "QATAR RIYAL",
+      "currencyCode": "QAR",
+      "flag": "/qatar.png",
       "accountDetails": [
         { "label": "Account holder name", "value": "Roberto Augustus" },
         { "label": "IBAN", "value": "DE89370400440532013000" },

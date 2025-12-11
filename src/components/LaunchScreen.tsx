@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import GradientBlob from "./icons/GradientBlob";
 import { useAuth } from "../context/AuthContext";
@@ -6,6 +6,14 @@ import { useAuth } from "../context/AuthContext";
 export default function LaunchScreen() {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Scroll to bottom on mount
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    }
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -24,7 +32,10 @@ export default function LaunchScreen() {
   }, [navigate, isAuthenticated]);
 
   return (
-    <div className="relative min-h-screen bg-[#0A0A0A] flex flex-col items-center justify-center overflow-hidden">
+    <div 
+      ref={containerRef}
+      className="relative min-h-screen bg-[#0A0A0A] flex flex-col items-center justify-center overflow-hidden overflow-y-auto"
+    >
       {/* Gradient Blob */}
       <GradientBlob
         className="absolute opacity-40 blur-3xl"
