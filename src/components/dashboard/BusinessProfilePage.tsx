@@ -4,10 +4,10 @@ import BackButton from "./BackButton";
 import GradientBlob from "../icons/GradientBlob";
 import PageContainer from "./PageContainer";
 
-const socials = [
-  { platform: "Behance", handle: "Crafts of taste" },
-  { platform: "Instagram", handle: "Crafts_of_taste" },
-  { platform: "LinkedIn", handle: "Add Account" },
+const socialLinks = [
+  { platform: "Behance", handle: "Zynga", icon: "/behance.png" },
+  { platform: "Instagram", handle: "Zynga", icon: "/instagram.png" },
+  { platform: "LinkedIn", handle: "Zynga", icon: "/linkedin.png" },
 ];
 
 export default function BusinessProfilePage() {
@@ -47,7 +47,7 @@ export default function BusinessProfilePage() {
             <div className="flex items-start gap-4">
               <div className="relative">
                 <div className="h-[129px] w-[129px] rounded-[28px] overflow-hidden bg-[#141414] mx-auto">
-                  <img src="/bussinessProfileImage.jpg" alt="Crafts of taste" className="h-full w-full object-cover" />
+                  <img src="/bussinessProfileImage.jpg" alt="Zynga" className="h-full w-full object-cover" />
                 </div>
                 <div className="absolute left-1/2 top-[140px] h-[calc(100%-140px)] w-px -translate-x-1/2 bg-white/15" />
               </div>
@@ -90,23 +90,37 @@ export default function BusinessProfilePage() {
             </p>
           </div>
           <h3 className="text-[17px] font-light tracking-wide">Social profiles</h3>
-          <div className="space-y-4 rounded-[32px] bg-[#1E1E1E] border border-white/5 p-6">
-            <div className="space-y-3">
-              {socials.map((social) => (
+          <div className="space-y-4 rounded-[32px] bg-[#1E1E1E] border border-white/5 p-6 relative overflow-hidden">
+            {/* Subtle background gradient for the card */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-[50px] rounded-full -mr-10 -mt-10 pointer-events-none" />
+            
+            <div className="space-y-3 relative z-10">
+              {socialLinks.map((social) => (
                 <div
                   key={social.platform}
-                  className="flex items-center justify-between rounded-2xl bg-[#1E1E1E] px-4 py-3 text-sm"
+                  className="group flex items-center justify-between rounded-2xl bg-white/5 border border-white/5 px-4 py-4 text-sm transition-all duration-300 hover:bg-white/10 hover:scale-[1.02] hover:border-white/10 hover:shadow-lg hover:shadow-black/20 cursor-default"
                 >
-                  <span>{social.platform}</span>
-                  <span>{social.handle}</span>
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 flex items-center justify-center p-2 group-hover:bg-white/10 transition-colors">
+                      <img src={social.icon} alt={social.platform} className="w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <span className="font-medium text-white/90">{social.platform}</span>
+                  </div>
+                  <span className="text-white/50 font-mono text-xs tracking-wide group-hover:text-white/70 transition-colors">{social.handle}</span>
                 </div>
               ))}
             </div>
-          <div className="flex justify-center">
-            <button className="text-sm text-white/70 hover:text-white">
-              Add Any Socials
-            </button>
-          </div>
+            
+            <div className="relative z-10 pt-2">
+              <button className="w-full flex items-center justify-center gap-2 rounded-xl border border-dashed border-white/20 py-3 text-sm text-white/60 hover:text-white hover:border-white/40 hover:bg-white/5 transition-all duration-300 group">
+                <div className="w-5 h-5 rounded-full border border-white/40 flex items-center justify-center group-hover:border-white/80 transition-colors">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 2V8M2 5H8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <span>Add Social Profile</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
