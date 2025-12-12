@@ -31,9 +31,9 @@
   ],
   "profileSettings": {
     "initialAddress": {
-      "line1": "45 MG Road",
-      "city": "Mumbai",
-      "postal": "400001",
+      "line1": "12, Gandhi Nagar",
+      "city": "New Delhi",
+      "postal": "110001",
       "country": "India"
     },
     "addressFields": [
@@ -47,8 +47,8 @@
       { "label": "Email", "key": "email" }
     ],
     "initialProfileData": {
-      "name": "Roberto Augustus",
-      "email": "robertoaugustus@gmail.com"
+      "name": "Arjun Sharma",
+      "email": "arjun.sharma@example.com"
     }
   },
   "settingsToggles": [
@@ -59,9 +59,9 @@
   "businessProfile": {
     "addressFields": [{ "label": "Address line 1", "key": "line1" }],
     "initialAddress": {
-      "line1": "45 MG Road",
-      "city": "Mumbai",
-      "postal": "400001",
+      "line1": "12, Gandhi Nagar",
+      "city": "New Delhi",
+      "postal": "110001",
       "country": "India"
     },
     "brandFields": [
@@ -71,10 +71,10 @@
       { "label": "Website", "key": "website" }
     ],
     "initialBrandData": {
-      "brandName": "Roberto Augustus",
-      "email": "robertoaugustus@gmail.com",
+      "brandName": "Arjun Sharma",
+      "email": "arjun.sharma@example.com",
       "phone": "+91 98765 43210",
-      "website": "robertoaugustus.com"
+      "website": "arjunsharma.com"
     }
   },
   "bankAccounts": [
@@ -117,7 +117,7 @@
   "cards": [
     {
       "cardNumber": "1234 56** ****",
-      "cardHolder": "Roberto Augustus",
+      "cardHolder": "Arjun Sharma",
       "brandLogo": "/assets/mastercard.png"
     },
     {
@@ -177,18 +177,18 @@
     { "code": "QAR", "amount": "2,100 qar", "image": "/qatar.png" }
   ],
   "transactions": [
-    { "id": 1, "name": "Aginaldo", "amount": 353.01, "date": "24 Apr 2024" },
-    { "id": 2, "name": "Aginaldo", "amount": 353.01, "date": "24 Apr 2024" },
-    { "id": 3, "name": "Aginaldo", "amount": 353.01, "date": "24 Apr 2024" },
-    { "id": 4, "name": "Aginaldo", "amount": 353.01, "date": "24 Apr 2024" },
-    { "id": 5, "name": "Aginaldo 5", "amount": 353.01, "date": "24 Apr 2024" },
-    { "id": 6, "name": "Aginaldo 6", "amount": 353.01, "date": "24 Apr 2024" },
-    { "id": 7, "name": "Aginaldo 7", "amount": 353.01, "date": "24 Apr 2024" },
-    { "id": 8, "name": "Aginaldo 8", "amount": 353.01, "date": "24 Apr 2024" },
-    { "id": 9, "name": "Aginaldo 9", "amount": 353.01, "date": "24 Apr 2024" },
-    { "id": 10, "name": "Aginaldo 10", "amount": 353.01, "date": "24 Apr 2024" },
-    { "id": 11, "name": "Aginaldo 11", "amount": 353.01, "date": "24 Apr 2024" },
-    { "id": 12, "name": "Aginaldo 12", "amount": 353.01, "date": "24 Apr 2024" }
+    { "id": 1, "name": "Swiggy", "amount": 450.00, "date": "12 Dec 2025" },
+    { "id": 2, "name": "Uber Rides", "amount": 230.50, "date": "11 Dec 2025" },
+    { "id": 3, "name": "Amazon India", "amount": 1299.00, "date": "10 Dec 2025" },
+    { "id": 4, "name": "Rahul Verma", "amount": 350.00, "date": "09 Dec 2025" },
+    { "id": 5, "name": "Priya Singh", "amount": 649.00, "date": "08 Dec 2025" },
+    { "id": 6, "name": "Zomato", "amount": 560.00, "date": "07 Dec 2025" },
+    { "id": 7, "name": "Jio Mobile Recharge", "amount": 299.00, "date": "06 Dec 2025" },
+    { "id": 8, "name": "Amit Patel", "amount": 899.00, "date": "05 Dec 2025" },
+    { "id": 9, "name": "BookMyShow", "amount": 450.00, "date": "04 Dec 2025" },
+    { "id": 10, "name": "Sneha Gupta", "amount": 119.00, "date": "03 Dec 2025" },
+    { "id": 11, "name": "Blinkit", "amount": 320.00, "date": "02 Dec 2025" },
+    { "id": 12, "name": "Apple Services", "amount": 99.00, "date": "01 Dec 2025" }
   ],
   "virtualAccounts": [
     {
@@ -196,7 +196,7 @@
       "currencyCode": "INR",
       "flag": "/india.png",
       "accountDetails": [
-        { "label": "Account holder name", "value": "Roberto Augustus" },
+        { "label": "Account holder name", "value": "Arjun Sharma" },
         { "label": "Account type", "value": "Savings" },
         { "label": "IFSC Code", "value": "SBIN0001234" },
         { "label": "Account number", "value": "12345678901" },
@@ -366,10 +366,10 @@
   ],
   "invoiceBillFrom": {
     "personal": {
-      "name": "Roberto Augustus",
-      "email": "robertoaugustus@gmail.com",
-      "phone": "+1 232 343 4545",
-      "address": "123 Paper Street, Austin, TX 78701, United States"
+      "name": "Arjun Sharma",
+      "email": "arjun.sharma@example.com",
+      "phone": "+91 98765 43210",
+      "address": "12, Gandhi Nagar, New Delhi, 110001, India"
     },
     "brand": {
       "name": "Zendt Technologies",

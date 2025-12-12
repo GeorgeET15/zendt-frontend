@@ -23,12 +23,12 @@ export default function SplashScreen() {
     {
       id: 1,
       category: "Built For Freelancers",
-      description: "India's First Complete Freelancer Finance Stack Designed for creators, developers, designers, and professionals",
+      description: "India's First Complete Freelancer Financial Stack Designed for creators, developers, designers, and professionals",
     },
     {
       id: 2,
       category: "Get Paid From Anywhere",
-      description: "Receive money from 190+ countriesIncluding GCC currencies (QAR, AED, SAR, OMR, BHD, KWD)",
+      description: "Receive money from 190+ countries Including GCC currencies (QAR, AED, SAR, OMR, BHD, KWD)",
     },
     {
       id: 3,

@@ -171,3 +171,11 @@ This document outlines the comprehensive changes I made to the Zendt Frontend ap
   - I fixed a bug in `AddClientPage.tsx` related to the success message.
 - **Currency Updates:**
   - I updated `fake-data.json` to replace Euro with Qatar Riyal (QAR) and GBP with UAE Dirham (AED) in wallets and virtual accounts.
+- **Virtual Account UI Refinements:**
+  - I updated the dropdown selector in `VirtualAccountPage.tsx` to match the `BankAccountCard` style (wavy background, flag position).
+  - I adjusted the wavy background SVG to be deeper (height 200%) for a more pronounced effect.
+  - I implemented conditional rendering to show US-specific options (Location Cards, "US Faster payment") only when the selected currency is USD.
+- **Data & UX Improvements:**
+  - I diversified the recent transactions list in `fake-data.json` by including people's names (e.g., Rahul Verma, Priya Singh) alongside company names.
+  - I implemented a custom `VirtualAccountSkeleton` loader to replace the spinner in `VirtualAccountPage.tsx` for a smoother loading experience.
+  - I fixed the "Hi User" flash in `Summary.tsx` by implementing a loading state and skeleton for the dashboard greeting.

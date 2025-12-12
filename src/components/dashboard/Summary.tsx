@@ -39,6 +39,8 @@ export default function DashboardSummary() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [wallets, setWallets] = useState<Wallet[]>([]);
   const [cards, setCards] = useState<Card[]>([]);
+  const [userName, setUserName] = useState("");
+  const [loading, setLoading] = useState(true);
   const walletScrollRef = useRef<HTMLDivElement | null>(null);
   
   // Modal State
@@ -69,15 +71,21 @@ export default function DashboardSummary() {
   }, []);
 
   const fetchData = async () => {
-    const [txs, wals, cardsData] = await Promise.all([
+    const [txs, wals, cardsData, profileSettings] = await Promise.all([
       dataService.getTransactions(),
       dataService.getWallets(),
       dataService.getCards(),
+      dataService.getProfileSettings(),
     ]);
 
     setTransactions(txs.slice(0, 4).map((t) => ({ ...t, avatar: "/avatar-placeholder.svg" })));
     setWallets(wals);
     setCards(cardsData);
+    
+    // Set user name
+    const fullName = (profileSettings as any).initialProfileData.name;
+    setUserName(fullName.split(' ')[0]);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -130,8 +138,17 @@ export default function DashboardSummary() {
       />
 
       <header className="text-left">
-        <p className="text-3xl font-light text-white">Hello Roberto !</p>
-        <p className="text-white/50 font-extralight text-base">How you doing?</p>
+        {loading ? (
+          <div className="space-y-2 animate-pulse">
+            <div className="h-9 w-48 bg-white/10 rounded-lg" />
+            <div className="h-6 w-32 bg-white/5 rounded-lg" />
+          </div>
+        ) : (
+          <>
+            <p className="text-3xl font-light text-white">Hello {userName} !</p>
+            <p className="text-white/50 font-extralight text-base">How you doing?</p>
+          </>
+        )}
       </header>
 
       {/* WALLETS */}

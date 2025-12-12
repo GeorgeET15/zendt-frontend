@@ -273,6 +273,7 @@ export default function PaymentLinksPage() {
 
         {/* RESULTS */}
         <div className="mt-15 space-y-3 pb-10">
+          <h3 className="text-[15px] font-medium text-white/90 mb-4">Payment History</h3>
           <div className="mt-6 h-96 overflow-y-auto pr-1">
             <div className="space-y-3 pb-10">
               {filtered.map((link) => (

@@ -4,6 +4,7 @@ import BackButton from "./BackButton";
 import CopyButton from "./CopyButton";
 import PageContainer from "./PageContainer";
 import { dataService } from "../../services/dataService";
+import VirtualAccountSkeleton from "./VirtualAccountSkeleton";
 
 type LocationOption = "domestic" | "international";
 
@@ -130,11 +131,7 @@ Powered by Zendt
   };
 
   if (loading) {
-    return (
-      <PageContainer className="text-white flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
-      </PageContainer>
-    );
+    return <VirtualAccountSkeleton />;
   }
 
   const currentAccount = accounts[selectedAccountIndex];
@@ -183,15 +180,32 @@ Powered by Zendt
           <p className="text-xs text-white">Select currency</p>
           <div 
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="flex items-center justify-between rounded-[14px] bg-[#1E1E1E] px-4 py-3 mb-4 cursor-pointer"
+            className="relative flex items-center justify-between rounded-[14px] bg-[#1E1E1E] px-4 py-3 mb-4 cursor-pointer overflow-hidden border border-white/5 shadow-lg"
           >
-            <div className="flex items-center gap-3">
-              <img
-                src={currentAccount.flag}
-                alt=""
-                className="h-6 w-14 rounded-[10px] object-cover"
-              />
-              <span className="text-[13px] tracking-[0.08em]">
+            {/* Wavy Background (Flipped) */}
+            <svg
+              className="absolute inset-0 w-[50%] h-[200%] z-10 scale-x-[-1] pointer-events-none"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 100 100"
+              fill="none"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+          d="M0 121.681V13.3183C0 5.96282 5.96283 0 13.3183 0H56.0744C60.8326 0 65.2293 2.53846 67.6084 6.65917L74.2492 18.1614C76.6283 22.2821 81.025 24.8205 85.7832 24.8205H87.7799C95.1355 24.8205 101.098 30.7834 101.098 38.1389V121.681C101.098 129.037 95.1355 134.999 87.7799 134.999H13.3183C5.96282 134.999 0 129.037 0 121.681Z"
+          fill="#1E1E1E"
+        />
+            </svg>
+
+            {/* Flag on Top Left */}
+            <img
+              src={currentAccount.flag}
+              alt="Flag"
+              className="absolute top-[-5px] -left-2 h-12 w-20 object-cover z-0 opacity-80"
+            />
+
+            <div className="relative z-20 flex items-center gap-3 pl-14">
+              <span className="text-[13px] tracking-[0.08em] text-white/90">
                 {currentAccount.currencyName}
               </span>
             </div>
@@ -201,7 +215,7 @@ Powered by Zendt
               height="21"
               viewBox="0 0 9 21"
               fill="none"
-              className={`transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
+              className={`relative z-20 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
             >
               <path
                 d="M0.5 20.5L6.96447 14.0355C8.91709 12.0829 8.91709 8.91709 6.96447 6.96447L0.499999 0.5"
@@ -257,39 +271,62 @@ Powered by Zendt
             </div>
           </div>
 
-          <p className="text-[11px] text-white">Sender's bank location</p>
+          {currentAccount.currencyCode === "USD" && (
+            <>
+              <p className="text-[11px] text-white">Sender's bank location</p>
 
-          <div className="space-y-3">
-            <LocationCard
-              active={location === "domestic"}
-              badge="Recommended"
-              title="Within south america"
-              subtitle="Payment mode : US Faster Payment"
-              onClick={() => setLocation("domestic")}
-            />
-            <LocationCard
-              active={location === "international"}
-              title="Outside south america"
-              subtitle="Payment mode : Swift"
-              onClick={() => setLocation("international")}
-            />
-          </div>
-          <div className="flex items-center justify-between gap-3">
-            <p className="text-[11.6px] text-white tracking-[0.05em]">
-              US Faster payment - account details
-            </p>
-            <div className="flex items-center gap-2">
-              <ActionButton 
-                label="Copy" 
-                onClick={handleCopyAll}
-              />
-              <ActionButton 
-                label="Share" 
-                icon="share" 
-                onClick={handleShare}
-              />
+              <div className="space-y-3">
+                <LocationCard
+                  active={location === "domestic"}
+                  badge="Recommended"
+                  title="Within south america"
+                  subtitle="Payment mode : US Faster Payment"
+                  onClick={() => setLocation("domestic")}
+                />
+                <LocationCard
+                  active={location === "international"}
+                  title="Outside south america"
+                  subtitle="Payment mode : Swift"
+                  onClick={() => setLocation("international")}
+                />
+              </div>
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-[11.6px] text-white tracking-[0.05em]">
+                  US Faster payment - account details
+                </p>
+                <div className="flex items-center gap-2">
+                  <ActionButton 
+                    label="Copy" 
+                    onClick={handleCopyAll}
+                  />
+                  <ActionButton 
+                    label="Share" 
+                    icon="share" 
+                    onClick={handleShare}
+                  />
+                </div>
+              </div>
+            </>
+          )}
+
+          {currentAccount.currencyCode !== "USD" && (
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-[11.6px] text-white tracking-[0.05em]">
+                {currentAccount.currencyName} - account details
+              </p>
+              <div className="flex items-center gap-2">
+                <ActionButton 
+                  label="Copy" 
+                  onClick={handleCopyAll}
+                />
+                <ActionButton 
+                  label="Share" 
+                  icon="share" 
+                  onClick={handleShare}
+                />
+              </div>
             </div>
-          </div>
+          )}
           <div className="space-y-3 bg-[#2E2E2E] rounded-[18px] px-4 py-3 ">
             {currentAccount.accountDetails.map((field) => (
               <div

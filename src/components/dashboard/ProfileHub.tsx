@@ -39,13 +39,18 @@ export default function ProfileHub() {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const [items, setItems] = useState<ProfileItem[]>([]);
+  const [profile, setProfile] = useState<{ name: string; email: string } | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const data = await dataService.getProfileHubItems();
-      setItems(data);
+      const [menuItems, settings] = await Promise.all([
+        dataService.getProfileHubItems(),
+        dataService.getProfileSettings(),
+      ]);
+      setItems(menuItems);
+      setProfile(settings.initialProfileData as any);
       setLoading(false);
     };
     fetchData();
@@ -82,10 +87,12 @@ export default function ProfileHub() {
             </div>
 
             <div className="flex-1 pt-1 space-y-2">
-              <h2 className="text-[16px] font-light tracking-[0.01em]">Roberto Augustus</h2>
+              <h2 className="text-[16px] font-light tracking-[0.01em]">
+                {profile?.name || "Loading..."}
+              </h2>
               <div className="space-y-1 text-[10px] text-white/60 leading-relaxed">
                 <p>
-                  <span className="text-white/75">E-mail :</span> robertoaugustus@gmail.com
+                  <span className="text-white/75">E-mail :</span> {profile?.email || "..."}
                 </p>
                 <p>
                   <span className="text-white/75">Customer id :</span> 69014537892
