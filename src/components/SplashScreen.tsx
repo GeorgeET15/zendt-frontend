@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import AuthBackground from "./AuthBackground";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -13,27 +12,24 @@ export default function SplashScreen() {
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<any>(null);
 
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     navigate("/dashboard/home", { replace: true });
-  //   }
-  // }, [isAuthenticated, navigate]);
-
   const slides = [
     {
       id: 1,
       category: "Built For Freelancers",
-      description: "India's First Complete Freelancer Financial Stack Designed for creators, developers, designers, and professionals",
+      description:
+        "India's First Complete Freelancer Financial Stack Designed for creators, developers, designers, and professionals",
     },
     {
       id: 2,
       category: "Get Paid From Anywhere",
-      description: "Receive money from 190+ countries Including GCC currencies (QAR, AED, SAR, OMR, BHD, KWD)",
+      description:
+        "Receive money from 190+ countries Including GCC currencies (QAR, AED, SAR, OMR, BHD, KWD)",
     },
     {
       id: 3,
       category: "Know Your Money",
-      description: "Track earnings, clients, invoices, and cash flow All in one dashboard",
+      description:
+        "Track earnings, clients, invoices, and cash flow All in one dashboard",
     },
   ];
 
@@ -44,7 +40,7 @@ export default function SplashScreen() {
   return (
     <AuthBackground showNavigation={false}>
       {/* Skip Button */}
-      <div className="absolute top-6 right-6 z-20">
+      <div className="absolute top-6 right-6 z-30">
         {activeIndex < slides.length - 1 && (
           <button
             onClick={handleSkip}
@@ -55,58 +51,84 @@ export default function SplashScreen() {
         )}
       </div>
 
-      {/* Static Title Section */}
-      <div className="flex-1 flex flex-col justify-end items-center text-center pb-16 w-full z-10">
-        <h1 className="text-3xl font-medium text-white mb-2 tracking-wide uppercase">
-          ZENDT
-        </h1>
-        <h2 className="text-lg text-white/90 font-light">
-          Your Global Payments, Simplified
-        </h2>
+      {/* FIXED TITLE — Moved further down */}
+      <div className="absolute inset-0 z-20 pointer-events-none">
+        <div className="flex flex-col h-full w-full justify-end items-center">
+          {/* Adjust pb-[280px] to move it up or down. 
+              Higher number = moves UP
+              Lower number = moves DOWN 
+          */}
+          <div className="text-center pb-[350px]"> 
+            <h1 className="text-3xl font-medium text-white mb-2 tracking-wide uppercase">
+              ZENDT
+            </h1>
+            <h2 className="text-lg text-white/90 font-light">
+              Your Global Payments, Simplified
+            </h2>
+          </div>
+        </div>
       </div>
 
-      {/* Swiper Carousel */}
-      <div className="pb-12 w-full">
+      {/* Swiper */}
+      <div className="absolute inset-0 z-10">
         <Swiper
           modules={[Pagination]}
-          pagination={{
-            clickable: true,
-            bulletActiveClass: "!bg-white !opacity-100",
-            bulletClass: "swiper-pagination-bullet !bg-white/20 !opacity-100 !w-1.5 !h-1.5 !mx-1 transition-all duration-300",
-          }}
           onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
           ref={swiperRef}
-          className="w-full max-w-md"
+          className="h-full w-full"
         >
           {slides.map((slide) => (
-            <SwiperSlide key={slide.id} className="flex flex-col items-center justify-end px-8 text-center pb-4">
-              <div className="mb-4">
-                <span className="text-xs uppercase tracking-[0.2em] text-white/60">
-                  {slide.category}
-                </span>
+            <SwiperSlide key={slide.id}>
+              <div className="flex flex-col h-full w-full">
+                
+                {/* Spacer — replaces heading area exactly */}
+                <div className="flex-1" />
+
+                {/* Content Area */}
+                <div className="pb-12 w-full">
+                  <div className="flex flex-col items-center justify-end px-8 text-center pb-4">
+                  {/* Category Heading */}
+                  <div className="mb-4">
+                    <span className="text-xs uppercase tracking-[0.2em] text-white/60">
+                      {slide.category}
+                    </span>
+                  </div>
+
+                  {/* Description - Fixed height ensures the category above doesn't move */}
+                  <div className="h-[60px] flex items-start justify-center">
+                    <p className="text-white/50 text-sm leading-relaxed max-w-[280px]">
+                      {slide.description}
+                    </p>
+                  </div>
+                </div>
+
+                  {/* Footer spacer */}
+                  <div className="h-[120px]" />
+                </div>
               </div>
-              
-              <p className="text-white/50 text-sm leading-relaxed max-w-[280px] mx-auto">
-                {slide.description}
-              </p>
             </SwiperSlide>
           ))}
         </Swiper>
+      </div>
 
-        {/* Custom Pagination Container */}
+      {/* FIXED FOOTER */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 pb-12 pointer-events-none">
+        {/* Pagination */}
         <div className="flex justify-center gap-1.5 mt-4 mb-8">
-            {slides.map((_, index) => (
-                <div 
-                    key={index}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                        index === activeIndex ? "w-1.5 bg-white" : "w-1.5 bg-white/20"
-                    }`}
-                />
-            ))}
+          {slides.map((_, index) => (
+            <div
+              key={index}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                index === activeIndex
+                  ? "w-1.5 bg-white"
+                  : "w-1.5 bg-white/20"
+              }`}
+            />
+          ))}
         </div>
 
         {/* Get Started Button */}
-        <div className="h-12 flex justify-center items-center px-8">
+        <div className="h-12 flex justify-center items-center px-8 pointer-events-auto">
           {activeIndex === slides.length - 1 && (
             <button
               onClick={() => navigate("/login")}
@@ -117,10 +139,12 @@ export default function SplashScreen() {
           )}
         </div>
       </div>
-      
-      {/* Hide default swiper pagination */}
+
+      {/* Disable default Swiper pagination */}
       <style>{`
-        .swiper-pagination { display: none; }
+        .swiper-pagination {
+          display: none;
+        }
       `}</style>
     </AuthBackground>
   );
