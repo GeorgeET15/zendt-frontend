@@ -179,3 +179,16 @@ This document outlines the comprehensive changes I made to the Zendt Frontend ap
   - I diversified the recent transactions list in `fake-data.json` by including people's names (e.g., Rahul Verma, Priya Singh) alongside company names.
   - I implemented a custom `VirtualAccountSkeleton` loader to replace the spinner in `VirtualAccountPage.tsx` for a smoother loading experience.
   - I fixed the "Hi User" flash in `Summary.tsx` by implementing a loading state and skeleton for the dashboard greeting.
+
+## 11. Final Polish & Handoff (Dec 18, 2025)
+- **About Page Finalization (`AboutPage.tsx`):**
+  - I aligned the UI with the "Help & Support" design, featuring a specific rounded-top (`rounded-t-[40px]`) dark sheet (`#141414`) layout.
+  - I implemented a specific set of feature cards with uppercase headings and dark backgrounds (`#1C1C1E`) to match a reference screenshot.
+  - I restored the original detailed feature list (Global Receivables, etc.) while keeping the new premium card design.
+- **Splash Screen UX Upgrade (`SplashScreen.tsx`):**
+  - I significantly improved the user experience by extending the swipeable area to the entire screen.
+  - I refactored the layout to use an absolute positioned Swiper behind static UI elements.
+  - This allows users to swipe anywhere on the screen (not just the text area) to navigate slides, while maintaining the exact visual layout.
+- **Global Navigation:**
+  - I performed a global audit of the application to ensure consistent navigation.
+  - I added missing `BackButton` components to `CardManagementPage.tsx` and `SettlementDetailsPage.tsx` to prevent user entrapment.
