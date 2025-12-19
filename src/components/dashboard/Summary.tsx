@@ -233,7 +233,7 @@ export default function DashboardSummary() {
           <div className="h-full text-left text-white space-y-2">
             <div className="leading-tight">
               <p className="text-[11px] uppercase tracking-[0.2em]">Current</p>
-              <p className="text-lg font-semibold">Balance</p>
+              <p className="text-lg font-semibold">BALANCE</p>
             </div>
             <p className="text-lg font-semibold">Rs 1,00,000</p>
           </div>
@@ -252,7 +252,7 @@ export default function DashboardSummary() {
             <div className="h-full text-left text-white space-y-2">
               <div className="leading-tight">
                 <p className="text-[11px] uppercase tracking-[0.2em]">Last</p>
-                <p className="text-lg font-semibold">Settlement</p>
+                <p className="text-lg font-semibold">SETTLEMENT</p>
               </div>
               <div>
                 <p className="text-lg font-semibold pb-2">$24,000</p>
