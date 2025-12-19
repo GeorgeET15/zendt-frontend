@@ -230,7 +230,7 @@ export default function DashboardSummary() {
       {/* BALANCE + SETTLEMENT */}
       <section className="grid grid-cols-2 gap-4">
         <DoubleBgBox className="justify-between" arcColor="#272727">
-          <div className="text-left text-white space-y-2">
+          <div className="h-full text-left text-white space-y-2">
             <div className="leading-tight">
               <p className="text-[11px] uppercase tracking-[0.2em]">Current</p>
               <p className="text-lg font-semibold">Balance</p>
@@ -249,11 +249,15 @@ export default function DashboardSummary() {
           className="text-left w-full"
         >
           <DoubleBgBox className="justify-between" arcColor="#272727">
-            <div className="text-left text-white space-y-2 pt-[13px]">
-              <p className="text-[11px] uppercase tracking-[0.2em]">Last</p>
-              <p className="text-lg font-semibold">Settlement</p>
-              <p className="text-[14px] font-semibold">$24,000</p>
-              <p className="text-[7px] text-white/60 uppercase">Deposited on July 10th</p>
+            <div className="h-full text-left text-white space-y-2">
+              <div className="leading-tight">
+                <p className="text-[11px] uppercase tracking-[0.2em]">Last</p>
+                <p className="text-lg font-semibold">Settlement</p>
+              </div>
+              <div>
+                <p className="text-lg font-semibold pb-2">$24,000</p>
+                <p className="text-[10px] text-white/60 uppercase">Deposited on July 10th</p>
+              </div>
             </div>
           </DoubleBgBox>
         </button>
@@ -267,7 +271,7 @@ export default function DashboardSummary() {
 
       {/* RECENT TRANSACTIONS */}
       {settings.transactions && (
-        <section className="relative overflow-hidden rounded-[19px] p-8 mb-9 text-left text-white bg-[#161616]">
+        <section className="relative overflow-hidden rounded-[19px] p-8 mb-9 text-left text-white bg-[#161616] font-cairo">
           <GradientBlob
             className="absolute opacity-30 blur-2xl -z-10"
             style={{

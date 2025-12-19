@@ -28,7 +28,7 @@ export default function DoubleBgBox({
   children,
 }: DoubleBgBoxProps) {
   const baseClasses =
-    "relative overflow-hidden rounded-[20px]   text-gray-100 ";
+    "relative overflow-hidden rounded-[20px]   text-gray-100 font-cairo ";
   const sizeClass =
     variant === "wallet" ? "w-full aspect-[130/135]" : "w-full aspect-[185/135]";
   const containerClass = [baseClasses, sizeClass, className].filter(Boolean).join(" ");
