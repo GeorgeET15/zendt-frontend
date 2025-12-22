@@ -176,7 +176,7 @@ export default function CardManagementPage() {
             }}
           />
           <header className="flex flex-col gap-2 mb-6">
-            <h3 className="text-xl font-semibold">Recent transaction</h3>
+            <h3 className="text-xl font-light">Recent transaction</h3>
             <div className="flex items-center justify-between text-xs uppercase tracking-[0.35em] text-gray-400">
               <span>THIS MONTH</span>
               <span className="text-emerald-400">

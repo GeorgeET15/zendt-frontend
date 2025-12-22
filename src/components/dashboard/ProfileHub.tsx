@@ -127,7 +127,7 @@ export default function ProfileHub() {
                   <Link
                     key={label}
                     to={to}
-                    className="flex items-center gap-2.5 text-[15px] font-light tracking-wide text-white hover:text-white/80"
+                    className="flex items-center gap-3 text-[20px] font-light tracking-wide text-white hover:text-white/80 mb-2"
                   >
                     {iconSrc && <img src={iconSrc} alt={label} className="h-5 w-5 object-contain opacity-70" />}
                     <span className="flex-1">{label}</span>
@@ -147,7 +147,7 @@ export default function ProfileHub() {
                 logout();
                 navigate("/");
               }}
-              className="flex items-center gap-2.5 text-[15px] font-light tracking-wide text-white hover:text-red-300"
+              className="flex items-center gap-2.5 text-[20px] font-light tracking-wide text-white hover:text-red-300"
             >
               <img src={logoutIcon} alt="Logout" className="h-5 w-5 object-contain opacity-70" />
               <span>Log out</span>
